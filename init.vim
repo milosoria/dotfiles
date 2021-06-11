@@ -6,6 +6,7 @@ set relativenumber
 set shell=/usr/bin/zsh
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set shiftwidth=4
+set nowrap
 set expandtab
 set textwidth=80
 set smartindent
@@ -72,7 +73,7 @@ lua << EOF
 require('telescope').setup{
   defaults = {
     vimgrep_arguments = {
-        'rg -u',
+        'rg',
       '--no-heading',
       '--with-filename',
       '--line-number',
@@ -173,8 +174,8 @@ noremap pumvisible() ? "\" : " "
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 nnoremap <leader>f <cmd>Telescope live_grep <CR>
-nnoremap <leader>b <cmd>Telescope buffers<CR>
-nnoremap <C-p> <cmd>Telescope find_files <CR>
+nnoremap <C-b> <cmd>Telescope buffers<CR>
+nnoremap <C-p> :lua require('telescope.builtin').find_files {find_commands={'rg','-u'}}<CR>
 augroup fmt
   autocmd!
   autocmd BufWritePre * undojoin | Neoformat
