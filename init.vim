@@ -72,8 +72,7 @@ lua << EOF
 require('telescope').setup{
   defaults = {
     vimgrep_arguments = {
-        'rg',
-      '--color=never',
+        'rg -u',
       '--no-heading',
       '--with-filename',
       '--line-number',
@@ -174,7 +173,8 @@ noremap pumvisible() ? "\" : " "
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 nnoremap <leader>f <cmd>Telescope live_grep <CR>
-nnoremap <C-p> <cmd>Telescope find_files {find_command={'-u'}} <CR>
+nnoremap <leader>b <cmd>Telescope buffers<CR>
+nnoremap <C-p> <cmd>Telescope find_files <CR>
 augroup fmt
   autocmd!
   autocmd BufWritePre * undojoin | Neoformat
