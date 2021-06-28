@@ -30,6 +30,7 @@ highlight clear SignColumn
 
 "Plugins added via plugged, aka plug manager
 call plug#begin('~/.vim/plugged')
+Plug 'voldikss/vim-floaterm'
 Plug 'Yggdroot/indentLine'
 Plug 'nvim-lua/completion-nvim'
 Plug 'sbdchd/neoformat'
@@ -305,3 +306,11 @@ let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
 
 " indent plug
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+
+" Float Term
+nnoremap   <leader>t :FloatermToggle<CR>
+" nnoremap   <ESC><ESC> :FloatermToggle <CR>
+let g:floaterm_width=0.8
+let g:floaterm_height=0.8
+let g:floaterm_wintitle=0
+let g:floaterm_autoclose=1
