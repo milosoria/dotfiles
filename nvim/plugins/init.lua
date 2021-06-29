@@ -1,0 +1,5 @@
+require'plugins.colorscheme'.init()
+require'plugins.telescope'.init()
+require'plugins.treesitter'.init()
+require'plugins.lsp'.init()
+require'plugins.lualine'.init()

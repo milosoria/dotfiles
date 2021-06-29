@@ -17,7 +17,8 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'gruvbox-community/gruvbox'
-Plug 'ghifarit53/tokyonight-vim'
+" Plug 'ghifarit53/tokyonight-vim'
+Plug 'folke/tokyonight.nvim'
 Plug 'SirVer/ultisnips'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'gennaro-tedesco/nvim-commaround'
@@ -71,6 +72,4 @@ EOF
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/mappings.vim
 
-for f in split(glob('~/.config/nvim/plugins/**'), '\n')
-    exe 'source' f
-endfor
+lua require 'plugins/init'
