@@ -4,7 +4,7 @@ set eadirection="ver"
 set wildmode=longest,full
 set wildmenu
 set relativenumber
-set shell=/bin/zsh
+set shell=/usr/bin/zsh
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set nowrap
 set expandtab
@@ -25,6 +25,8 @@ set completeopt=menuone,noinsert,noselect
 set numberwidth=3
 set signcolumn=auto
 set termguicolors
+set clipboard+=unnamedplus
+set formatoptions-=o
 
 "set highlight c:
 highlight clear SignColumn

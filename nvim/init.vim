@@ -19,15 +19,18 @@ Plug 'nvim-treesitter/playground'
 Plug 'gruvbox-community/gruvbox'
 " Plug 'ghifarit53/tokyonight-vim'
 Plug 'folke/tokyonight.nvim'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'gennaro-tedesco/nvim-commaround'
 Plug 'ntk148v/vim-horizon'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'aca/completion-tabnine', { 'do': './install.sh' }
+Plug 'L3MON4D3/LuaSnip'
 " Plug 'preservim/nerdtree'
 call plug#end()
 
+"LuaSnip
+let g:snippets = 'LuaSnip'
 
 "Tab nine, lsp, snip
 let g:completion_chain_complete_list = {
@@ -62,14 +65,61 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 " devicons setup
 lua << EOF
-default = true;
 require'nvim-web-devicons'.setup {
+    default = true;
     }
 EOF
+"gutentags
+let g:gutentags_ctags_exclude = [
+            \ '*.git', '*.svg', '*.hg',
+            \ '*/tests/*',
+            \ 'build',
+            \ 'dist',
+            \ '*sites/*/files/*',
+            \ 'bin',
+            \ 'node_modules',
+            \ 'bower_components',
+            \ 'cache',
+            \ 'compiled',
+            \ 'docs',
+            \ 'example',
+            \ 'bundle',
+            \ 'vendor',
+            \ '*.md',
+            \ '*-lock.json',
+            \ '*.lock',
+            \ '*bundle*.js',
+            \ '*build*.js',
+            \ '.*rc*',
+            \ '*.json',
+            \ '*.min.*',
+            \ '*.map',
+            \ '*.bak',
+            \ '*.zip',
+            \ '*.pyc',
+            \ '*.class',
+            \ '*.sln',
+            \ '*.Master',
+            \ '*.csproj',
+            \ '*.tmp',
+            \ '*.csproj.user',
+            \ '*.cache',
+            \ '*.pdb',
+            \ 'tags*',
+            \ 'cscope.*',
+            \ '*.less',
+            \ '*.scss',
+            \ '*.exe', '*.dll',
+            \ '*.mp3', '*.ogg', '*.flac',
+            \ '*.swp', '*.swo',
+            \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
+            \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+            \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
+            \ ]
+let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
 
 "source every config file
 " SHOULD I PORT THIS TO LUA???
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/mappings.vim
-
-lua require 'plugins/init'
+luafile ~/.config/nvim/lua/init.lua

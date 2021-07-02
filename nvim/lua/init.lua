@@ -1,0 +1,7 @@
+require'plugins.lsp'.init()
+require'plugins.lualine'.init()
+require'plugins.telescope'.init()
+require'plugins.treesitter'.init()
+require'plugins.neoformat'.init()
+require'plugins.floaterm'.init()
+require'plugins.colorscheme'.init()
