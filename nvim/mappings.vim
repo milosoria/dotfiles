@@ -12,9 +12,9 @@ inoremap <A-j> <Esc>:m .+1<CR>==gi
 inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
+
 " Completion remap for tab and enter
 inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "\<CR>"
-noremap pumvisible() ? "\" : " "
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Telescope
@@ -22,7 +22,6 @@ nnoremap <leader>f <cmd>Telescope live_grep <CR>
 nnoremap <C-b> <cmd>Telescope buffers<CR>
 nnoremap <C-p> <cmd>Telescope find_files hidden=true <CR>
 " Resizing
-nnoremap <leader>e :wincmd v<bar> :Ex <bar> :vertical resize 30 <CR>
 nnoremap <leader>+ :vertical resize +10<CR>
 nnoremap <leader>- :vertical resize -10<CR>
 
@@ -33,8 +32,11 @@ tnoremap <Esc> <C-\><C-n>
 nnoremap   <leader>t :FloatermToggle<CR>
 
 " Easier moving between splits
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+noremap <C-J> <C-W><C-J>
+noremap <C-K> <C-W><C-K>
+noremap <C-H> <C-W><C-H>
+noremap <C-L> <C-W><C-L>
 
+" Explorer maps
+nnoremap <leader>e :Explore <CR>
+nnoremap <leader>ve :Vexplore <CR>
