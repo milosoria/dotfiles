@@ -1,36 +1,35 @@
 "Plugins added via plugged, aka plug manager
 call plug#begin('~/.vim/plugged')
-Plug 'voldikss/vim-floaterm'
-Plug 'Yggdroot/indentLine'
+" completion
 Plug 'nvim-lua/completion-nvim'
-Plug 'sbdchd/neoformat'
-Plug 'neovim/nvim-lsp'
-Plug 'kabouzeid/nvim-lspinstall'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'aca/completion-tabnine', { 'do': './install.sh' }
+Plug 'L3MON4D3/LuaSnip'
+" Telescope
 Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-media-files.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-lua/popup.nvim'
+" LSP
+Plug 'kabouzeid/nvim-lspinstall'
+Plug 'neovim/nvim-lsp'
 Plug 'neovim/nvim-lspconfig'
+" tresitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
-Plug 'gruvbox-community/gruvbox'
-" Plug 'ghifarit53/tokyonight-vim'
+Plug 'Yggdroot/indentLine'
+" Colorscheme tokyonight
 Plug 'folke/tokyonight.nvim'
-" Plug 'SirVer/ultisnips'
+" lua line
 Plug 'hoob3rt/lualine.nvim'
+" comments
 Plug 'gennaro-tedesco/nvim-commaround'
 Plug 'ntk148v/vim-horizon'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'aca/completion-tabnine', { 'do': './install.sh' }
-Plug 'L3MON4D3/LuaSnip'
-" Plug 'preservim/nerdtree'
+Plug 'voldikss/vim-floaterm'
+Plug 'sbdchd/neoformat'
+Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
-
-"LuaSnip
-let g:snippets = 'LuaSnip'
 
 "Tab nine, lsp, snip
 let g:completion_chain_complete_list = {
@@ -47,6 +46,8 @@ augroup fmt
     autocmd!
     autocmd BufWritePre * undojoin | Neoformat
 augroup END
+" autocmd for not continuing comments
+autocmd FileType * setlocal formatoptions-=c formatoptions-=o
 
 " Yank highlight
 au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150}
@@ -117,7 +118,7 @@ let g:gutentags_ctags_exclude = [
             \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
             \ ]
 let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
-
+let g:gutentags_generate_on_write = 1
 "source every config file
 " SHOULD I PORT THIS TO LUA???
 source ~/.config/nvim/settings.vim

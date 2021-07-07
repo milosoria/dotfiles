@@ -10,6 +10,7 @@ set nowrap
 set expandtab
 set textwidth=80
 set smartindent
+set autoindent
 set nu
 set nohlsearch
 set hidden
@@ -26,7 +27,9 @@ set numberwidth=3
 set signcolumn=auto
 set termguicolors
 set clipboard+=unnamedplus
-set formatoptions-=o
+let g:netrw_liststyle=3
+let g:netrw_banner=0
 
 "set highlight c:
+
 highlight clear SignColumn
