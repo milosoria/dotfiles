@@ -10,7 +10,6 @@ set nowrap
 set expandtab
 set textwidth=80
 set smartindent
-set autoindent
 set nu
 set nohlsearch
 set hidden
