@@ -3,13 +3,6 @@ local function init()
     require('telescope').load_extension('fzy_native')
     require('telescope').setup{
         defaults = {
-            vimgrep_arguments = {
-                'rg',
-                '--no-heading',
-                '--with-filename',
-                '--line-number',
-                '--column',
-            },
             file_ignore_patterns = {"./node_modules/*", "node_modules", "^node_modules/*", "node_modules/*", "./yarn.*", "yarn.*"},
             selection_caret = "> ",
             prompt_prefix = "🔍 ",
@@ -31,7 +24,6 @@ local function init()
             },
             file_sorter =  require'telescope.sorters'.get_fzy_sorter,
             color_devicons = true,
-            shorten_path = true,
             winblend = 0,
             border = {},
             borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
@@ -45,8 +37,6 @@ local function init()
                     override_file_sorter =true,
                 }
             },
-            -- Developer configurations: Not meant for general override
-                buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
         }
     }
 end

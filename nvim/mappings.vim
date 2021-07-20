@@ -3,7 +3,7 @@
 " leader key definition <space>
 let mapleader = " "
 
-nnoremap <leader> gd <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <leader> gd <cmd>lua vim.lsp.buf.definition()<CR>
 vmap <leader>c <Plug>ToggleCommaround
 "Alt moving lines
 nnoremap <A-j> :m .+1<CR>==
@@ -29,7 +29,7 @@ nnoremap <leader>- :vertical resize -10<CR>
 tnoremap <Esc> <C-\><C-n>
 
 " Float Term
-nnoremap   <leader>t :FloatermToggle<CR>
+nnoremap <leader>t :FloatermToggle<CR>
 
 " Easier moving between splits
 noremap <C-J> <C-W><C-J>
@@ -37,6 +37,6 @@ noremap <C-K> <C-W><C-K>
 noremap <C-H> <C-W><C-H>
 noremap <C-L> <C-W><C-L>
 
-" Explorer maps
-nnoremap <leader>e :Explore <CR>
-nnoremap <leader>ve :Vexplore <CR>
+" " Explorer maps
+" nnoremap <leader>e :Explore <CR>
+" nnoremap <leader>ve :Vexplore <CR>

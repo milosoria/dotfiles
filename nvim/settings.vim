@@ -19,15 +19,15 @@ set ignorecase
 set noswapfile
 set incsearch
 set guicursor=a:blinkon80
+set guicursor+=i:ver100-iCursor
 set scrolloff=8
 set signcolumn=yes
 set completeopt=menuone,noinsert,noselect
 set numberwidth=3
 set signcolumn=auto
-set termguicolors
 set clipboard+=unnamedplus
-let g:netrw_liststyle=3
-let g:netrw_banner=0
+set mouse=a
+"let g:netrw_banner=0
 
 "set highlight c:
 
