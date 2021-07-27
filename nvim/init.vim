@@ -39,7 +39,8 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'sbdchd/neoformat'
 
 " Plug 'sbdchd/neoformat'
-Plug 'ludovicchabant/vim-gutentags'
+" How to generate tags then? is it really needed for file navigation
+" Plug 'ludovicchabant/vim-gutentags'
 
 " devicons and nvim-tree
 Plug 'kyazdani42/nvim-tree.lua'
@@ -55,14 +56,16 @@ let g:completion_chain_complete_list = {
                 \}
 lua require('luasnip.config')._setup()
 
-"completion strategy
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-
 " Auto group format
 augroup fmt
     autocmd!
-    autocmd BufWritePre * undojoin | Neoformat | Prettier
+    autocmd BufWritePre * undojoin | Neoformat
 augroup END
+"prettier
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#quickfix_enabled = 0
+
 " autocmd for not continuing comments
 autocmd FileType * setlocal formatoptions-=c formatoptions-=o
 
@@ -72,7 +75,6 @@ au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeou
 " Use completion-nvim in every buffer
 autocmd BufEnter * lua require'completion'.on_attach()
 
-" command! -nargs=0 GutentagsClearCache call system('rm ' . g:gutentags_cache_dir . '/*')
 
 " indent plug
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
@@ -83,10 +85,6 @@ require'nvim-web-devicons'.setup {
     default = true;
     }
 EOF
-
-" gutentags
-let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
-let g:gutentags_generate_on_write = 1
 
 "source every config file
 source ~/.config/nvim/settings.vim

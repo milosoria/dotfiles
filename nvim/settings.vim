@@ -27,8 +27,8 @@ set numberwidth=3
 set signcolumn=auto
 set clipboard+=unnamedplus
 set mouse=a
+"set highlight
 "let g:netrw_banner=0
 
-"set highlight c:
 
 highlight clear SignColumn
