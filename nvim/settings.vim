@@ -5,7 +5,7 @@ set wildmode=longest,full
 set wildmenu
 set relativenumber
 set shell=/usr/bin/zsh
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set nowrap
 set expandtab
 set textwidth=80
@@ -22,13 +22,12 @@ set guicursor=a:blinkon80
 set guicursor+=i:ver100-iCursor
 set scrolloff=8
 set signcolumn=yes
-set completeopt=menuone,noinsert,noselect
+set completeopt=menuone,noselect
 set numberwidth=3
+set shortmess+=c
 set signcolumn=auto
 set clipboard+=unnamedplus
 set mouse=a
-"set highlight
-"let g:netrw_banner=0
 
 
 highlight clear SignColumn
