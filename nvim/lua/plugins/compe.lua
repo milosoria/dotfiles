@@ -1,4 +1,5 @@
 local function init()
+    -- Main setup call with config
     require'compe'.setup {
         enabled = true;
         autocomplete = true;
@@ -57,6 +58,7 @@ local function init()
             return vim.fn['compe#complete']()
         end
     end
+
     _G.s_tab_complete = function()
         if vim.fn.pumvisible() == 1 then
             return t "<C-p>"
@@ -73,7 +75,6 @@ local function init()
     vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
     vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
-    --vim.cmd("highlight link CompeDocumentation NormalFloat")
 end
 
 return {
