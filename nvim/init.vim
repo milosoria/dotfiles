@@ -55,6 +55,9 @@ augroup fmt
     autocmd BufWritePre * undojoin | Neoformat
 augroup END
 
+" run specific config for markdown
+autocmd FileType markdown set textwidth=0
+
 " vim-prettier
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
