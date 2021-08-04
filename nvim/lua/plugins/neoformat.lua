@@ -11,6 +11,8 @@ local function init()
     vim.g.neoformat_basic_format_trim = 1
     vim.g.neoformat_basic_format_align = 1
     vim.g.neoformat_basic_format_trim = 1
+    -- vim.api.nvim_set_keymap('n', '<space>p', '<expr>Neoformat<CR>',  {expr = true, noremap = true})
+
 end
 
 return {

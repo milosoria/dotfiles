@@ -1,4 +1,4 @@
-"Plugins added via plugged, plug manager
+"lugins added via plugged, plug manager
 call plug#begin('~/.vim/plugged')
 
 " completion
@@ -49,14 +49,15 @@ call plug#end()
 
 lua require('luasnip.config')._setup()
 
-" Run neoformat on write
-augroup fmt
-    autocmd!
-    autocmd BufWritePre * undojoin | Neoformat
-augroup END
+" " Run neoformat on write
+" augroup fmt
+"     autocmd!
+"     autocmd BufWritePre * undojoin | Neoformat
+" augroup END
 
 " run specific config for markdown
 autocmd FileType markdown set textwidth=0
+autocmd FileType text set textwidth=0
 
 " vim-prettier
 let g:prettier#autoformat = 1
