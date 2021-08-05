@@ -37,4 +37,4 @@ noremap <C-H> <C-W><C-H>
 noremap <C-L> <C-W><C-L>
 
 " Indenting with builtin
-nnoremap <leader>i :norm gg=G <CR>
+nnoremap <leader>i ma :norm gg=G<CR> `a  

@@ -1,5 +1,6 @@
 local function init()
     -- Main setup call with config
+    require('luasnip.config')._setup()
     require'compe'.setup {
         enabled = true;
         autocomplete = true;

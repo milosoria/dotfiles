@@ -47,8 +47,6 @@ Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
 
-lua require('luasnip.config')._setup()
-
 " " Run neoformat on write
 " augroup fmt
 "     autocmd!
@@ -59,8 +57,7 @@ lua require('luasnip.config')._setup()
 autocmd FileType markdown set textwidth=0
 autocmd FileType text set textwidth=0
 
-" vim-prettier
-let g:prettier#autoformat = 1
+"Prettier
 let g:prettier#autoformat_require_pragma = 0
 let g:prettier#quickfix_enabled = 0
 

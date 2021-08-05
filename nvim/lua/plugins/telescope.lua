@@ -3,7 +3,7 @@ local function init()
     require('telescope').load_extension('fzy_native')
     require('telescope').setup{
         defaults = {
-            file_ignore_patterns = {"./node_modules/*", "node_modules", "^node_modules/*", "node_modules/*", "./yarn.*", "yarn.*"},
+            file_ignore_patterns = {".git/","./node_modules/*", "node_modules", "^node_modules/*", "node_modules/*", "./yarn.*", "yarn.*"},
             selection_caret = "> ",
             prompt_prefix = "🔍 ",
             entry_prefix = "  ",
