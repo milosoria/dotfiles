@@ -27,9 +27,6 @@ nnoremap <leader>- :vertical resize -10<CR>
 " Terminal remap
 tnoremap <Esc> <C-\><C-n>
 
-" Float Term
-nnoremap <leader>t :FloatermToggle<CR>
-
 " Easier moving between splits
 noremap <C-J> <C-W><C-J>
 noremap <C-K> <C-W><C-K>

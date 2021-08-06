@@ -1,5 +1,5 @@
 local function init()
-    vim.g.nvim_tree_auto_open=0
+    vim.g.nvim_tree_auto_open=1
     vim.g.nvim_tree_auto_close=0
     vim.g.nvim_tree_quit_on_open=1
     vim.g.nvim_tree_follow=1
@@ -7,6 +7,7 @@ local function init()
     vim.g.nvim_tree_git_hl=1
     vim.g.nvim_tree_highlight_opened_files=1
     vim.g.nvim_tree_root_folder_modifier=':~'
+    vim.g.nvim_tree_highlight_opened_files = 1
     vim.g.nvim_tree_lsp_diagnostics=1
     vim.g.nvim_tree_disable_window_picker = 1
     vim.g.nvim_tree_update_cwd =1

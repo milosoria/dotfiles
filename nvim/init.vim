@@ -28,14 +28,14 @@ Plug 'Yggdroot/indentLine'
 " Colorscheme tokyonight
 Plug 'folke/tokyonight.nvim'
 
+" toggle terminal
+Plug 'caenrique/nvim-toggle-terminal'
+
 " lua line
 Plug 'hoob3rt/lualine.nvim'
 
 " comments
 Plug 'tpope/vim-commentary'
-
-" float term
-Plug 'voldikss/vim-floaterm'
 
 " format
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }

@@ -22,10 +22,11 @@ set guicursor=a:blinkon80
 set guicursor+=i:ver100-iCursor
 set scrolloff=8
 set signcolumn=yes
-" do i like tthis? set to 1 to scroll one column
+" do i like this? set to 1 to scroll one column
 set sidescroll=0
 " what does dis shit do
 set showbreak=↪>\
+
 set completeopt=menuone,noselect
 set numberwidth=3
 set shortmess+=c
