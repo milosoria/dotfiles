@@ -25,7 +25,6 @@ set signcolumn=yes
 set sidescroll=0
 " what does dis shit do
 set showbreak=↪>\
-
 set completeopt=menuone,noselect
 set numberwidth=3
 set shortmess+=c

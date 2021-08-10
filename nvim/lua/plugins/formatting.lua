@@ -11,7 +11,9 @@ local function init()
     vim.g.neoformat_basic_format_trim = 1
     vim.g.neoformat_basic_format_align = 1
     vim.g.neoformat_basic_format_trim = 1
-    -- vim.api.nvim_set_keymap('n', '<space>p', '<expr>Neoformat<CR>',  {expr = true, noremap = true})
+
+    -- Run neoformat and prettier at once
+    vim.api.nvim_set_keymap('n', '<Leader>n', '<cmd>Neoformat<CR>',  {noremap = true})
 
 end
 

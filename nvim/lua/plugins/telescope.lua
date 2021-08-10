@@ -39,6 +39,9 @@ local function init()
             },
         }
     }
+    vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', { noremap = true})
+    vim.api.nvim_set_keymap('n', '<Leader>b', ':Telescope buffers<CR>', { noremap = true})
+    vim.api.nvim_set_keymap('n', '<Leader>p', ':Telescope find_files hidden=true<CR>', { noremap = true})
 end
 
 return {

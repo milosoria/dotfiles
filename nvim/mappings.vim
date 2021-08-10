@@ -15,10 +15,6 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 
-" Telescope
-nnoremap <leader>f <cmd>Telescope live_grep <CR>
-nnoremap <C-b> <cmd>Telescope buffers<CR>
-nnoremap <C-p> <cmd>Telescope find_files hidden=true <CR>
 
 " Resizing
 nnoremap <leader>+ :vertical resize +10<CR>

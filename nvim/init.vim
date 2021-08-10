@@ -1,4 +1,4 @@
-"lugins added via plugged, plug manager
+"Plugins added via plugged, plug manager
 call plug#begin('~/.vim/plugged')
 
 " completion
@@ -38,7 +38,6 @@ Plug 'hoob3rt/lualine.nvim'
 Plug 'tpope/vim-commentary'
 
 " format
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'sbdchd/neoformat'
 
 " devicons and nvim-tree
@@ -46,12 +45,6 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
-
-" " Run neoformat on write
-" augroup fmt
-"     autocmd!
-"     autocmd BufWritePre * undojoin | Neoformat
-" augroup END
 
 " run specific config for markdown
 autocmd FileType markdown set textwidth=0
@@ -70,12 +63,6 @@ au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeou
 " indent plug
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
-" devicons setup
-lua << EOF
-require'nvim-web-devicons'.setup {
-    default = true;
-    }
-EOF
 
 "source every config file
 source ~/.config/nvim/settings.vim
