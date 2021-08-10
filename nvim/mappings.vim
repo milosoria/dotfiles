@@ -23,6 +23,7 @@ nnoremap <C-p> <cmd>Telescope find_files hidden=true <CR>
 " Resizing
 nnoremap <leader>+ :vertical resize +10<CR>
 nnoremap <leader>- :vertical resize -10<CR>
+nnoremap <leader>= <C-W>= <CR>
 
 " Terminal remap
 tnoremap <Esc> <C-\><C-n>
