@@ -15,7 +15,7 @@ set nowrap
 set showbreak=↪>\
 
 set smartindent
-set hlsearch
+set nohlsearch
 set nu
 set hidden
 set noerrorbells

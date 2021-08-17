@@ -31,6 +31,9 @@ Plug 'folke/tokyonight.nvim'
 " toggle terminal
 Plug 'caenrique/nvim-toggle-terminal'
 
+" Auto close brackets and braces
+Plug 'jiangmiao/auto-pairs'
+
 " lua line
 Plug 'hoob3rt/lualine.nvim'
 
@@ -62,7 +65,6 @@ au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeou
 
 " indent plug
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-
 
 "source every config file
 source ~/.config/nvim/settings.vim
