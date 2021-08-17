@@ -31,7 +31,8 @@ local function init()
             luasnip = true;
 
             -- External source
-            tabnine = true;
+            -- Main reason for slow start up
+            -- tabnine = true;
         };
     }
 

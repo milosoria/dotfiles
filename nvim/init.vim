@@ -3,8 +3,9 @@ call plug#begin('~/.vim/plugged')
 
 " completion
 Plug 'hrsh7th/nvim-compe'
-Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 Plug 'L3MON4D3/LuaSnip'
+" Main reason for slow startup
+Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 
 " Telescope
 Plug 'nvim-lua/popup.nvim'
