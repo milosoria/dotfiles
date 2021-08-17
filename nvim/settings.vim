@@ -33,3 +33,4 @@ set shortmess+=c
 set clipboard+=unnamedplus
 set mouse=a
 set termguicolors
+
