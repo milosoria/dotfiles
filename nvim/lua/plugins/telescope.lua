@@ -1,6 +1,4 @@
 local function init()
-    require('telescope').load_extension('media_files')
-    require('telescope').load_extension('fzy_native')
     require('telescope').setup{
         defaults = {
             file_ignore_patterns = {".git/","./node_modules/*", "node_modules", "^node_modules/*", "node_modules/*", "./yarn.*", "yarn.*"},
@@ -39,6 +37,8 @@ local function init()
             },
         }
     }
+    require('telescope').load_extension('media_files')
+    require('telescope').load_extension('fzy_native')
     vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', { noremap = true})
     vim.api.nvim_set_keymap('n', '<Leader>b', ':Telescope buffers<CR>', { noremap = true})
     vim.api.nvim_set_keymap('n', '<Leader>p', ':Telescope find_files hidden=true<CR>', { noremap = true})
