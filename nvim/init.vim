@@ -5,7 +5,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'hrsh7th/nvim-compe'
 Plug 'L3MON4D3/LuaSnip'
 " Main reason for slow startup
-Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
+" Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 
 " Telescope
 Plug 'nvim-lua/popup.nvim'
@@ -66,6 +66,9 @@ au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeou
 
 " indent plug
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+
+" Latex flavor, in order to make the FileType be a latex and not plaintex
+let g:tex_flavor = "latex"
 
 "source every config file
 source ~/.config/nvim/settings.vim
