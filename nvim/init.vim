@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
 " completion
 Plug 'hrsh7th/nvim-compe'
 Plug 'L3MON4D3/LuaSnip'
+
 " Main reason for slow startup
 " Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 
@@ -27,7 +28,7 @@ Plug 'nvim-treesitter/playground'
 Plug 'Yggdroot/indentLine'
 
 " Colorscheme tokyonight
-Plug 'folke/tokyonight.nvim'
+Plug 'folke/tokyonight.nvim', {'branch':'main'}
 
 " toggle terminal
 Plug 'caenrique/nvim-toggle-terminal'
@@ -69,6 +70,9 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 " Latex flavor, in order to make the FileType be a latex and not plaintex
 let g:tex_flavor = "latex"
+
+" what
+let &t_ut=''
 
 "source every config file
 source ~/.config/nvim/settings.vim

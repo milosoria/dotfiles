@@ -6,9 +6,21 @@ set wildmenu
 set relativenumber
 set shell=/usr/bin/zsh
 
-set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+" Number of visual spaces per tab
+set tabstop=4
+" Number of spaces to use for each step if (auto)indent
+set shiftwidth=4
+" Number of spaces inserted when tab is pressed in insert mode
+set softtabstop=0
+
+" Insert spaces when pressing tab
 set expandtab
+set smarttab
+
 set textwidth=80
+
+" Auto Indent
+set autoindent
 
 " if wrap is set, then showbreak adds a string to lines wrapped
 set nowrap
@@ -32,5 +44,3 @@ set numberwidth=3
 set shortmess+=c
 set clipboard+=unnamedplus
 set mouse=a
-set termguicolors
-
