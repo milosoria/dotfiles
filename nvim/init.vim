@@ -30,6 +30,9 @@ Plug 'Yggdroot/indentLine'
 " Colorscheme tokyonight
 Plug 'folke/tokyonight.nvim', {'branch':'main'}
 
+" Color for lualine
+Plug 'drewtempelmeyer/palenight.vim'
+
 " toggle terminal
 Plug 'caenrique/nvim-toggle-terminal'
 

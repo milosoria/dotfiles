@@ -17,10 +17,10 @@ set softtabstop=0
 set expandtab
 set smarttab
 
-set textwidth=80
-
-" Auto Indent
+" Autoindent
 set autoindent
+
+set textwidth=80
 
 " if wrap is set, then showbreak adds a string to lines wrapped
 set nowrap
