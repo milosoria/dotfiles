@@ -7,9 +7,9 @@ set relativenumber
 set shell=/usr/bin/zsh
 
 " Number of visual spaces per tab
-set tabstop=4
+set tabstop=8
 " Number of spaces to use for each step if (auto)indent
-set shiftwidth=4
+set shiftwidth=8
 " Number of spaces inserted when tab is pressed in insert mode
 set softtabstop=0
 
