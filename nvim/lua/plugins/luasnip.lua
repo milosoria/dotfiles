@@ -72,7 +72,16 @@ local function init()
                     }
 
                 )),
-        }
+        },
+
+        -- all={
+-- /** Sends a SIGUSR1 signal to a process with an int payload
+ -- *
+ -- * @param pid: Process that will receive the signal
+ -- * @param payload: Payload to send along with the signal
+-- */
+        -- }
+
     }
 end
 

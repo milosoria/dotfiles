@@ -49,13 +49,13 @@ local function init()
 
     vim.g.nvim_tree_add_trailing=1
     vim.g.nvim_tree_indent_markers=1
-    vim.g.nvim_tree_respect_buf_cwd=1
     vim.g.nvim_tree_follow=1
     vim.g.nvim_tree_indent_markers=1
     vim.g.nvim_tree_git_hl=1
-    vim.g.nvim_tree_highlight_opened_files=1
+    vim.g.nvim_tree_update_cwd = 0 -- will update the tree cwd when changing nvim's directory (DirChanged event). Behaves strangely with autochdir set.
+    vim.g.nvim_tree_respect_buf_cwd = 0 -- will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
     vim.g.nvim_tree_root_folder_modifier=':~'
-    vim.g.nvim_tree_highlight_opened_files = 3
+    vim.g.nvim_tree_highlight_opened_files=3
     vim.g.nvim_tree_lsp_diagnostics=1
     vim.g.nvim_tree_disable_window_picker = 1
 

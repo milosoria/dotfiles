@@ -1,4 +1,4 @@
-"Editor configs
+"editor configs
 set cmdheight=1
 set eadirection=ver
 set wildmode=longest,full
@@ -6,18 +6,18 @@ set wildmenu
 set relativenumber
 set shell=/usr/bin/zsh
 
-" Number of visual spaces per tab
+" number of visual spaces per tab
 set tabstop=8
-" Number of spaces to use for each step if (auto)indent
-set shiftwidth=8
-" Number of spaces inserted when tab is pressed in insert mode
+" number of spaces to use for each step if (auto)indent
+set shiftwidth=4
+" number of spaces inserted when tab is pressed in insert mode
 set softtabstop=0
 
-" Insert spaces when pressing tab
+" insert spaces when pressing tab
 set expandtab
 set smarttab
 
-" Autoindent
+" autoindent
 set autoindent
 
 set textwidth=80
@@ -35,7 +35,7 @@ set smartcase
 set noswapfile
 set incsearch
 set guicursor=a:blinkon80
-set guicursor+=i:ver100-iCursor
+set guicursor+=i:ver100-icursor
 set scrolloff=8
 set signcolumn=auto
 set sidescroll=0

@@ -38,3 +38,7 @@ nnoremap <leader>c bmai'<Esc>ea'<Esc> `a
 
 " Remap C-W C-O to <leader>w
 nnoremap <leader>w <C-W><C-O>
+
+" remap to indent with one >
+nnoremap > >>
+nnoremap < <<

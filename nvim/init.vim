@@ -74,9 +74,6 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " Latex flavor, in order to make the FileType be a latex and not plaintex
 let g:tex_flavor = "latex"
 
-" what
-let &t_ut=''
-
 "source every config file
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/mappings.vim
