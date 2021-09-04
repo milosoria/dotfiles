@@ -42,3 +42,6 @@ nnoremap <leader>w <C-W><C-O>
 " remap to indent with one >
 nnoremap > >>
 nnoremap < <<
+
+" remap to force quit
+nnoremap <leader>q :q!<CR>
