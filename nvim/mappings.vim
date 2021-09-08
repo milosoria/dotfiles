@@ -45,3 +45,6 @@ nnoremap < <<
 
 " remap to force quit
 nnoremap <leader>q :q!<CR>
+
+" visual to end of line
+nnoremap vv v$

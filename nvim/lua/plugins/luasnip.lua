@@ -55,6 +55,18 @@ local function init()
                         "\\caption{}",
                     "\\end{figure}",
                     })
+                ),
+                s({trig="itemize",name="itemize", docstring="insert itemize environment"}, t({
+                    "\\begin{itemize}",
+                        "\\item",
+                    "\\end{itemize}",
+                    })
+                ),
+                s({trig="enumerate",name="enumerate", docstring="insert enumerate environment"}, t({
+                    "\\begin{enumerate}",
+                        "\\item",
+                    "\\end{enumerate}",
+                    })
                 )
         },
         html={
