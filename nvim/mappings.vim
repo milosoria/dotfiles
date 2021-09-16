@@ -33,9 +33,6 @@ noremap <C-L> <C-W><C-L>
 " Indenting with builtin
 nnoremap <leader>i ma :norm gg=G<CR> `a  
 
-" Surrounding word with quotes
-nnoremap <leader>c bmai'<Esc>ea'<Esc> `a
-
 " Remap C-W C-O to <leader>w
 nnoremap <leader>w <C-W><C-O>
 

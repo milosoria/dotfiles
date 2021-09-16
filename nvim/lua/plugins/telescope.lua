@@ -1,4 +1,7 @@
 local function init()
+
+-- To get fzf loaded and working with telescope, you need to call
+-- load_extension, somewhere after setup function:
     require('telescope').setup{
         defaults = {
             file_ignore_patterns = {".git/","./node_modules/*", "node_modules", "^node_modules/*", "node_modules/*", "./yarn.*", "yarn.*"},
@@ -32,19 +35,12 @@ local function init()
             file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
             grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
             qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
-            extensions ={
-                fzy_native = {
-                    override_generic_sorter = false,
-                    override_file_sorter =true,
-                }
-            },
         }
     }
-    require('telescope').load_extension('media_files')
-    require('telescope').load_extension('fzy_native')
+    require('telescope').load_extension('fzf')
     vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', { noremap = true})
-    vim.api.nvim_set_keymap('n', '<Leader>b', ':Telescope buffers<CR>', { noremap = true})
     vim.api.nvim_set_keymap('n', '<Leader>p', ':Telescope find_files hidden=true<CR>', { noremap = true})
+    vim.api.nvim_set_keymap('n', '<Leader>b', ':Telescope buffers<CR>', { noremap = true})
 end
 
 return {
