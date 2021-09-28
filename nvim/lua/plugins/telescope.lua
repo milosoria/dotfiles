@@ -13,7 +13,7 @@ local function init()
             sorting_strategy = "descending",
             layout_strategy = "horizontal",
             layout_config = {
-                width = 0.75,
+                width = 0.80,
                 prompt_position = "bottom",
                 preview_cutoff = 1,
                 horizontal = {
@@ -46,9 +46,15 @@ local function init()
 
     require('telescope').load_extension('fzf')
 
+    -- grep string in the current directory
     vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep()<CR>', { noremap = true})
-    vim.api.nvim_set_keymap('n', '<Leader>p', ':Telescope find_files hidden=true<CR>', { noremap = true})
-    vim.api.nvim_set_keymap('n', '<Leader>c', ':Telescope colorscheme<CR>', { noremap = true})
+    -- find_files in the current directory
+    vim.api.nvim_set_keymap('n', '<Leader>p', ':Telescope find_files<CR>', { noremap = true})
+    -- neovim config directory
+    vim.api.nvim_set_keymap('n', '<Leader>v', ':Telescope find_files cwd=~/.config/nvim<CR>', { noremap = true})
+    -- global
+    vim.api.nvim_set_keymap('n', '<Leader>g', ':Telescope find_files theme=ivy cwd=~ <CR>', { noremap = true})
+    -- buffers
     vim.api.nvim_set_keymap('n', '<Leader>b', ':Telescope buffers<CR>', { noremap = true})
 end
 
