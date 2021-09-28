@@ -1,12 +1,8 @@
-# compinit fix for slow startup
-autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-done
-compinit -C
+# zmodload zsh/zprof
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/camilo/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
+export SHELL=/bin/zsh
 
 ZSH_THEME="robbyrussell"
 # Case sensitive search
@@ -22,70 +18,79 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
 # Node lazy loading for faster shell startup 
-export NVM_LAZY_LOAD=true
 lazynvm() {
-  unset -f nvm node npm
-  export NVM_DIR=~/.nvm
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+    unset -f nvm node npm
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 }
 
+# NVM unset and then set when called
 nvm() {
-  lazynvm 
-  nvm $@
+    lazynvm 
+    nvm $@
 }
 
+# NODE unset and then set when called
 node() {
-  lazynvm
-  node $@
+    lazynvm
+    node $@
 }
 
+# NPM unset and then set when called
 npm() {
-  lazynvm
-  npm $@
+    lazynvm
+    npm $@
 }
 
+# ALIASES 
+#general
+alias nv='nvim'
+alias home='cd ~'
+alias mine='cd ~/projects'
+alias dotfiles='cd ~/.config'
+alias ex='exit'
+alias open='xdg-open'
+alias vimrc='"$EDITOR" ~/.config/nvim/init.vim'
+alias dotfiles='cd ~/.config'
+alias kittyconf='"$EDITOR" ~/.config/kitty/kitty.conf'
+alias ll='ls -lah'
+alias nn='nnn -de'
+alias cat='bat'
 
-#source Custom commands
-source ~/custom_commands/custom_commands.sh
-
-# Aliases 
 # git
 alias ga='git add'
 alias gc='git commit -m'
 alias gp='git push'
 alias gs='git status'
 alias qpll='git pull'
+
 # apt
 alias update='sudo apt-get update -y'
 alias upgrade='sudo apt-get upgrade -y'
 alias install='sudo apt-get install'
-#general
-alias home='cd ~'
-alias mine='cd ~/projects'
-alias ex='exit'
-alias open='xdg-open'
-alias nv='nvim'
-alias vimrc='cd ~/.config/nvim && "$EDITOR" init.vim'
-alias dotfiles='cd ~/.config'
-alias kittyconf='cd ~/.config/kitty && "$EDITOR" kitty.conf'
-alias ll='ls -la'
-alias nn='nnn -de'
-alias cat='bat'
+
 # cheat sheet
 alias cheat='cht.sh'
+
 # custom commands
 alias create='project'
 alias qpsh='qpsh'
 
 # Path exports
+export PATH=$PATH/neovim/build/bin
 export VISUAL=nvim
 export EDITOR=$VISUAL
 export PATH=/snap/bin:$PATH
-export PATH=$PATH/neovim/build/bin
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$HOME/.rvm/bin
 export PATH=$PATH:/.yarn/bin
 
+#source Custom commands
+source ~/custom_commands/custom_commands.sh
+
 # fzf for shell 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# zprof
