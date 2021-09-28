@@ -1,6 +1,7 @@
 local function init()
     -- Main setup call with config
     local luasnip = require("luasnip")
+
     require'compe'.setup {
         enabled = true;
         autocomplete = true;
@@ -28,7 +29,7 @@ local function init()
             calc = true;
             path = true;
             spell = true;
-            tags = false;
+            tags = true;
 
             -- Neovim
             nvim_lsp = true;

@@ -12,7 +12,6 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-media-files.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " LSP
@@ -62,7 +61,9 @@ autocmd FileType text set textwidth=0
 let g:prettier#autoformat_require_pragma = 0
 let g:prettier#quickfix_enabled = 0
 
-" autocmd for not continuing comments
+" AutoPairs does dis even work
+let g:AutoPairs = {'[':']', '{':'}', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
+
 autocmd FileType * setlocal formatoptions-=c formatoptions-=o
 
 " Yank highlight

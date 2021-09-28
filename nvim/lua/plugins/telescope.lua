@@ -23,8 +23,6 @@ local function init()
                     mirror = false,
                 },
             },
-            file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-            generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
             color_devicons = true,
             winblend = 0,
             border = {},
@@ -35,11 +33,22 @@ local function init()
             file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
             grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
             qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+            extensions = {
+                fzf = {
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                    case_mode="smart_case"
+                }
+            }
         }
     }
+
     require('telescope').load_extension('fzf')
-    vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', { noremap = true})
+
+    vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep()<CR>', { noremap = true})
     vim.api.nvim_set_keymap('n', '<Leader>p', ':Telescope find_files hidden=true<CR>', { noremap = true})
+    vim.api.nvim_set_keymap('n', '<Leader>c', ':Telescope colorscheme<CR>', { noremap = true})
     vim.api.nvim_set_keymap('n', '<Leader>b', ':Telescope buffers<CR>', { noremap = true})
 end
 

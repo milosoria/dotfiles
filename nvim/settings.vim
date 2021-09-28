@@ -20,11 +20,11 @@ set smarttab
 " autoindent
 set autoindent
 
-set textwidth=80
+set textwidth=100
 
 " if wrap is set, then showbreak adds a string to lines wrapped
 set nowrap
-set showbreak=↪>\
+set showbreak=↪
 
 set smartindent
 set nohlsearch
