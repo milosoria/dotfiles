@@ -1,5 +1,3 @@
-# zmodload zsh/zprof
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export SHELL=/bin/zsh
@@ -10,12 +8,13 @@ CASE_SENSITIVE="true"
 
 # Plugins with oh my zsh
 plugins=(
-    zshfl
     git
     zsh-syntax-highlighting
     zsh-autosuggestions
-    zsh-nvm
 )
+
+#     zshfl
+#     zsh-nvm
 
 source $ZSH/oh-my-zsh.sh
 
@@ -93,4 +92,3 @@ source ~/custom_commands/custom_commands.sh
 
 # fzf for shell 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# zprof
