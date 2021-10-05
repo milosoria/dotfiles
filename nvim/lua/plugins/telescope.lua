@@ -25,7 +25,6 @@ local function init()
                     fuzzy = true,
                     override_generic_sorter = true,
                     override_file_sorter = true,
-                    case_mode="smart_case"
                 }
             }
         }
@@ -34,13 +33,13 @@ local function init()
     require('telescope').load_extension('fzf')
 
     -- grep string in the current directory
-    vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep()<CR>', { noremap = true})
+    vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', { noremap = true})
     -- find_files in the current directory
     vim.api.nvim_set_keymap('n', '<Leader>p', ':Telescope find_files<CR>', { noremap = true})
     -- neovim config directory
     vim.api.nvim_set_keymap('n', '<Leader>v', ':Telescope find_files cwd=~/.config/nvim<CR>', { noremap = true})
     -- global
-    vim.api.nvim_set_keymap('n', '<Leader>g', ':Telescope find_files hidden=true theme=ivy cwd=~ <CR>', { noremap = true})
+    vim.api.nvim_set_keymap('n', '<Leader>g', ':Telescope find_files find_command=rg,-i,--hidden,--files,-g,!.git theme=ivy cwd=~ <CR>', { noremap = true})
     -- buffers
     vim.api.nvim_set_keymap('n', '<Leader>b', ':Telescope buffers<CR>', { noremap = true})
 end

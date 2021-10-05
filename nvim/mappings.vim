@@ -39,7 +39,7 @@ nnoremap > >>
 nnoremap < <<
 
 " remap to force quit
-nnoremap <leader>q :q!<CR>
+nnoremap <leader>q :wa<CR>:q!<CR>
 
 " visual to end of line
 nnoremap vv v$
