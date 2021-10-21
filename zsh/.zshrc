@@ -2,6 +2,7 @@
 
 # Path to your oh-my-zsh installation.
 export SHELL=/bin/zsh
+
 # zsh config dir
 export ZDOTDIR=$HOME/.config/zsh
 
@@ -19,9 +20,10 @@ source "$ZDOTDIR/zsh-functions"
 
 # Normal files to source
 zsh_add_file "zsh-exports"
-zsh_add_file "zsh-vim-mode"
 zsh_add_file "zsh-aliases"
 zsh_add_file "zsh-prompt"
+zsh_add_file "zsh-vim-mode"
+
 # Source customs
 source ~/custom_commands/custom_commands.sh
 
