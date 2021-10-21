@@ -1,0 +1,19 @@
+#!/bin/sh
+HISTFILE="$XDG_DATA_HOME"/zsh/history
+HISTSIZE=1000000
+SAVEHIST=1000000
+
+# XDG PATHS
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+
+# Path exports
+export PATH=$PATH/neovim/build/bin
+export VISUAL="nvim"
+export EDITOR=$VISUAL
+export PATH=/snap/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/.rvm/bin
+export PATH=$PATH:/.yarn/bin
