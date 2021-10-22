@@ -43,3 +43,5 @@ nnoremap <leader>q :wa<CR>:q!<CR>
 
 " visual to end of line
 nnoremap vv v$
+nnoremap [ [m
+nnoremap ] ]m

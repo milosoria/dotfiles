@@ -37,8 +37,8 @@ set incsearch
 set guicursor=a:blinkon80
 set guicursor+=i:ver100-icursor
 set scrolloff=8
+set sidescroll=2
 set signcolumn=auto
-set sidescroll=0
 set completeopt=menuone,noselect
 set numberwidth=3
 set shortmess+=c
