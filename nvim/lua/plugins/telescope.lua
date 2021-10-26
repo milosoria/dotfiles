@@ -34,12 +34,14 @@ local function init()
 
     -- grep string in the current directory
     vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', { noremap = true})
+    -- git_files to get files in git ls-files
+    vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope git_files<CR>', { noremap = true})
     -- find_files in the current directory
     vim.api.nvim_set_keymap('n', '<Leader>p', ':Telescope find_files<CR>', { noremap = true})
     -- neovim config directory
-    vim.api.nvim_set_keymap('n', '<Leader>v', ':Telescope find_files cwd=~/.config/nvim<CR>', { noremap = true})
+    vim.api.nvim_set_keymap('n', '<Leader>vim', ':Telescope find_files cwd=~/.config/nvim<CR>', { noremap = true})
     -- global
-    vim.api.nvim_set_keymap('n', '<Leader>g', ':Telescope find_files find_command=rg,-i,--hidden,--files,-g,!.git theme=ivy cwd=~ <CR>', { noremap = true})
+    vim.api.nvim_set_keymap('n', '<Leader>global', ':Telescope find_files find_command=rg,-i,--hidden,--files,-g,!.git theme=ivy cwd=~ <CR>', { noremap = true})
     -- buffers
     vim.api.nvim_set_keymap('n', '<Leader>b', ':Telescope buffers<CR>', { noremap = true})
 end

@@ -61,7 +61,7 @@ autocmd FileType text set textwidth=0
 let g:prettier#autoformat_require_pragma = 0
 let g:prettier#quickfix_enabled = 0
 
-" AutoPairs does dis even work
+" AutoPairs does dis even work?
 let g:AutoPairs = {'[':']', '{':'}', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=o
