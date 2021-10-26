@@ -16,7 +16,7 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n','<leader>vrn',' :lua vim.lsp.buf.rename()<CR>',opts)
     buf_set_keymap('n','<leader>vh',':lua vim.lsp.buf.hover()<CR>',opts)
     buf_set_keymap('n','<leader>vca',' :lua vim.lsp.buf.code_action()<CR>',opts)
-    buf_set_keymap('n','<leader>vsd',' :lua vim.lsp.diagnostic.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>',opts)
+    buf_set_keymap('n','<leader>vsd',' :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',opts)
     buf_set_keymap('n','<leader>vn',':lua vim.lsp.diagnostic.goto_next()<CR>',opts)
     buf_set_keymap('n','<leader>vp',':lua vim.lsp.diagnostic.goto_prev()<CR>',opts)
 
@@ -77,8 +77,6 @@ local function init()
         setup_servers() -- reload installed servers
         vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
     end
-    -- get diagnostics
-    vim.api.nvim_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', { noremap = true})
 end
 
 return {

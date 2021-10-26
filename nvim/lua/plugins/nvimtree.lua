@@ -34,7 +34,6 @@ local function init()
     }
 
     vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', { noremap = true})
-    vim.api.nvim_set_keymap('n', '<Leader>r', ':NvimTreeRefresh<CR>', { noremap = true})
 
     require'nvim-tree'.setup {
         -- disables netrw completely
