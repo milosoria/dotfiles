@@ -9,14 +9,9 @@ nnoremap <A-k> :m .-2<CR>==
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
-" " Completion remap for tab and enter
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-
-
 " Resizing
-nnoremap <leader>+ :resize +10<CR>
-nnoremap <leader>- :resize -10<CR>
+nnoremap <leader>+ :vertical :resize +10<CR>
+nnoremap <leader>- :vertical :resize -10<CR>
 nnoremap <leader>= <C-W>= <CR>
 
 " Terminal remap
@@ -39,7 +34,7 @@ nnoremap > >>
 nnoremap < <<
 
 " remap to force quit
-nnoremap <leader>q :wa<CR>:q!<CR>
+nnoremap <leader>q :q!<CR>
 
 " visual to end of line
 nnoremap vv v$

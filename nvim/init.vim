@@ -2,8 +2,17 @@
 call plug#begin('~/.vim/plugged')
 
 " completion
-Plug 'hrsh7th/nvim-compe'
+" main
+Plug 'hrsh7th/nvim-cmp'
+" Plugs
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+" snips completion
 Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
+" Lsp icons
+Plug 'onsails/lspkind-nvim'
 
 " Main reason for slow startup
 " Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
@@ -62,7 +71,7 @@ let g:prettier#autoformat_require_pragma = 0
 let g:prettier#quickfix_enabled = 0
 
 " AutoPairs does dis even work?
-let g:AutoPairs = {'[':']', '{':'}', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
+let AutoPairs = {'[':']', '{':'}', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=o
 

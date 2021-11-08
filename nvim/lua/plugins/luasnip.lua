@@ -35,7 +35,7 @@ local function init()
                     "PONTIFICIA UNIVERSIDAD CATÓLICA DE CHILE\\\\",
                     "ESCUELA DE INGENIERÍA \\\\",
                     "DEPARTAMENTO DE CIENCIAS DE LA COMPUTACIÓN\\\\",
-                    "IIC2133 -- Sigla Curso",
+                    "IIC2333 -- Sigla Curso",
                 "\\end{flushleft}",
                 "",
                 "\\bigskip",
@@ -85,14 +85,6 @@ local function init()
 
                 )),
         },
-
-        -- all={
--- /** Sends a SIGUSR1 signal to a process with an int payload
- -- *
- -- * @param pid: Process that will receive the signal
- -- * @param payload: Payload to send along with the signal
--- */
-        -- }
 
     }
 end
