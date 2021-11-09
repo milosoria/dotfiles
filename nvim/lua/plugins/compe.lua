@@ -6,10 +6,9 @@ local function init()
     local cmp = require'cmp'
 
     local has_words_before = function()
-      local cursor = vim.api.nvim_win_get_cursor(0)
-      return (vim.api.nvim_buf_get_lines(0, cursor[1] - 1, cursor[1], true)[1] or ''):sub(cursor[2], cursor[2]):match('%s')
+      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
     end
-
     cmp.setup({
     snippet = {
       expand = function(args)
@@ -30,10 +29,10 @@ local function init()
     },
     mapping = {
     ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
+      if cmp.visible()  then
         cmp.select_next_item()
       elseif has_words_before() and luasnip.expand_or_jumpable() then
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '', true)
+          luasnip.expand_or_jump()
       else
         fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
       end
@@ -42,8 +41,8 @@ local function init()
           if cmp.visible() then
             cmp.select_prev_item()
           elseif luasnip.jumpable(-1) == 1 then
-            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '', true)
-            else
+              luasnip.expand_or_jump()
+         else
             fallback()
           end
     end, { 'i', 's' }),
@@ -56,11 +55,14 @@ local function init()
            end
       end,{ 'i', 's' }),
       ['<CR>'] = cmp.mapping(function(fallback)
-              if cmp.visible() then
-                  cmp.complete({ select = true, behavior = cmp.ConfirmBehavior.Replace})
-              else
-                  fallback()
-              end
+            if cmp.visible() and not luasnip.expand_or_jumpable() then
+                cmp.complete({ select = true, behavior = cmp.ConfirmBehavior.Replace})
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                cmp.close()
+                fallback()
+            end
       end, { 'i', 's' }),
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
       ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.

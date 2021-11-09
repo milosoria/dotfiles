@@ -50,21 +50,21 @@ local function init()
                 )),
                 s({trig="graphics",name="graphics", docstring="Wrap for graphics"}, t({
                     "\\begin{figure}[H]",
-                        "\\centering",
-                        "\\includegraphics[scale=0.5]{imgs/}",
-                        "\\caption{}",
+                    "   \\centering",
+                    "   \\includegraphics[scale=0.5]{imgs/}",
+                    "   \\caption{}",
                     "\\end{figure}",
                     })
                 ),
                 s({trig="itemize",name="itemize", docstring="insert itemize environment"}, t({
                     "\\begin{itemize}",
-                        "\\item",
+                    "   \\item",
                     "\\end{itemize}",
                     })
                 ),
                 s({trig="enumerate",name="enumerate", docstring="insert enumerate environment"}, t({
                     "\\begin{enumerate}",
-                        "\\item",
+                    "   \\item",
                     "\\end{enumerate}",
                     })
                 )
