@@ -7,7 +7,7 @@ local function init()
 
     local has_words_before = function()
       local cursor = vim.api.nvim_win_get_cursor(0)
-      return (vim.api.nvim_buf_get_lines(0, cursor[1] - 1, cursor[1], true)[1] or ''):sub(cursor[2], cursor[2]):match('%s') 
+      return (vim.api.nvim_buf_get_lines(0, cursor[1] - 1, cursor[1], true)[1] or ''):sub(cursor[2], cursor[2]):match('%s')
     end
 
     cmp.setup({
@@ -24,7 +24,10 @@ local function init()
       nvim_lua = "[Lua]",
       latex_symbols = "[Latex]",
     })}),
-},
+    },
+    experimental = {
+        ghost_text=true
+    },
     mapping = {
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -46,7 +49,8 @@ local function init()
     end, { 'i', 's' }),
       ['<Space>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
-              cmp.confirm()
+              cmp.close()
+              fallback()
            else
                fallback()
            end
@@ -68,9 +72,9 @@ local function init()
     },
     documentation = true,
     sources = cmp.config.sources({
-            { name = 'nvim_lsp' },
+            { name = 'nvim_lsp',keyword_length = 3 },
             { name = 'luasnip' }, -- For luasnip users.
-            { name = 'buffer',keyword_length = 5 },
+            { name = 'buffer',keyword_length = 3 },
             {name ='tags'},
             {name ='path'},
             {name ='calc'},
