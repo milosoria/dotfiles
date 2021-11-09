@@ -51,13 +51,13 @@ local function init()
                fallback()
            end
       end,{ 'i', 's' }),
-      -- ['<CR>'] = cmp.mapping(function(fallback)
-      --         if cmp.visible() then
-      --             cmp.complete({ select = true, behavior = cmp.ConfirmBehavior.Replace})
-      --         else
-      --             fallback()
-      --         end
-      -- end, { 'i', 's' }),
+      ['<CR>'] = cmp.mapping(function(fallback)
+              if cmp.visible() then
+                  cmp.complete({ select = true, behavior = cmp.ConfirmBehavior.Replace})
+              else
+                  fallback()
+              end
+      end, { 'i', 's' }),
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
       ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
       ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
@@ -67,14 +67,14 @@ local function init()
       ['<C-e>'] = cmp.mapping.close(),
     },
     documentation = true,
-    sources = cmp.config.sources({     { name = 'nvim_lsp' },
-          { name = 'luasnip' }, -- For luasnip users.
-        }, {
-            {name ='calc'},
-            {name ='path'},
-            {name ='spell'},
+    sources = cmp.config.sources({
+            { name = 'nvim_lsp' },
+            { name = 'luasnip' }, -- For luasnip users.
+            { name = 'buffer',keyword_length = 5 },
             {name ='tags'},
-          { name = 'buffer' },
+            {name ='path'},
+            {name ='calc'},
+            {name ='spell'},
         })
     })
 
