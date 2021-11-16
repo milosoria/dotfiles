@@ -23,6 +23,10 @@ local function init()
                 file_browser={
                     theme="dropdown"
                 },
+                current_buffer_fuzzy_find ={
+                    theme="dropdown",
+                    previewer=false
+                }
             },
             extensions = {
                 fzf = {
@@ -37,7 +41,8 @@ local function init()
     require('telescope').load_extension('fzf')
 
     -- grep string in the current directory
-    vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', { noremap = true})
+    vim.api.nvim_set_keymap('n', '<Leader>fg', ':Telescope live_grep<CR>', { noremap = true})
+    vim.api.nvim_set_keymap('n', '<Leader>fb', ':Telescope current_buffer_fuzzy_find theme=dropdown previewer=false <CR>', { noremap = true})
     -- git_files to get files in git ls-files
     vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope file_browser theme=dropdown<CR>', { noremap = true})
     -- find_files in the current directory
