@@ -70,10 +70,7 @@ autocmd FileType text set textwidth=0
 let g:prettier#autoformat_require_pragma = 0
 let g:prettier#quickfix_enabled = 0
 
-" AutoPairs does dis even work?
-let AutoPairs = {'[':']', '{':'}', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
-
-autocmd FileType * setlocal formatoptions-=c formatoptions-=o
+"autocmd FileType * setlocal formatoptions-=c formatoptions-=o
 
 " Yank highlight
 au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150}
@@ -86,5 +83,4 @@ let g:tex_flavor = "latex"
 
 "source every config file
 source ~/.config/nvim/settings.vim
-source ~/.config/nvim/mappings.vim
 luafile ~/.config/nvim/lua/init.lua
