@@ -1,9 +1,9 @@
 "Plugins added via plugged, plug manager
 call plug#begin('~/.vim/plugged')
-
 " completion
 " main
 Plug 'hrsh7th/nvim-cmp'
+
 " Plugs
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -15,7 +15,7 @@ Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'onsails/lspkind-nvim'
 
 " Main reason for slow startup
-" Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
+Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 
 " Telescope
 Plug 'nvim-lua/popup.nvim'
@@ -24,7 +24,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " LSP
-Plug 'kabouzeid/nvim-lspinstall'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'neovim/nvim-lsp'
 Plug 'neovim/nvim-lspconfig'
 
@@ -35,17 +35,18 @@ Plug 'nvim-treesitter/playground'
 "indent line symbol
 Plug 'Yggdroot/indentLine'
 
-" Colorscheme tokyonight
+" Colorschemes
+" tokyonight
 Plug 'folke/tokyonight.nvim', {'branch':'main'}
+" gruvbox
+Plug 'rktjmp/lush.nvim'
+Plug 'ellisonleao/gruvbox.nvim'
 
 " Color for lualine
 Plug 'drewtempelmeyer/palenight.vim'
 
 " toggle terminal
 Plug 'caenrique/nvim-toggle-terminal'
-
-" Auto close brackets and braces
-Plug 'jiangmiao/auto-pairs'
 
 " lua line
 Plug 'hoob3rt/lualine.nvim'
@@ -70,8 +71,6 @@ autocmd FileType text set textwidth=0
 let g:prettier#autoformat_require_pragma = 0
 let g:prettier#quickfix_enabled = 0
 
-"autocmd FileType * setlocal formatoptions-=c formatoptions-=o
-
 " Yank highlight
 au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150}
 
@@ -80,7 +79,6 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 " Latex flavor, in order to make the FileType be a latex and not plaintex
 let g:tex_flavor = "latex"
-
 "source every config file
 source ~/.config/nvim/settings.vim
 luafile ~/.config/nvim/lua/init.lua

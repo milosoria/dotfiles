@@ -16,7 +16,7 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n','<leader>vrn',' :lua vim.lsp.buf.rename()<CR>',opts)
     buf_set_keymap('n','<leader>vh',':lua vim.lsp.buf.hover()<CR>',opts)
     buf_set_keymap('n','<leader>vca',' :lua vim.lsp.buf.code_action()<CR>',opts)
-    buf_set_keymap('n','<leader>vsd',' :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',opts)
+    buf_set_keymap('n','<leader>vsd',' :lua vim.lsp.diagnostic.open_float()<CR>',opts)
     buf_set_keymap('n','<leader>vn',':lua vim.lsp.diagnostic.goto_next()<CR>',opts)
     buf_set_keymap('n','<leader>vp',':lua vim.lsp.diagnostic.goto_prev()<CR>',opts)
 
@@ -60,24 +60,22 @@ local function make_config()
 end
 
 local function init()
-    require'lspinstall'.setup() -- important
+    local lsp_installer = require("nvim-lsp-installer")
 
-    local servers = require'lspinstall'.installed_servers()
-    local config = make_config()
+    -- Register a handler that will be called for all installed servers.
+    -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 
-    for _, server in pairs(servers) do
-        if server == 'cpp' then
+    lsp_installer.on_server_ready(function(server)
+        local config = make_config()
+        if server.name == 'cpp' then
             local capabilities = vim.lsp.protocol.make_client_capabilities()
-            require'lspconfig'[server].setup{capabilities=capabilities, on_attach=on_attach,default_config= { filetypes={'c', 'objc'}}}
+            server:setup{capabilities=capabilities, on_attach=on_attach, default_config = { filetypes = { 'c', 'objc' } }}
         else
-            require'lspconfig'[server].setup(config)
+            server:setup(config)
         end
-    end
 
-    require'lspinstall'.post_install_hook = function ()
-        setup_servers() -- reload installed servers
-        vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-    end
+    end)
+
 end
 
 return {

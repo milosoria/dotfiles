@@ -31,7 +31,7 @@ set nohlsearch
 set nu
 set hidden
 set noerrorbells
-set smartcase
+set ignorecase
 set noswapfile
 set incsearch
 set guicursor=a:blinkon80

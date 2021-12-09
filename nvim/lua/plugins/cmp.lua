@@ -22,6 +22,7 @@ local function init()
                 luasnip = "[LuaSnip]",
                 nvim_lua = "[Lua]",
                 latex_symbols = "[Latex]",
+                cmp_tabnine = "[TN]",
             })}),
         },
         experimental = {
@@ -77,6 +78,7 @@ local function init()
             { name = 'nvim_lsp',keyword_length = 3 },
             { name = 'luasnip' }, -- For luasnip users.
             { name = 'buffer',keyword_length = 3 },
+            { name = 'cmp_tabnine'},
             {name ='tags'},
             {name ='path'},
             {name ='calc'},
