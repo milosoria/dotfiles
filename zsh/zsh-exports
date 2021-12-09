@@ -6,6 +6,7 @@ export XDG_DATA_HOME=$HOME/.local/share
 
 # Path exports
 export PATH=$PATH/neovim/build/bin
+export TERM="xterm"
 export VISUAL="nvim"
 export EDITOR=$VISUAL
 export PATH=/snap/bin:$PATH
