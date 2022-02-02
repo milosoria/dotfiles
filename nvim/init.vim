@@ -30,7 +30,6 @@ Plug 'neovim/nvim-lspconfig'
 
 " tresitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/playground'
 
 "indent line symbol
 Plug 'Yggdroot/indentLine'

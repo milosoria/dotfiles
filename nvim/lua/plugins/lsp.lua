@@ -3,6 +3,14 @@ local function on_attach(client, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
+    -- diagnostics
+    vim.lsp.handlers["textDocument/publishDiagnostics"] =
+        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+            -- Disable underline, it's very annoying
+            underline = false,
+            signs = true,
+            update_in_insert = false
+        })
 
     -- Mappings
     local opts = { noremap = true, silent = true }
@@ -16,7 +24,7 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n','<leader>vrn',' :lua vim.lsp.buf.rename()<CR>',opts)
     buf_set_keymap('n','<leader>vh',':lua vim.lsp.buf.hover()<CR>',opts)
     buf_set_keymap('n','<leader>vca',' :lua vim.lsp.buf.code_action()<CR>',opts)
-    buf_set_keymap('n','<leader>vsd',' :lua vim.lsp.diagnostic.open_float()<CR>',opts)
+    buf_set_keymap('n','<leader>vsd',' :lua vim.diagnostic.open_float()<CR>',opts)
     buf_set_keymap('n','<leader>vn',':lua vim.lsp.diagnostic.goto_next()<CR>',opts)
     buf_set_keymap('n','<leader>vp',':lua vim.lsp.diagnostic.goto_prev()<CR>',opts)
 
@@ -31,7 +39,7 @@ local function on_attach(client, bufnr)
     -- buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-   -- buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    -- buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
     -- buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
     -- buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
@@ -40,7 +48,7 @@ end
 
 -- config that activates keymaps and enables snippet support
 local function make_config()
-  -- Setup lspconfig.
+    -- Setup lspconfig.
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
     capabilities.textDocument.completion.completionItem.snippetSupport = true
     capabilities.textDocument.completion.completionItem.resolveSupport = {
