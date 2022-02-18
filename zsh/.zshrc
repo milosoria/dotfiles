@@ -1,5 +1,7 @@
 #!bin/sh
 
+# Lazy loading to improve performance and minimize laginess
+export NVM_LAZY_LOAD=true
 # Path to your oh-my-zsh installation.
 export SHELL=/bin/zsh
 
