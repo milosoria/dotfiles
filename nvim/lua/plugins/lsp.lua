@@ -15,16 +15,31 @@ local function on_attach(client, bufnr)
     -- Mappings
     local opts = { noremap = true, silent = true }
 
+    -- goto decl/def
     buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+
+    -- show code actions available
+    buf_set_keymap('n','<leader>vca',' :lua vim.lsp.buf.code_action()<CR>',opts)
+    -- show errors and warnings in float
+    buf_set_keymap('n','<leader>vsd',' :lua vim.diagnostic.open_float()<CR>',opts)
+
+    -- does this even work??
     buf_set_keymap('n','<leader>vd',':lua vim.lsp.buf.definition()<CR>',opts)
     buf_set_keymap('n','<leader>vi',':lua vim.lsp.buf.implementation()<CR>',opts)
+
+    -- show help
     buf_set_keymap('n','<leader>vsh',' :lua vim.lsp.buf.signature_help()<CR>',opts)
+
+    -- references to quickfix list
     buf_set_keymap('n','<leader>vrr',' :lua vim.lsp.buf.references()<CR>',opts)
+    -- rename variable in buffer
     buf_set_keymap('n','<leader>vrn',' :lua vim.lsp.buf.rename()<CR>',opts)
+
+    -- function info
     buf_set_keymap('n','<leader>vh',':lua vim.lsp.buf.hover()<CR>',opts)
-    buf_set_keymap('n','<leader>vca',' :lua vim.lsp.buf.code_action()<CR>',opts)
-    buf_set_keymap('n','<leader>vsd',' :lua vim.diagnostic.open_float()<CR>',opts)
+
+    -- navigate quickly through diagnostics
     buf_set_keymap('n','<leader>vn',':lua vim.lsp.diagnostic.goto_next()<CR>',opts)
     buf_set_keymap('n','<leader>vp',':lua vim.lsp.diagnostic.goto_prev()<CR>',opts)
 
