@@ -24,10 +24,6 @@ local function on_attach(client, bufnr)
     -- show errors and warnings in float
     buf_set_keymap('n','<leader>vsd',' :lua vim.diagnostic.open_float()<CR>',opts)
 
-    -- does this even work??
-    buf_set_keymap('n','<leader>vd',':lua vim.lsp.buf.definition()<CR>',opts)
-    buf_set_keymap('n','<leader>vi',':lua vim.lsp.buf.implementation()<CR>',opts)
-
     -- show help
     buf_set_keymap('n','<leader>vsh',' :lua vim.lsp.buf.signature_help()<CR>',opts)
 
@@ -40,8 +36,8 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n','<leader>vh',':lua vim.lsp.buf.hover()<CR>',opts)
 
     -- navigate quickly through diagnostics
-    buf_set_keymap('n','<leader>vn',':lua vim.lsp.diagnostic.goto_next()<CR>',opts)
-    buf_set_keymap('n','<leader>vp',':lua vim.lsp.diagnostic.goto_prev()<CR>',opts)
+    -- buf_set_keymap('n','<leader>vn',':lua vim.lsp.diagnostic.goto_next()<CR>',opts)
+    -- buf_set_keymap('n','<leader>vp',':lua vim.lsp.diagnostic.goto_prev()<CR>',opts)
 
 
     -- buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)

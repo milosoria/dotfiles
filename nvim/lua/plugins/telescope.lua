@@ -51,6 +51,7 @@ local function init()
     vim.api.nvim_set_keymap('n', '<Leader>zsh', ':Telescope find_files cwd=~/.config/zsh<CR>', { noremap = true})
     -- buffers
     vim.api.nvim_set_keymap('n', '<Leader>b', ':Telescope buffers<CR>', { noremap = true})
+    vim.api.nvim_set_keymap('n', '<Leader>c', ':Telescope command_history<CR>', { noremap = true})
 end
 
 return {
