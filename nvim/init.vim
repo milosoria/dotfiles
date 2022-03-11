@@ -71,7 +71,10 @@ let g:prettier#autoformat_require_pragma = 0
 let g:prettier#quickfix_enabled = 0
 
 " Yank highlight
-au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150}
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
+augroup END
 
 " indent plug
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
