@@ -25,7 +25,6 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " LSP
 Plug 'williamboman/nvim-lsp-installer'
-Plug 'neovim/nvim-lsp'
 Plug 'neovim/nvim-lspconfig'
 
 " tresitter
