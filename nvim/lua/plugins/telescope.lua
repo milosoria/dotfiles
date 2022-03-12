@@ -43,6 +43,8 @@ local function init()
     -- grep string in the current directory
     vim.api.nvim_set_keymap('n', '<Leader>fg', ':Telescope live_grep<CR>', { noremap = true})
     vim.api.nvim_set_keymap('n', '<Leader>fb', ':Telescope current_buffer_fuzzy_find theme=dropdown previewer=false <CR>', { noremap = true})
+    -- list code actions
+    vim.api.nvim_set_keymap('n', '<Leader>vca', ':Telescope lsp_code_actions theme=dropdown <CR>', { noremap = true})
     -- find_files in the current directory
     vim.api.nvim_set_keymap('n', '<Leader>p', ':Telescope find_files <CR>', { noremap = true})
     -- neovim config directory

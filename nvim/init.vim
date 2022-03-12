@@ -37,8 +37,8 @@ Plug 'Yggdroot/indentLine'
 " tokyonight
 Plug 'folke/tokyonight.nvim', {'branch':'main'}
 " gruvbox
-Plug 'rktjmp/lush.nvim'
-Plug 'ellisonleao/gruvbox.nvim'
+" Plug 'rktjmp/lush.nvim'
+" Plug 'ellisonleao/gruvbox.nvim'
 
 " Color for lualine
 Plug 'drewtempelmeyer/palenight.vim'

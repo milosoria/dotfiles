@@ -2,7 +2,7 @@ local function init()
 
     require'lualine'.setup({
         options={
-            theme='gruvbox-material',
+            theme='palenight',
             component_separators = {'', ''},
             section_separators = {'', ''}
         },

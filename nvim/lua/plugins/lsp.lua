@@ -20,7 +20,7 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 
     -- show code actions available
-    buf_set_keymap('n','<leader>vca',' :lua vim.lsp.buf.code_action()<CR>',opts)
+    -- buf_set_keymap('n','<leader>vca',' :lua vim.lsp.buf.code_action()<CR>',opts)
     -- show errors and warnings in float
     buf_set_keymap('n','<leader>vsd',' :lua vim.diagnostic.open_float()<CR>',opts)
 
