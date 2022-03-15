@@ -13,12 +13,11 @@ local function init()
     -- This makes tokyonight respect terminal background color:
     -- vim.g.tokyonight_transparent=true
     vim.g.tokyonight_terminal_colors=true
-    vim.g.tokyonight_hide_inactive_statusline=true
     vim.g.tokyonight_lualine_bold=true
     vim.g.colors_name='tokyonight'
     vim.g.tokyonight_transparent_sidebar=true
     vim.g.tokyonight_dark_sidebar=true
-    vim.g.tokyonight_dark_float=false
+    vim.g.tokyonight_dark_float=true
     -- Load
     vim.cmd('colorscheme tokyonight')
 end

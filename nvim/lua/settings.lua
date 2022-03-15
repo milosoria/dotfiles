@@ -1,55 +1,55 @@
 local function init()
 
-    --editor configs
-    vim.g.cmdheight=1
-    vim.g.eadirection='ver'
-    vim.g.wildmode='longest,full'
-    vim.g.wildmenu=1
-    vim.g.relativenumber=1
-    vim.g.shell='/usr/bin/zsh'
+    -- indent plug
+    vim.g.indentLine_char_list = {'|', '¦', '┆', '┊'}
+
+    -- Latex flavor, in order to make the FileType be a latex and not plaintex
+    vim.g.tex_flavor = 'latex'
+
+    vim.g.mapleader=' '
+    vim.o.eadirection='ver'
+    vim.o.wildmode='longest,full'
+    vim.o.wildmenu=true
+    vim.o.relativenumber=true
+    vim.o.shell='/usr/bin/zsh'
 
     -- number of visual spaces per tab
-    vim.g.tabstop=8
+    vim.o.tabstop=8
     -- number of spaces to use for each step if (auto)indent
-    vim.g.shiftwidth=4
+    vim.o.shiftwidth=4
     -- number of spaces inserted when tab is pressed in insert mode
-    vim.g.softtabstop=0
-
+    vim.o.softtabstop=0
     -- insert spaces when pressing tab
-    vim.g.expandtab=1
-    vim.g.smarttab=1
-
+    vim.o.expandtab=true
+    vim.o.smarttab=true
     -- autoindent
-    vim.g.autoindent=1
-
-    vim.g.textwidth=100
-
-    -- if wrap is vim.g., then showbreak adds a string to lines wrapped
-    vim.g.nowrap=1
-    vim.g.showbreak='↪'
-
-    vim.g.smartindent=1
-    vim.g.nohlsearch=1
-    vim.g.nu=1
-    vim.g.hidden=1
-    vim.g.noerrorbells=1
-    vim.g.smartcase=1
-    vim.g.noswapfile=1
-    vim.g.incsearch=1
-    vim.g.guicursor='a:blinkon80,i:ver100-icursor'
-    vim.g.scrolloff=8
-    vim.g.sidescroll=2
-    vim.g.signcolumn='auto'
-    vim.g.completeopt='menuone,noselect'
-    vim.g.numberwidth=3
-    vim.g.shortmess='c'
-    vim.g.clipboard='unnamedplus'
-    vim.g.mouse='a'
-    vim.g.termguicolors=1
-    vim.g.splitright=1
-    vim.g.splitbelow=1
+    vim.o.autoindent=true
+    vim.o.textwidth=100
+    -- no line wrapping
+    vim.o.wrap=false
+    vim.o.showbreak='↪'
+    vim.o.smartindent=true
+    vim.o.hlsearch=false
+    vim.o.nu=true
+    vim.o.hidden=true
+    vim.o.errorbells=false
+    vim.o.ignorecase=true
+    vim.o.swapfile=false
+    vim.o.incsearch=true
+    vim.o.guicursor='a:blinkon80,i:ver100-icursor'
+    vim.o.scrolloff=8
+    vim.o.sidescroll=2
+    vim.o.signcolumn='auto'
+    vim.o.completeopt='menuone,noselect'
+    vim.o.numberwidth=3
+    vim.o.shortmess=vim.o.shortmess .. 'c'
+    vim.o.clipboard='unnamedplus'
+    vim.o.mouse='a'
+    vim.o.termguicolors=true
+    vim.o.splitright=true
+    vim.o.splitbelow=true
 end
 
 return {
-    init = init
+    init=init
 }

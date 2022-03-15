@@ -1,5 +1,5 @@
 local function init()
-    vim.g.mapleader = " "
+
     --Alt moving lines
     vim.api.nvim_set_keymap('n','<A-j>',':m .+1<CR>==', {noremap=true})
     vim.api.nvim_set_keymap('n','<A-k>',':m .-2<CR>==', {noremap=true})

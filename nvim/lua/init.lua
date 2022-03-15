@@ -1,5 +1,6 @@
+require'settings'.init()
 require'mappings'.init()
---require'settings'.init()
+-- plugins
 require'plugins.cmp'.init()
 require'plugins.lualine'.init()
 require'plugins.telescope'.init()

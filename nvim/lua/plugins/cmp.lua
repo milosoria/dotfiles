@@ -1,7 +1,7 @@
 local function init()
 
     -- Main setup call with config
-    local luasnip = require("luasnip")
+    local luasnip = require('luasnip')
     local lspkind = require('lspkind')
     local cmp = require'cmp'
 
