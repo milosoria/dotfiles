@@ -59,7 +59,8 @@ Plug('sbdchd/neoformat')
 -- devicons and nvim-tree
 Plug('kyazdani42/nvim-tree.lua')
 Plug('kyazdani42/nvim-web-devicons')
-
+--- AutoPairs
+Plug('jiangmiao/auto-pairs')
 vim.call('plug#end')
 
 -- run specific config for markdown
