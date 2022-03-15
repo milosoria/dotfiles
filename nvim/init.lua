@@ -48,7 +48,7 @@ Plug('folke/tokyonight.nvim')
 -- Plug 'ellisonleao/gruvbox.nvim'
 -- Color for lualine
 Plug('drewtempelmeyer/palenight.vim')
--- toggle terminal
+-- -- toggle terminal
 Plug('caenrique/nvim-toggle-terminal')
 -- lua line
 Plug('hoob3rt/lualine.nvim')
