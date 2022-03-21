@@ -7,6 +7,7 @@ local function init()
     vim.g.tex_flavor = 'latex'
 
     vim.g.mapleader=' '
+    vim.o.laststatus = 2
     vim.o.eadirection='ver'
     vim.o.wildmode='longest,full'
     vim.o.wildmenu=true

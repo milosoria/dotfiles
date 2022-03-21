@@ -68,6 +68,10 @@ vim.cmd [[
     autocmd FileType markdown set textwidth=0
     autocmd FileType text set textwidth=0
 ]]
+-- bg to none so winseparator shows only a thin line
+vim.cmd [[
+    highlight winseparator guibg=None
+]]
 -- Yank highlight
 vim.cmd [[
     augroup highlight_yank
