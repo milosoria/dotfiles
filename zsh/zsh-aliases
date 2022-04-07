@@ -32,3 +32,6 @@ alias cheat='cht.sh'
 # custom commands
 alias create='project'
 alias qpsh='qpsh'
+
+# fix internet
+alias restartnet='sudo sevice network-manager restart'
