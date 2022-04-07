@@ -32,7 +32,7 @@ local function init()
         }
     }
 
-    vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', { noremap = true})
+    vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>:NvimTreeRefresh<CR>', { noremap = true})
 
     require'nvim-tree'.setup {
         disable_netrw        = true,
@@ -43,7 +43,6 @@ local function init()
         auto_close           = false,
         auto_reload_on_write = true,
         open_on_tab          = false,
-        hijack_cursor        = true,
         update_cwd           = false,
         hijack_unnamed_buffer_when_opening = true,
         hijack_directories   = {
