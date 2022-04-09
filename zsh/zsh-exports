@@ -4,6 +4,9 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 
+# Android Sdk
+export ANDROID_SDK=$HOME/Android/Sdk/platform-tools
+
 # Path exports
 export PATH=$PATH/neovim/build/bin
 export TERM="xterm"
@@ -14,7 +17,8 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$HOME/.rvm/bin
 export PATH=$PATH:/.yarn/bin
-export PATH=$PATH:$HOME/android-studio/bin
+export PATH=$PATH:/usr/local/android-studio/bin
+export PATH=$PATH:$ANDROID_SDK
 
 HISTFILE=$XDG_DATA_HOME/zsh/history
 HISTSIZE=10000000

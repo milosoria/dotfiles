@@ -9,7 +9,7 @@ export SHELL=/bin/zsh
 export ZDOTDIR=$HOME/.config/zsh
 
 # useful options
-setopt autocd extendedglob nomatch menucomplete
+setopt extendedglob nomatch menucomplete
 setopt interactive_comments
 zle_highlight=('paste:none')
 unsetopt BEEP

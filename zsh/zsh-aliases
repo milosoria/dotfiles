@@ -1,5 +1,6 @@
 # ALIASES 
 #general
+alias ..='cd ..'
 alias nv='nvim'
 alias home='cd ~'
 alias mine='cd ~/projects'
