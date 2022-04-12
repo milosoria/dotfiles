@@ -46,8 +46,6 @@ Plug('folke/tokyonight.nvim')
 -- gruvbox
 -- Plug 'rktjmp/lush.nvim'
 -- Plug 'ellisonleao/gruvbox.nvim'
--- Color for lualine
-Plug('drewtempelmeyer/palenight.vim')
 -- -- toggle terminal
 Plug('caenrique/nvim-toggle-terminal')
 -- lua line
@@ -61,6 +59,9 @@ Plug('kyazdani42/nvim-tree.lua')
 Plug('kyazdani42/nvim-web-devicons')
 --- AutoPairs
 Plug('jiangmiao/auto-pairs')
+-- Tabby
+Plug('nanozuki/tabby.nvim')
+
 vim.call('plug#end')
 
 -- run specific config for markdown

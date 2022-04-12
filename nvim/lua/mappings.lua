@@ -36,9 +36,9 @@ local function init()
     -- tab delete current
     vim.api.nvim_set_keymap('n','<leader>td',':tabonly<CR>',settings)
     -- next tab
-    -- vim.api.nvim_set_keymap('n','<leader>td',':tabnext<CR>',settings)
+    vim.api.nvim_set_keymap('n','<leader>l',':tabnext<CR>',settings)
     -- prev tab
-    -- vim.api.nvim_set_keymap('n','<leader>tp',':tabprev<CR>',settings)
+    vim.api.nvim_set_keymap('n','<leader>h',':tabprev<CR>',settings)
 end
 
 return {

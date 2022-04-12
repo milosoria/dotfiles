@@ -12,7 +12,7 @@ local function init()
             'diagnostics',
             sources={'nvim_lsp', 'coc' }
     }
-})
+    })
 
 end
 
