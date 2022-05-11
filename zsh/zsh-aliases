@@ -7,13 +7,13 @@ alias mine='cd ~/projects'
 alias dotfiles='cd ~/.config'
 alias ex='exit'
 alias open='xdg-open'
-alias vimrc='cd ~/.config/nvim  && "$EDITOR" init.vim'
+alias vimrc='cd ~/.config/nvim  && "$EDITOR" init.lua'
 alias dotfiles='cd ~/.config'
 alias kittyconf='cd ~/.config/kitty/ && "$EDITOR" kitty.conf'
 alias ll='ls -lah'
 alias l='ls -lah'
 alias nn='nnn -de'
-alias cat='bat'
+alias meclic='cd ~/projects/Uni/Semestre9/Capstone/Meclic/2022-1-S3-Grupo1-Movil'
 
 # git
 alias ga='git add'
@@ -35,4 +35,4 @@ alias create='project'
 alias qpsh='qpsh'
 
 # fix internet
-alias restartnet='sudo sevice network-manager restart'
+alias restartnet='sudo service network-manager restart'
