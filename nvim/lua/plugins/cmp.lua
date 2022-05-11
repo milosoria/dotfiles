@@ -3,7 +3,7 @@ local function init()
     -- Main setup call with config
     local luasnip = require('luasnip')
     local lspkind = require('lspkind')
-    local cmp = require'cmp'
+    local cmp = require('cmp')
 
     local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -73,11 +73,14 @@ local function init()
             ['<C-j>'] = cmp.mapping.scroll_docs(-4),
             ['<C-e>'] = cmp.mapping.close(),
         },
-        documentation = true,
+        window ={
+            documentation = cmp.config.window.bordered(),
+            completion=cmp.config.window.bordered()
+        },
         sources = cmp.config.sources({
-            { name = 'nvim_lsp',keyword_length = 3 },
+            { name = 'nvim_lsp', keyword_length = 3 },
+            { name = 'buffer', keyword_length = 3 },
             { name = 'luasnip' }, -- For luasnip users.
-            { name = 'buffer',keyword_length = 3 },
             { name = 'cmp_tabnine'},
             {name ='tags'},
             {name ='path'},
@@ -88,8 +91,16 @@ local function init()
 
     -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
     cmp.setup.cmdline('/', {
+        mapping = cmp.mapping.preset.cmdline(),
         sources = {
             { name = 'buffer' }
+        }
+    })
+
+    cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+            { name = 'cmdline' }
         }
     })
 

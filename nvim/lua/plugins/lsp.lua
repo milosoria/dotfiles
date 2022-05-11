@@ -5,12 +5,12 @@ local function on_attach(client, bufnr)
     end
     -- diagnostics
     vim.lsp.handlers["textDocument/publishDiagnostics"] =
-        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-            -- Disable underline, it's very annoying
-            underline = false,
-            signs = true,
-            update_in_insert = false
-        })
+    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        -- Disable underline, it's very annoying
+        underline = false,
+        signs = true,
+        update_in_insert = false
+    })
 
     -- Mappings
     local opts = { noremap = true, silent = true }
@@ -79,22 +79,18 @@ local function make_config()
 end
 
 local function init()
-    local lsp_installer = require("nvim-lsp-installer")
 
     -- Register a handler that will be called for all installed servers.
     -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 
-    lsp_installer.on_server_ready(function(server)
-        local config = make_config()
-        if server.name == 'cpp' then
-            local capabilities = vim.lsp.protocol.make_client_capabilities()
-            server:setup{capabilities=capabilities, on_attach=on_attach, default_config = { filetypes = { 'c', 'objc' } }}
-        else
-            server:setup(config)
-        end
+    local lspinstaller = require'nvim-lsp-installer'
+    local lspconfig = require'lspconfig'
 
-    end)
-
+    lspinstaller.setup{}
+    local config = make_config()
+    for _, server in ipairs(lspinstaller.get_installed_servers()) do
+        lspconfig[server.name].setup(config)
+    end
 end
 
 return {

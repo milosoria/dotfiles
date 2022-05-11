@@ -3,12 +3,13 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.vim/plugged')
 -- completion
--- main
-Plug('hrsh7th/nvim-cmp')
 -- Plugs
 Plug('hrsh7th/cmp-nvim-lsp')
-Plug( 'hrsh7th/cmp-buffer')
+Plug('hrsh7th/cmp-buffer')
 Plug('hrsh7th/cmp-path')
+Plug('hrsh7th/cmp-cmdline')
+-- main
+Plug('hrsh7th/nvim-cmp')
 -- snips completion
 Plug('L3MON4D3/LuaSnip')
 Plug('saadparwaiz1/cmp_luasnip')
@@ -29,9 +30,11 @@ Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do']=
         vim.cmd('make')
     end
 })
+
 -- LSP
 Plug('williamboman/nvim-lsp-installer')
 Plug('neovim/nvim-lspconfig')
+
 -- tresitter
 Plug('nvim-treesitter/nvim-treesitter', {['do']=
     function()
