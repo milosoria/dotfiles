@@ -3,35 +3,6 @@ local function init()
         default = true;
     }
 
-    vim.g.nvim_tree_icons = {
-        default=        '',
-        symlink=        '',
-        git= {
-            unstaged=     "✗",
-            staged=       "✓",
-            unmerged=     "",
-            renamed=      "➜",
-            untracked=    "★",
-            deleted=      "",
-        },
-        folder= {
-            arrow_open=   "",
-            arrow_closed= "",
-            default=      "",
-            open=         "",
-            empty=        "",
-            empty_open=   "",
-            symlink=      "",
-            symlink_open= "",
-        },
-        lsp= {
-            hint= "",
-            info= "",
-            warning= "",
-            error= "",
-        }
-    }
-
     vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>:NvimTreeRefresh<CR>', { noremap = true})
 
     require'nvim-tree'.setup {
@@ -119,6 +90,32 @@ local function init()
                 git = false,
             },
         },
+        renderer={
+            icons={
+                glyphs={
+                    default=        '',
+                    symlink=        '',
+                    git= {
+                        unstaged=     "✗",
+                        staged=       "✓",
+                        unmerged=     "",
+                        renamed=      "➜",
+                        untracked=    "★",
+                        deleted=      "",
+                    },
+                    folder= {
+                        arrow_open=   "",
+                        arrow_closed= "",
+                        default=      "",
+                        open=         "",
+                        empty=        "",
+                        empty_open=   "",
+                        symlink=      "",
+                        symlink_open= "",
+                    },
+                }
+            }
+        }
     }
 
 end

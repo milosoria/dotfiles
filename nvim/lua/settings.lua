@@ -49,6 +49,7 @@ local function init()
     vim.o.termguicolors=true
     vim.o.splitright=true
     vim.o.splitbelow=true
+    vim.o.syntax='off'
     -- show double quotes in json or stars on markdown
     vim.o.conceallevel=0
 end

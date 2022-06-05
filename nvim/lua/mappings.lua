@@ -8,8 +8,8 @@ local function init()
     vim.api.nvim_set_keymap('n','<A-j>',":m '>+1<CR>gv=gv", settings)
     vim.api.nvim_set_keymap('n','<A-k>',":m '<-2<CR>gv=gv", settings)
     --Resizing
-    vim.api.nvim_set_keymap('n','<leader>+',':resize +10<CR>', settings)
-    vim.api.nvim_set_keymap('n','<leader>-',':resize -10<CR>', settings)
+    vim.api.nvim_set_keymap('n','<leader>+',':vertical resize +10<CR>', settings)
+    vim.api.nvim_set_keymap('n','<leader>-',':vertical resize -10<CR>', settings)
     vim.api.nvim_set_keymap('n','<leader>=','<C-W>= <CR>', settings)
     --
     --Easier moving between splits
