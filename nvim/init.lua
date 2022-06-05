@@ -47,8 +47,8 @@ Plug('Yggdroot/indentLine')
 -- tokyonight
 Plug('folke/tokyonight.nvim')
 -- gruvbox
--- Plug 'rktjmp/lush.nvim'
--- Plug 'ellisonleao/gruvbox.nvim'
+Plug('rktjmp/lush.nvim')
+Plug('ellisonleao/gruvbox.nvim')
 -- -- toggle terminal
 Plug('caenrique/nvim-toggle-terminal')
 -- lua line
@@ -64,7 +64,8 @@ Plug('kyazdani42/nvim-web-devicons')
 Plug('jiangmiao/auto-pairs')
 -- Tabby
 Plug('nanozuki/tabby.nvim')
-
+--Incremental rename
+Plug('smjonas/inc-rename.nvim')
 vim.call('plug#end')
 
 -- run specific config for markdown

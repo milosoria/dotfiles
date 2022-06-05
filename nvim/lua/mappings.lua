@@ -2,6 +2,7 @@ local function init()
     local settings = {
         noremap=true
     }
+    require('inc_rename').setup()
     --Alt moving lines
     vim.api.nvim_set_keymap('n','<A-j>',':m .+1<CR>==', settings)
     vim.api.nvim_set_keymap('n','<A-k>',':m .-2<CR>==', settings)
@@ -40,6 +41,8 @@ local function init()
     -- prev tab
     vim.api.nvim_set_keymap('n','<leader>h',':tabprev<CR>',settings)
 
+    -- rename variable in buffer
+    vim.api.nvim_set_keymap('n','<leader>rn',':IncRename ',settings)
 end
 
 return {

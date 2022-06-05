@@ -14,7 +14,6 @@ local function on_attach(client, bufnr)
 
     -- Mappings
     local opts = { noremap = true, silent = true }
-
     -- goto decl/def
     buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -29,8 +28,6 @@ local function on_attach(client, bufnr)
 
     -- references to quickfix list
     buf_set_keymap('n','<leader>vrr',' <Cmd>lua vim.lsp.buf.references()<CR>',opts)
-    -- rename variable in buffer
-    buf_set_keymap('n','<leader>rn',' <Cmd>lua vim.lsp.buf.rename()<CR>',opts)
 
     -- function info
     buf_set_keymap('n','K','<Cmd>lua vim.lsp.buf.hover()<CR>',opts)
