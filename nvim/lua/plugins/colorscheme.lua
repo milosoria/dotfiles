@@ -11,7 +11,7 @@ local function init()
     -- Theme settings:
     vim.g.tokyonight_style='night'
     -- This makes tokyonight respect terminal background color:
-    -- vim.g.tokyonight_transparent=true
+    vim.g.tokyonight_transparent=true
     vim.g.tokyonight_terminal_colors=true
     vim.g.tokyonight_lualine_bold=true
     vim.g.colors_name='tokyonight'

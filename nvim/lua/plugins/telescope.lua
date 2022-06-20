@@ -5,6 +5,11 @@ local function init()
     require('telescope').setup{
         defaults = {
             file_ignore_patterns = {".git","node_modules", "./yarn.*", "yarn.*"},
+            file_sorter = require("telescope.sorters").get_fzy_sorter,
+            color_devicons = true,
+            file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+            grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+            qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
             selection_caret = "> ",
             prompt_prefix = "🔍 ",
             initial_mode = "insert",
@@ -34,7 +39,7 @@ local function init()
                 override_file_sorter = true,     -- override the file sorter
                 case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
                 -- the default case_mode is "smart_case"
-            }
+            },
         }
     }
 

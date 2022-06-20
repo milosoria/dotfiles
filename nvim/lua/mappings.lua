@@ -43,6 +43,10 @@ local function init()
 
     -- rename variable in buffer
     vim.api.nvim_set_keymap('n','<leader>rn',':IncRename ',settings)
+
+    -- QuickFixList
+    vim.api.nvim_set_keymap('n','<leader>cn',':cn ',settings)
+    vim.api.nvim_set_keymap('n','<leader>cp',':cp ',settings)
 end
 
 return {

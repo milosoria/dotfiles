@@ -42,7 +42,7 @@ Plug('nvim-treesitter/nvim-treesitter', {['do']=
     end
 })
 -- indent line symbol
-Plug('Yggdroot/indentLine')
+Plug('lukas-reineke/indent-blankline.nvim')
 -- COLORSCHEMES
 -- tokyonight
 Plug('folke/tokyonight.nvim')
