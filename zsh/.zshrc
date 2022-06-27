@@ -27,7 +27,7 @@ zsh_add_file "zsh-prompt"
 zsh_add_file "zsh-vim-mode"
 
 # Source customs
-source ~/custom_commands/custom_commands.sh
+source ../custom_commands/custom_commands.sh
 
 #Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"

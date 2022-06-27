@@ -13,7 +13,7 @@ alias kittyconf='cd ~/.config/kitty/ && "$EDITOR" kitty.conf'
 alias ll='ls -lah'
 alias l='ls -lah'
 alias nn='nnn -de'
-alias meclic='cd ~/projects/Uni/Semestre9/Capstone/Meclic/2022-1-S3-Grupo1-Movil'
+alias meclic='cd ~/projects/Uni/Semestre9/Capstone/Meclic/2022-1-S3-Grupo1-Movil/meclic-mechanic'
 
 # git
 alias ga='git add'
@@ -36,3 +36,7 @@ alias qpsh='qpsh'
 
 # fix internet
 alias restartnet='sudo service network-manager restart'
+
+# arqui 
+alias ec21='ssh -i "milosoria.pem" ubuntu@ec2-107-20-172-108.compute-1.amazonaws.com'
+alias ec22='ssh -i "milosoria.pem" ubuntu@ec2-34-236-65-124.compute-1.amazonaws.com'
