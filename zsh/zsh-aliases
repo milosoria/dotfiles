@@ -18,9 +18,9 @@ alias meclic='cd ~/projects/Uni/Semestre9/Capstone/Meclic/2022-1-S3-Grupo1-Movil
 # git
 alias ga='git add'
 alias gc='git commit -m'
-alias gp='git push'
+alias gp='git push origin'
 alias gs='git status'
-alias qpll='git pull'
+alias qpll='git pull origin'
 
 # apt
 alias update='sudo apt-get update -y'
