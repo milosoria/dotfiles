@@ -45,8 +45,8 @@ local function init()
     vim.api.nvim_set_keymap('n','<leader>rn',':IncRename ',settings)
 
     -- QuickFixList
-    vim.api.nvim_set_keymap('n','<leader>cn',':cn ',settings)
-    vim.api.nvim_set_keymap('n','<leader>cp',':cp ',settings)
+    vim.api.nvim_set_keymap('n','<leader>cn',':cn<CR>',settings)
+    vim.api.nvim_set_keymap('n','<leader>cp',':cp<CR>',settings)
 end
 
 return {

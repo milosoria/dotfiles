@@ -51,7 +51,7 @@ local function init()
     vim.o.splitbelow=true
     vim.o.syntax='off'
     -- show double quotes in json or stars on markdown
-    vim.o.conceallevel=0
+    vim.w.conceallevel=0
 end
 
 return {
