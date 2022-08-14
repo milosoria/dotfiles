@@ -16,30 +16,31 @@ Plug('saadparwaiz1/cmp_luasnip')
 -- Lsp icons
 Plug('onsails/lspkind-nvim')
 -- Main reason for slow startup
-Plug('tzachar/cmp-tabnine', {['do']=
-    function()
-        vim.cmd('./install.sh')
-    end
+Plug('tzachar/cmp-tabnine', { ['do'] =
+function()
+    vim.cmd('./install.sh')
+end
 })
 -- Telescope
 Plug('nvim-lua/popup.nvim')
 Plug('nvim-lua/plenary.nvim')
 Plug('nvim-telescope/telescope.nvim')
-Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do']=
-    function()
-        vim.cmd('make')
-    end
+Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] =
+function()
+    vim.cmd('make')
+end
 })
 
 -- LSP
-Plug('williamboman/nvim-lsp-installer')
+Plug('williamboman/mason.nvim')
+Plug('williamboman/mason-lspconfig.nvim')
 Plug('neovim/nvim-lspconfig')
 
 -- tresitter
-Plug('nvim-treesitter/nvim-treesitter', {['do']=
-    function()
-        vim.cmd(':TSUpdate')
-    end
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] =
+function()
+    vim.cmd(':TSUpdate')
+end
 })
 -- indent line symbol
 Plug('lukas-reineke/indent-blankline.nvim')
@@ -60,30 +61,35 @@ Plug('sbdchd/neoformat')
 -- devicons and nvim-tree
 Plug('kyazdani42/nvim-tree.lua')
 Plug('kyazdani42/nvim-web-devicons')
---- AutoPairs
-Plug('jiangmiao/auto-pairs')
+--- AutoPairs, AutoTags
+Plug('windwp/nvim-autopairs')
+Plug('windwp/nvim-ts-autotag')
+-- LSPSaga Uis
+Plug('glepnir/lspsaga.nvim')
 -- Tabby
 Plug('nanozuki/tabby.nvim')
---Incremental rename
-Plug('smjonas/inc-rename.nvim')
+-- Git Signs
+Plug('lewis6991/gitsigns.nvim')
+-- Colorizer
+Plug('norcalli/nvim-colorizer.lua')
 vim.call('plug#end')
 
 -- run specific config for markdown
 vim.cmd [[
-    autocmd FileType markdown set textwidth=0
-    autocmd FileType text set textwidth=0
+autocmd FileType markdown set textwidth=0
+autocmd FileType text set textwidth=0
 ]]
 -- bg to none so winseparator shows only a thin line
 vim.cmd [[
-    highlight winseparator guibg=None
+highlight winseparator guibg=None
 ]]
 -- Yank highlight
 vim.cmd [[
-    augroup highlight_yank
-        autocmd!
-        au TextYankPost * silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=150}
-    augroup END
+augroup highlight_yank
+autocmd!
+au TextYankPost * silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=150}
+augroup END
 ]]
 
 --source every config file
-require'init'
+require 'init'

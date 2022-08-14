@@ -1,5 +1,5 @@
 local function init()
-    require'nvim-treesitter.configs'.setup {
+    require 'nvim-treesitter.configs'.setup {
         -- One of "all", "maintained" (parsers with maintainers), or a list of languages
         ensure_installed = "all",
 
@@ -16,9 +16,16 @@ local function init()
             -- Instead of true it can also be a list of languages
             additional_vim_regex_highlighting = false,
         },
+        indent = {
+            enable = true,
+            disable = {}
+        },
+        autotag = {
+            enable = true
+        }
     }
 end
 
 return {
-    init=init
+    init = init
 }

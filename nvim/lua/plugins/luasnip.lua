@@ -6,9 +6,9 @@ local function init()
 
     ls.snippets = {
 
-            tex={
+        tex = {
 
-                s({trig="latex",name="latex", docstring="Init for latex file, using pdflatex package"}, t({
+            s({ trig = "latex", name = "latex", docstring = "Init for latex file, using pdflatex package" }, t({
                 "\\documentclass[12pt]{article}",
                 "\\usepackage[letterpaper, right=2.5cm, left=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}",
                 "\\usepackage[spanish]{babel}",
@@ -31,46 +31,46 @@ local function init()
                 "",
                 "\\begin{document}",
                 "\\begin{flushleft}",
-                    "\\footnotesize",
-                    "PONTIFICIA UNIVERSIDAD CATÓLICA DE CHILE\\\\",
-                    "ESCUELA DE INGENIERÍA \\\\",
-                    "DEPARTAMENTO DE CIENCIAS DE LA COMPUTACIÓN\\\\",
-                    "IIC2333 -- Sigla Curso",
+                "\\footnotesize",
+                "PONTIFICIA UNIVERSIDAD CATÓLICA DE CHILE\\\\",
+                "ESCUELA DE INGENIERÍA \\\\",
+                "DEPARTAMENTO DE CIENCIAS DE LA COMPUTACIÓN\\\\",
+                "IIC2333 -- Sigla Curso",
                 "\\end{flushleft}",
                 "",
                 "\\bigskip",
                 "\\begin{center}",
-                    "\\Large",
-                    "\\textbf{TITULO}",
+                "\\Large",
+                "\\textbf{TITULO}",
                 "\\end{center}",
                 "",
                 "\\end{document}",
-                    }
+            }
 
-                )),
-                s({trig="graphics",name="graphics", docstring="Wrap for graphics"}, t({
-                    "\\begin{figure}[H]",
-                    "   \\centering",
-                    "   \\includegraphics[scale=0.5]{imgs/}",
-                    "   \\caption{}",
-                    "\\end{figure}",
-                    })
-                ),
-                s({trig="itemize",name="itemize", docstring="insert itemize environment"}, t({
-                    "\\begin{itemize}",
-                    "   \\item",
-                    "\\end{itemize}",
-                    })
-                ),
-                s({trig="enumerate",name="enumerate", docstring="insert enumerate environment"}, t({
-                    "\\begin{enumerate}",
-                    "   \\item",
-                    "\\end{enumerate}",
-                    })
-                )
+            )),
+            s({ trig = "graphics", name = "graphics", docstring = "Wrap for graphics" }, t({
+                "\\begin{figure}[H]",
+                "   \\centering",
+                "   \\includegraphics[scale=0.5]{imgs/}",
+                "   \\caption{}",
+                "\\end{figure}",
+            })
+            ),
+            s({ trig = "itemize", name = "itemize", docstring = "insert itemize environment" }, t({
+                "\\begin{itemize}",
+                "   \\item",
+                "\\end{itemize}",
+            })
+            ),
+            s({ trig = "enumerate", name = "enumerate", docstring = "insert enumerate environment" }, t({
+                "\\begin{enumerate}",
+                "   \\item",
+                "\\end{enumerate}",
+            })
+            )
         },
-        html={
-                s({trig="html",name="html", docstring="Simple hmtl init"}, t({
+        html = {
+            s({ trig = "html", name = "html", docstring = "Simple hmtl init" }, t({
                 "<!DOCTYPE html>",
                 "<html lang='en'>",
                 "<head>",
@@ -81,14 +81,14 @@ local function init()
                 "<body>",
                 "</body>",
                 "</html>"
-                    }
+            }
 
-                )),
+            )),
         },
 
     }
 end
 
 return {
-    init=init,
+    init = init,
 }

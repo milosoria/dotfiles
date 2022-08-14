@@ -1,16 +1,23 @@
 local function on_attach(client, bufnr)
+    if client.server_capabilities.documentFormattingProvider then
+        vim.api.nvim_command [[augroup Format]]
+        vim.api.nvim_command [[autocmd! * <buffer>]]
+        vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({async=true})]]
+        vim.api.nvim_command [[augroup END]]
+    end
 
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
+
     -- diagnostics
     vim.lsp.handlers["textDocument/publishDiagnostics"] =
-        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-            -- Disable underline, it's very annoying
-            underline = false,
-            signs = true,
-            update_in_insert = false
-        })
+    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        -- Disable underline, it's very annoying
+        underline = false,
+        signs = true,
+        update_in_insert = true
+    })
 
     -- Mappings
     local opts = { noremap = true, silent = true }
@@ -18,23 +25,18 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 
-    -- show code actions available
-    buf_set_keymap('n','<leader>vca',' <Cmd>lua vim.lsp.buf.code_action()<CR>',opts)
     -- show errors and warnings in float
-    buf_set_keymap('n','<leader>vsd',' <Cmd>lua vim.diagnostic.open_float()<CR>',opts)
+    buf_set_keymap('n', '<leader>vsd', ' <Cmd>lua vim.diagnostic.open_float()<CR>', opts)
 
     -- show help
-    buf_set_keymap('n','<leader>vsh',' <Cmd>lua vim.lsp.buf.signature_help()<CR>',opts)
+    buf_set_keymap('n', '<leader>vsh', ' <Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
     -- references to quickfix list
-    buf_set_keymap('n','<leader>vrr',' <Cmd>lua vim.lsp.buf.references()<CR>',opts)
-
-    -- function info
-    buf_set_keymap('n','K','<Cmd>lua vim.lsp.buf.hover()<CR>',opts)
+    buf_set_keymap('n', '<leader>vrr', ' <Cmd>lua vim.lsp.buf.references()<CR>', opts)
 
     -- navigate quickly through diagnostics
-    buf_set_keymap('n','<leader>vn',':lua vim.lsp.diagnostic.goto_next()<CR>',opts)
-    buf_set_keymap('n','<leader>vp',':lua vim.lsp.diagnostic.goto_prev()<CR>',opts)
+    buf_set_keymap('n', '<leader>vn', ':lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<leader>vp', ':lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 
 
     -- buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
@@ -67,7 +69,7 @@ local function make_config()
         -- enable snippet support
         capabilities = capabilities,
         -- map buffer local keybindings when the language server attaches on_attach = on_attach
-        on_attach= on_attach
+        on_attach = on_attach
     }
 end
 
@@ -76,16 +78,21 @@ local function init()
     -- Register a handler that will be called for all installed servers.
     -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 
-    local lspinstaller = require'nvim-lsp-installer'
-    local lspconfig = require'lspconfig'
+    local mason_lspconfig = require 'mason-lspconfig'
+    local mason = require 'mason'
+    local lspconfig = require 'lspconfig'
 
-    lspinstaller.setup{}
+    mason.setup {}
+    mason_lspconfig.setup {
+        automatic_installation = true
+    }
+
     local config = make_config()
-    for _, server in ipairs(lspinstaller.get_installed_servers()) do
-        lspconfig[server.name].setup(config)
+    for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
+        lspconfig[server].setup(config)
     end
 end
 
 return {
-    init=init
+    init = init
 }
