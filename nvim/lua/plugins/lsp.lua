@@ -1,13 +1,18 @@
 local function on_attach(client, bufnr)
-    if client.server_capabilities.documentFormattingProvider then
-        vim.api.nvim_command [[augroup Format]]
-        vim.api.nvim_command [[autocmd! * <buffer>]]
-        vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({async=true})]]
-        vim.api.nvim_command [[augroup END]]
-    end
-
+    -- Mappings
+    local opts = { noremap = true, silent = true }
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
+
+    if not string.match(vim.api.nvim_buf_get_name(bufnr), 'NvimTree_1') then
+        if client.server_capabilities.documentFormattingProvider then
+            -- format
+            vim.api.nvim_command [[augroup Format]]
+            vim.api.nvim_command [[autocmd! * <buffer>]]
+            vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({async=true})]]
+            vim.api.nvim_command [[augroup END]]
+        end
     end
 
     -- diagnostics
@@ -19,8 +24,6 @@ local function on_attach(client, bufnr)
         update_in_insert = true
     })
 
-    -- Mappings
-    local opts = { noremap = true, silent = true }
     -- goto decl/def
     buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
