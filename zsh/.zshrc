@@ -1,7 +1,5 @@
 #!bin/sh
 
-# Lazy loading to improve performance and minimize laginess
-export NVM_LAZY_LOAD=true
 # Path to your oh-my-zsh installation.
 export SHELL=/bin/zsh
 
@@ -33,6 +31,7 @@ source ~/.config/custom_commands/custom_commands.sh
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-nvm"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "rupa/z"
 
 # fzf for shell 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
