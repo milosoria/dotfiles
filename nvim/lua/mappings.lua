@@ -44,7 +44,7 @@ local function init()
     vim.api.nvim_set_keymap('n', '<leader>cn', ':cn<CR>', settings)
     vim.api.nvim_set_keymap('n', '<leader>cp', ':cp<CR>', settings)
     -- Close buffer without quitting it
-    vim.api.nvim_set_keymap('n', '<leader>cq', ':close<CR>', settings)
+    vim.api.nvim_set_keymap('n', '<leader>cc', ':close<CR>', settings)
 end
 
 return {
