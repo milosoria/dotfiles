@@ -5,7 +5,7 @@ local function init()
     })
 
     -- References and definitions finder
-    vim.keymap.set("n", "<leader>fr", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
+    vim.keymap.set("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
     -- Code actions
     vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
     -- Function info
