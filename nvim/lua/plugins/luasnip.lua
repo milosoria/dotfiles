@@ -3,12 +3,9 @@ local function init()
     local ls = require("luasnip")
     local t = ls.text_node
     local s = ls.snippet
-
-    ls.snippets = {
-
+    local snippets = {
         tex = {
-
-            s({ trig = "latex", name = "latex", docstring = "Init for latex file, using pdflatex package" }, t({
+            s({ trig = "init", name = "latex", docstring = "Init for latex file, using pdflatex package" }, t({
                 "\\documentclass[12pt]{article}",
                 "\\usepackage[letterpaper, right=2.5cm, left=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}",
                 "\\usepackage[spanish]{babel}",
@@ -82,11 +79,14 @@ local function init()
                 "</body>",
                 "</html>"
             }
-
             )),
         },
-
     }
+
+
+    for k, v in pairs(snippets) do
+        ls.add_snippets(k, v)
+    end
 end
 
 return {
