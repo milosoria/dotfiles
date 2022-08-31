@@ -90,8 +90,8 @@ local function init()
             ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
             ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
             ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-            ['<C-k>'] = cmp.mapping.scroll_docs(4),
-            ['<C-j>'] = cmp.mapping.scroll_docs(-4),
+            ['<C-u>'] = cmp.mapping.scroll_docs(4),
+            ['<C-d>'] = cmp.mapping.scroll_docs(-4),
             ['<C-e>'] = cmp.mapping.close(),
         },
         window = {
