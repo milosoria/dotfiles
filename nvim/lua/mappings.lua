@@ -39,10 +39,11 @@ local function init()
     vim.api.nvim_set_keymap('n', '<leader>l', ':tabnext<CR>', settings)
     -- prev tab
     vim.api.nvim_set_keymap('n', '<leader>h', ':tabprev<CR>', settings)
-
     -- QuickFixList
+    vim.api.nvim_set_keymap('n', '<leader>co', ':copen<CR>', settings)
     vim.api.nvim_set_keymap('n', '<leader>cn', ':cn<CR>', settings)
     vim.api.nvim_set_keymap('n', '<leader>cp', ':cp<CR>', settings)
+    vim.api.nvim_set_keymap('n', '<leader>cq', ':ccl<CR>', settings)
     -- Close buffer without quitting it
     vim.api.nvim_set_keymap('n', '<leader>cc', ':close<CR>', settings)
 end
