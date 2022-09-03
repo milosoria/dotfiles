@@ -8,15 +8,11 @@ local function init()
     local cmp = require('cmp')
     local tabnine = require('cmp_tabnine.config')
     tabnine:setup({
-        max_lines = 2000,
+        max_lines = 2500,
         max_num_results = 40,
         sort = true,
         run_on_every_keystroke = true,
         snippet_placeholder = '..',
-        ignored_file_types = { -- default is not to ignore
-            -- uncomment to ignore in lua:
-            html = true
-        },
         show_prediction_strength = true,
     })
 
