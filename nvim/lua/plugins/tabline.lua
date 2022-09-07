@@ -48,53 +48,48 @@ local function init()
     }
 
     local function tab_label(tabid)
-
-        local focus_win = vim.api.nvim_tabpage_get_win(tabid)
-        local filename = require("tabby.filename").tail(focus_win)
+        local focused_win = vim.api.nvim_tabpage_get_win(tabid)
+        local filename = require('tabby.filename').tail(focused_win)
         local name = util.get_tab_name(tabid)
-        local extension =  vim.fn.fnamemodify(filename, ':e')
-        local web_devicon = require'nvim-web-devicons'.get_icon(name, extension)
-        local icon = web_devicon
+        local icon = require('nvim-web-devicons').get_icon(name, vim.fn.fnamemodify(filename, ':e'))
         local number = vim.api.nvim_tabpage_get_number(tabid)
         return string.format(' %s %d: %s ', icon, number, name)
     end
 
-    local presets = {
-        hl = 'lualine_c_insert',
-        layout = 'tab_only',
-        head = {
-            { '  ', hl = { fg = lualine_config.insert.b.fg, bg = lualine_config.insert.b.bg } },
-            { '', hl = { fg = lualine_config.insert.b.bg, bg = lualine_config.normal.c.bg } },
-        },
-        active_tab = {
-            label = function(tabid)
-                return {
-                    tab_label(tabid),
-                    hl = { fg = lualine_config.insert.a.fg, bg = lualine_config.insert.a.bg, style = 'bold' },
-                }
-            end,
+    require('tabby').setup({
+        tabline = {
+            hl = 'lualine_c_insert',
+            layout = 'tab_only',
+            head = {
+                { '  ', hl = { fg = lualine_config.insert.b.fg, bg = lualine_config.insert.b.bg } },
+                { '', hl = { fg = lualine_config.insert.b.bg, bg = lualine_config.normal.c.bg } },
+            },
+            active_tab = {
+                label = function(tabid)
+                    return {
+                        tab_label(tabid),
+                        hl = { fg = lualine_config.insert.a.fg, bg = lualine_config.insert.a.bg, style = 'bold' },
+                    }
+                end,
 
-            left_sep = {'' , hl = { fg = lualine_config.insert.a.bg, bg = lualine_config.normal.c.bg } },
-            right_sep = { '', hl = { fg = lualine_config.insert.a.bg, bg = lualine_config.normal.c.bg } },
-        },
-        inactive_tab = {
-            label = function(tabid)
-                return {
-                    tab_label(tabid),
-                    hl = { fg = lualine_config.insert.b.fg, bg = lualine_config.normal.c.bg },
-                }
-            end,
-            -- ''
-            left_sep = {'' , hl = { fg = lualine_config.insert.b.bg, bg = lualine_config.normal.c.bg } },
-            right_sep = {''  , hl = { fg = lualine_config.insert.b.bg, bg = lualine_config.normal.c.bg } },
-        },
-    }
-
-    require("tabby").setup({
-        tabline = presets
+                left_sep = { '', hl = { fg = lualine_config.insert.a.bg, bg = lualine_config.normal.c.bg } },
+                right_sep = { '', hl = { fg = lualine_config.insert.a.bg, bg = lualine_config.normal.c.bg } },
+            },
+            inactive_tab = {
+                label = function(tabid)
+                    return {
+                        tab_label(tabid),
+                        hl = { fg = lualine_config.insert.b.fg, bg = lualine_config.normal.c.bg },
+                    }
+                end,
+                -- ''
+                left_sep = { '', hl = { fg = lualine_config.insert.b.bg, bg = lualine_config.normal.c.bg } },
+                right_sep = { '', hl = { fg = lualine_config.insert.b.bg, bg = lualine_config.normal.c.bg } },
+            },
+        }
     })
 end
 
 return {
-    init=init
+    init = init
 }
