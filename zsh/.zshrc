@@ -5,6 +5,9 @@ export SHELL=/bin/zsh
 
 # zsh config dir
 export ZDOTDIR=$HOME/.config/zsh
+export GIT_EDITOR="nvim"
+export VISUAL="nvim"
+export EDITOR="nvim"
 
 # useful options
 setopt extendedglob nomatch menucomplete
