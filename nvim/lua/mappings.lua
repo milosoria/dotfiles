@@ -46,6 +46,8 @@ local function init()
     vim.api.nvim_set_keymap('n', '<leader>cq', ':ccl<CR>', settings)
     -- Close buffer without quitting it
     vim.api.nvim_set_keymap('n', '<leader>cc', ':close<CR>', settings)
+    -- Paste and remove what just added
+    vim.api.nvim_set_keymap('v', '<leader>p', '\"_dP', settings)
 end
 
 return {
