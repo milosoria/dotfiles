@@ -6,8 +6,11 @@ local function init()
     -- Latex flavor, in order to make the FileType be a latex and not plaintex
     vim.g.tex_flavor = 'latex'
 
+    -- set leader key
     vim.g.mapleader = ' '
-    vim.o.laststatus = 2
+    -- The value of this option influences when the last window will have a
+    -- status line:
+    vim.o.laststatus = 3
     -- ignore mouse
     vim.o.mouse = ''
     vim.o.eadirection = 'ver'
@@ -30,7 +33,7 @@ local function init()
     vim.o.textwidth = 100
     -- no line wrapping
     vim.o.wrap = false
-    vim.o.showbreak = '↪'
+    vim.g.showbreak = '↪'
     vim.o.smartindent = true
     vim.o.hlsearch = false
     vim.o.nu = true
@@ -53,7 +56,7 @@ local function init()
     vim.o.splitbelow = true
     vim.o.syntax = 'off'
     -- show double quotes in json or stars on markdown
-    vim.w.conceallevel = 0
+    vim.g.conceallevel = 0
 end
 
 return {

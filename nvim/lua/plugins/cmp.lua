@@ -1,15 +1,11 @@
 local function init()
-
     -- Main setup call with config
     local luasnip = require('luasnip')
-
-
     local lspkind = require('lspkind')
     local cmp = require('cmp')
-    local tabnine = require('cmp_tabnine.config')
-    tabnine:setup({
+    require('cmp_tabnine.config'):setup({
         max_lines = 2500,
-        max_num_results = 40,
+        max_num_results = 50,
         sort = true,
         run_on_every_keystroke = true,
         snippet_placeholder = '..',
@@ -20,6 +16,7 @@ local function init()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
     end
+
     cmp.setup({
         snippet = {
             expand = function(args)

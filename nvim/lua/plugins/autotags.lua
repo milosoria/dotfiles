@@ -1,6 +1,5 @@
 local function init()
-    local autotags = require 'nvim-ts-autotag'
-    autotags.setup()
+    require('nvim-ts-autotag').setup()
 end
 
 return {

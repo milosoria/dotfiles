@@ -31,9 +31,9 @@ local function init()
     vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', settings)
     -- tabs usage
     vim.api.nvim_set_keymap('n', '<leader>tn', ':tabe<CR>', settings)
-    -- tab delete all but the current
+    -- tab close current
     vim.api.nvim_set_keymap('n', '<leader>tc', ':tabc<CR>', settings)
-    -- tab delete current
+    -- tab delete all but the current
     vim.api.nvim_set_keymap('n', '<leader>td', ':tabonly<CR>', settings)
     -- next tab
     vim.api.nvim_set_keymap('n', '<leader>l', ':tabnext<CR>', settings)
@@ -46,8 +46,14 @@ local function init()
     vim.api.nvim_set_keymap('n', '<leader>cq', ':ccl<CR>', settings)
     -- Close buffer without quitting it
     vim.api.nvim_set_keymap('n', '<leader>cc', ':close<CR>', settings)
-    -- Paste and remove what just added
+    -- Paste over word but maintain your paste register
+    -- visual (<leader>p is for telescope.find_files, maybe change it at some point to ff?)
     vim.api.nvim_set_keymap('v', '<leader>p', '\"_dP', settings)
+    -- Delete but maintain your paste register
+    -- visual
+    vim.api.nvim_set_keymap('v', '<leader>d', '\"_d', settings)
+    -- normal
+    vim.api.nvim_set_keymap('n', '<leader>d', '\"_d', settings)
 end
 
 return {

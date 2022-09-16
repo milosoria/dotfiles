@@ -2,14 +2,16 @@ local function init()
 
     -- To get fzf loaded and working with telescope, you need to call
     -- load_extension, somewhere after setup function:
-    require('telescope').setup {
+    local previewers = require("telescope.previewers")
+    local sorters = require("telescope.sorters")
+    require('telescope').setup({
         defaults = {
-            file_ignore_patterns = { ".git", "node_modules", "%.png", "%.jpeg", "%.jpg", "%.lock", "%.mp3", "%.mp4" },
-            file_sorter = require("telescope.sorters").get_fzy_sorter,
+            file_ignore_patterns = { ".git", "node_modules", "__pycache__", "%.png", "%.jpeg", "%.jpg", "%.lock", "%.mp3", "%.mp4" },
+            file_sorter = sorters.get_fzy_sorter,
             color_devicons = true,
-            file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-            grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-            qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+            file_previewer = previewers.vim_buffer_cat.new,
+            grep_previewer = previewers.vim_buffer_vimgrep.new,
+            qflist_previewer = previewers.vim_buffer_qflist.new,
             selection_caret = "> ",
             prompt_prefix = "🔍 ",
             initial_mode = "insert",
@@ -41,7 +43,7 @@ local function init()
                 -- the default case_mode is "smart_case"
             },
         }
-    }
+    })
 
 
     -- grep string in the current directory

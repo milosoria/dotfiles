@@ -1,8 +1,9 @@
 local function init()
-    local autopairs = require 'nvim-autopairs'
-    autopairs.setup {
-        disable_filtype = { 'TelescopePrompt', 'vim' }
-    }
+    require('nvim-autopairs').setup(
+        {
+            disable_filetype = { 'TelescopePrompt', 'vim' }
+        }
+    )
 end
 
 return {

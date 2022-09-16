@@ -1,25 +1,25 @@
 local function init()
-    require'nvim-web-devicons'.setup {
+    require('nvim-web-devicons').setup({
         default = true;
-    }
+    })
 
-    vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>:NvimTreeRefresh<CR>', { noremap = true})
+    vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>:NvimTreeRefresh<CR>', { noremap = true })
 
-    require'nvim-tree'.setup {
-        disable_netrw        = true,
-        hijack_netrw         = true,
-        open_on_setup        = false,
-        ignore_buffer_on_setup = false,
-        ignore_ft_on_setup   = {},
-        auto_reload_on_write = true,
-        open_on_tab          = false,
-        update_cwd           = false,
+    require('nvim-tree').setup({
+        disable_netrw                      = true,
+        hijack_netrw                       = true,
+        open_on_setup                      = false,
+        ignore_buffer_on_setup             = false,
+        ignore_ft_on_setup                 = {},
+        auto_reload_on_write               = true,
+        open_on_tab                        = false,
+        update_cwd                         = false,
         hijack_unnamed_buffer_when_opening = true,
-        hijack_directories   = {
+        hijack_directories                 = {
             enable = true,
             auto_open = true,
         },
-        diagnostics = {
+        diagnostics                        = {
             enable = true,
             icons = {
                 hint = "",
@@ -28,25 +28,25 @@ local function init()
                 error = "",
             }
         },
-        update_focused_file = {
+        update_focused_file                = {
             enable      = true,
             update_cwd  = false,
             ignore_list = {}
         },
-        system_open = {
+        system_open                        = {
             cmd  = nil,
             args = {}
         },
-        filters = {
+        filters                            = {
             dotfiles = false,
             custom = {}
         },
-        git = {
+        git                                = {
             enable = true,
             ignore = false,
             timeout = 500,
         },
-        view = {
+        view                               = {
             width = 30,
             height = 30,
             hide_root_folder = false,
@@ -60,11 +60,11 @@ local function init()
             relativenumber = false,
             signcolumn = "yes"
         },
-        trash = {
+        trash                              = {
             cmd = "trash",
             require_confirm = true
         },
-        actions = {
+        actions                            = {
             change_dir = {
                 enable = true,
                 global = false,
@@ -82,7 +82,7 @@ local function init()
                 }
             }
         },
-        log = {
+        log                                = {
             enable = false,
             types = {
                 all = false,
@@ -90,36 +90,35 @@ local function init()
                 git = false,
             },
         },
-        renderer={
-            icons={
-                glyphs={
-                    default=        '',
-                    symlink=        '',
-                    git= {
-                        unstaged=     "✗",
-                        staged=       "✓",
-                        unmerged=     "",
-                        renamed=      "➜",
-                        untracked=    "★",
-                        deleted=      "",
+        renderer                           = {
+            icons = {
+                glyphs = {
+                    default = '',
+                    symlink = '',
+                    git = {
+                        unstaged = "✗",
+                        staged = "✓",
+                        unmerged = "",
+                        renamed = "➜",
+                        untracked = "★",
+                        deleted = "",
                     },
-                    folder= {
-                        arrow_open=   "",
-                        arrow_closed= "",
-                        default=      "",
-                        open=         "",
-                        empty=        "",
-                        empty_open=   "",
-                        symlink=      "",
-                        symlink_open= "",
+                    folder = {
+                        arrow_open = "",
+                        arrow_closed = "",
+                        default = "",
+                        open = "",
+                        empty = "",
+                        empty_open = "",
+                        symlink = "",
+                        symlink_open = "",
                     },
                 }
             }
         }
-    }
-
+    })
 end
 
 return {
-    init=init
+    init = init
 }

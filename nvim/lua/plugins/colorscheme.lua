@@ -1,8 +1,5 @@
--- "Colorscheme configs
+-- Colorscheme configs
 local function init()
-    -- Tokyonight option:
-    -- Theme settings:
-    -- vim.cmd('colorscheme gruvbox')
     require("tokyonight").setup({
         -- your configuration comes here
         -- or leave it empty to use the default settings
@@ -38,6 +35,14 @@ local function init()
         -- on_highlights = function(highlights, colors) end,
     })
     vim.cmd('colorscheme tokyonight')
+
+    -- bg to none so winseparator shows only a thin line
+    -- fg to none so winseparator shows only a thin line
+    --
+    vim.cmd [[
+        highlight WinSeparator guifg=#BEBEBE
+        highlight WinSeparator guibg=None
+    ]]
 end
 
 return {
