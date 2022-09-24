@@ -17,7 +17,6 @@ local function init()
     vim.o.wildmode = 'longest,full'
     vim.o.wildmenu = true
     vim.o.relativenumber = false
-    vim.o.shell = '/usr/bin/zsh'
 
     -- number of visual spaces per tab
     vim.o.tabstop = 8

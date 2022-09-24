@@ -1,1 +1,1 @@
-/home/camilo/.zshenv
+. "$HOME/.cargo/env"

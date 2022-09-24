@@ -1,40 +1,28 @@
-#!bin/sh
-
 # Path to your oh-my-zsh installation.
-export SHELL=/bin/zsh
+export ZSH="$HOME/.oh-my-zsh"
 
-# zsh config dir
+ZSH_THEME="awesomepanda"
+
+zstyle ':omz:update' mode auto      # update automatically without asking
+
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git dircycle nvm zsh-vi-mode zsh-autosuggestions zsh-syntax-highlighting zsh-z)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
 export ZDOTDIR=$HOME/.config/zsh
 export GIT_EDITOR="nvim"
 export VISUAL="nvim"
 export EDITOR="nvim"
-
-# useful options
-setopt extendedglob nomatch menucomplete
-setopt interactive_comments
-zle_highlight=('paste:none')
-unsetopt BEEP
-
-
-# Case sensitive search
-CASE_SENSITIVE="true"
-# useful functions to add plugins and source files, make ur profile readable
-source "$ZDOTDIR/zsh-functions"
-
-# Normal files to source
-zsh_add_file "zsh-exports"
-zsh_add_file "zsh-aliases"
-zsh_add_file "zsh-prompt"
-zsh_add_file "zsh-vim-mode"
-
+export editor="nvim"
 # Source customs
 source ~/.config/custom_commands/custom_commands.sh
+source ~/.config/zsh/zsh-aliases
 
-#Plugins
-zsh_add_plugin "zsh-users/zsh-autosuggestions"
-zsh_add_plugin "zsh-users/zsh-nvm"
-zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
-zsh_add_plugin "rupa/z"
-
-# fzf for shell 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

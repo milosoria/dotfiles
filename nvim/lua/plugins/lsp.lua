@@ -10,7 +10,7 @@ local function on_attach(client, bufnr)
             -- format
             vim.api.nvim_command [[augroup Format]]
             vim.api.nvim_command [[autocmd! * <buffer>]]
-            vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({async=true})]]
+            vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting({async=true})]]
             vim.api.nvim_command [[augroup END]]
         end
     end
