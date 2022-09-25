@@ -19,13 +19,6 @@ alias gp='git push origin'
 alias gs='git status'
 alias qpll='git pull origin'
 
-# apt
+# brew
 alias update='brew update'
 alias upgrade='brew upgrade'
-
-# cheat sheet
-alias cheat='cht.sh'
-
-# custom commands
-alias create='project'
-alias qpsh='qpsh'
