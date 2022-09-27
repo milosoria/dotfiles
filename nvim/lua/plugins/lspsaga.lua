@@ -13,11 +13,9 @@ local function init()
     -- Rename
     vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
     -- Preview Definition
-    vim.keymap.set("n", "gp", "<cmd>Lspsaga preview_definition<CR>", { silent = true })
+    vim.keymap.set("n", "gp", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
     -- show errors and warnings in float
     vim.keymap.set("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
-    -- Show signature help on insert mode
-    vim.keymap.set("i", "<C-K>", "<cmd>Lspsaga signature_help<CR>", { silent = true })
 end
 
 return {

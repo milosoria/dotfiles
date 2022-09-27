@@ -28,19 +28,15 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 
-    -- show errors and warnings in float
-    buf_set_keymap('n', '<leader>vsd', ' <Cmd>lua vim.diagnostic.open_float()<CR>', opts)
-
-    -- show help
-    buf_set_keymap('n', '<leader>vsh', ' <Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-
     -- references to quickfix list
     buf_set_keymap('n', '<leader>vrr', ' <Cmd>lua vim.lsp.buf.references()<CR>', opts)
 
     -- navigate quickly through diagnostics
     buf_set_keymap('n', '<leader>vn', ':lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<leader>vp', ':lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-
+    -- Show signature help on insert mode
+    buf_set_keymap('i', '<C-K>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<C-K>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
     -- buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
