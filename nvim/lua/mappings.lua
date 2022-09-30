@@ -54,6 +54,8 @@ local function init()
     vim.api.nvim_set_keymap('v', '<leader>d', '\"_d', settings)
     -- normal
     vim.api.nvim_set_keymap('n', '<leader>d', '\"_d', settings)
+    --Compile to pdf latex files
+    vim.api.nvim_set_keymap('n', '<leader>tx', ":lua require('lua.customtex').command()<CR>", settings)
 end
 
 return {
