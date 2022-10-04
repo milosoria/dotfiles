@@ -40,7 +40,7 @@ local function init()
     -- prev tab
     vim.api.nvim_set_keymap('n', '<leader>h', ':tabprev<CR>', settings)
     -- QuickFixList
-    vim.api.nvim_set_keymap('n', '<leader>co', ':copen<CR>', settings)
+    -- vim.api.nvim_set_keymap('n', '<leader>co', ':copen<CR>', settings)
     vim.api.nvim_set_keymap('n', '<leader>cn', ':cn<CR>', settings)
     vim.api.nvim_set_keymap('n', '<leader>cp', ':cp<CR>', settings)
     vim.api.nvim_set_keymap('n', '<leader>cq', ':ccl<CR>', settings)
@@ -55,7 +55,10 @@ local function init()
     -- normal
     vim.api.nvim_set_keymap('n', '<leader>d', '\"_d', settings)
     --Compile to pdf latex files
-    vim.api.nvim_set_keymap('n', '<leader>tx', ":lua require('lua.customtex').command()<CR>", settings)
+    vim.api.nvim_set_keymap('n', '<leader>tx', ":lua require('customtex').command()<CR>", settings)
+
+    --Compile to pdf latex files
+    vim.api.nvim_set_keymap('n', '<leader>tx', ":lua require('customtex').command()<CR>", settings)
 end
 
 return {

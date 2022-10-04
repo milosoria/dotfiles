@@ -72,6 +72,8 @@ Plug('nanozuki/tabby.nvim')
 Plug('lewis6991/gitsigns.nvim')
 -- Colorizer
 Plug('norcalli/nvim-colorizer.lua')
+-- Copilot
+Plug('github/copilot.vim')
 vim.call('plug#end')
 
 -- run specific config for markdown
@@ -87,7 +89,6 @@ autocmd!
 au TextYankPost * silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=150}
 augroup END
 ]]
-
 
 --source every config file
 require 'init'

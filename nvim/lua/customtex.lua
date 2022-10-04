@@ -6,7 +6,7 @@ local function command()
     end
     local filename = filepath_table[#filepath_table]
     -- format string to build command using filename
-    local command_string = string.format(":!pdflatex -halt-on-error %s", filename)
+    local command_string = string.format(":!pdflatex -halt-on-error %s >> /dev/null", filename)
     vim.api.nvim_command(command_string)
 end
 
