@@ -1,3 +1,10 @@
-yarn/
+*
+!zsh/**
+!nvim/**
+!iterm2/**
+!ergodox/**
+!kitty/**
+!zathura/**
+!custom_commands/**
 zsh/.zcompdump*
 zsh/.zsh_history
