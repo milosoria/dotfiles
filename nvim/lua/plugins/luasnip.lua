@@ -63,7 +63,12 @@ local function init()
                 "\\begin{enumerate}",
                 "   \\item",
                 "\\end{enumerate}",
-            })
+            }),
+            s({ trig = "equation", name = "equation", docstring = "insert equation environment" }, t({
+                "\\begin{equation}",
+                "   \\item",
+                "\\end{enumerate}",
+            }))
             )
         },
         html = {

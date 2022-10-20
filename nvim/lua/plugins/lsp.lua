@@ -8,10 +8,12 @@ local function on_attach(client, bufnr)
     if not string.match(vim.api.nvim_buf_get_name(bufnr), 'NvimTree_1') then
         if client.server_capabilities.documentFormattingProvider then
             -- format
-            vim.api.nvim_command [[augroup Format]]
-            vim.api.nvim_command [[autocmd! * <buffer>]]
-            vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting({async=true})]]
-            vim.api.nvim_command [[augroup END]]
+            -- vim.api.nvim_command [[augroup Format]]
+            -- vim.api.nvim_command [[autocmd! * <buffer>]]
+            -- vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({async=true})]]
+            -- vim.api.nvim_command [[augroup END]]
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>n', '<cmd>lua vim.lsp.buf.format({async=true})<CR>',
+                { noremap = true })
         end
     end
 
@@ -36,7 +38,6 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n', '<leader>vp', ':lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
     -- Show signature help on insert mode
     buf_set_keymap('i', '<C-K>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('n', '<C-K>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
     -- buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
