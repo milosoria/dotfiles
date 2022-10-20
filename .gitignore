@@ -1,4 +1,11 @@
 *
+!zsh
+!nvim
+!iterm2
+!ergodox
+!kitty
+!zathura
+!custom_commands
 !zsh/**
 !nvim/**
 !iterm2/**
@@ -8,3 +15,4 @@
 !custom_commands/**
 zsh/.zcompdump*
 zsh/.zsh_history
+**/.DS_Store
