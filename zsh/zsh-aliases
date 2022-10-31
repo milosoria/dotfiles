@@ -11,7 +11,7 @@ alias dotfiles='cd ~/.config'
 alias kittyconf='cd ~/.config/kitty/ && "$EDITOR" kitty.conf'
 alias ll='ls -lah'
 alias l='ls -lah'
-
+alias pn='pnpm'
 # git
 alias ga='git add'
 alias gc='git commit -m'

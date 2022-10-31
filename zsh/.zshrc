@@ -1,8 +1,11 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Path to your oh-my-zsh installation.
 ZSH_THEME="awesomepanda"
 # Add wisely, as too many plugins slow down shell startup.
 zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 plugins=(zsh-vi-mode git  dircycle nvm  zsh-autosuggestions zsh-syntax-highlighting zsh-z)
+
 
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
@@ -27,3 +30,10 @@ source ~/.config/custom_commands/custom_commands.sh
 source ~/.config/zsh/zsh-aliases
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# FIX THIS: zsh-vi-mode uses ^J as escape newline, find a way to make it work
+# zsh-autosuggestions accept suggestion with c-j
+bindkey '^J' autosuggest-accept
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
