@@ -1,5 +1,6 @@
 local function init()
     -- TODO: Fix this
+    require("luasnip.loaders.from_vscode").lazy_load()
     local ls = require("luasnip")
     local t = ls.text_node
     local s = ls.snippet

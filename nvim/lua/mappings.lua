@@ -56,9 +56,13 @@ local function init()
     vim.api.nvim_set_keymap('n', '<leader>d', '\"_d', settings)
     --Compile to pdf latex files
     vim.api.nvim_set_keymap('n', '<leader>tx', ":lua require('customtex').command()<CR>", settings)
-
-    --Compile to pdf latex files
-    vim.api.nvim_set_keymap('n', '<leader>tx', ":lua require('customtex').command()<CR>", settings)
+    -- Split windows
+    vim.api.nvim_set_keymap('n', '<leader>sv', "<C-w>v", settings)
+    vim.api.nvim_set_keymap('n', '<leader>sh', "<C-w>s", settings)
+    vim.api.nvim_set_keymap('n', '<leader>se', "<C-w>=", settings)
+    vim.api.nvim_set_keymap('n', '<leader>sc', ":close <CR>", settings)
+    -- Maximize window and then restore to its original size
+    vim.api.nvim_set_keymap('n', '<leader>sm', ":MaximizerToggle<CR>", settings)
 end
 
 return {

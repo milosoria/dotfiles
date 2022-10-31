@@ -39,6 +39,7 @@ local function init()
     vim.o.hidden = true
     vim.o.errorbells = false
     vim.o.ignorecase = false
+    vim.o.smartcase = true
     vim.o.swapfile = false
     vim.o.incsearch = true
     vim.o.guicursor = 'a:blinkon80,i:ver100-icursor'

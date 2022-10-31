@@ -20,7 +20,7 @@ local function init()
     cmp.setup({
         snippet = {
             expand = function(args)
-                require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                luasnip.lsp_expand(args.body) -- For `luasnip` users.
             end
 
         },
@@ -95,6 +95,7 @@ local function init()
             { name = 'nvim_lsp' },
             { name = 'cmp_tabnine' },
             { name = 'buffer' },
+            { name = 'path' },
             { name = 'luasnip' }, -- For luasnip users.
         })
     })

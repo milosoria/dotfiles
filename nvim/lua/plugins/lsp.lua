@@ -63,7 +63,7 @@ local function make_config()
             'additionalTextEdits',
         }
     }
-    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
     return {
         -- enable snippet support
@@ -81,10 +81,19 @@ local function init()
     local mason_lspconfig = require 'mason-lspconfig'
     local mason = require 'mason'
     local lspconfig = require 'lspconfig'
+    local mason_null_ls = require 'mason-null-ls'
 
     mason.setup {}
     mason_lspconfig.setup {
         automatic_installation = true
+    }
+    mason_null_ls.setup {
+        automatic_installation = true,
+        ensure_installed = {
+            "prettier",
+            "stylua",
+            "eslint_d"
+        }
     }
 
     local config = make_config()
