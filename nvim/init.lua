@@ -43,6 +43,8 @@ Plug("nvim-treesitter/nvim-treesitter", {
         vim.cmd(":TSUpdate")
     end,
 })
+-- tresitter context for top buffer line info
+Plug("nvim-treesitter/nvim-treesitter-context")
 -- indent line symbol
 Plug("lukas-reineke/indent-blankline.nvim")
 -- COLORSCHEMES
@@ -80,6 +82,7 @@ Plug("szw/vim-maximizer")
 -- Null-ls linters and formatters
 Plug("jose-elias-alvarez/null-ls.nvim")
 Plug("jayp0521/mason-null-ls.nvim")
+Plug("christoomey/vim-tmux-navigator")
 vim.call("plug#end")
 
 -- run specific config for markdown
