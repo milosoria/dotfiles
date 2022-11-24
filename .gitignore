@@ -1,11 +1,13 @@
 *
 !zsh
+!tmux
 !nvim
 !iterm2
 !ergodox
 !kitty
 !zathura
 !custom_commands
+!tmux/**
 !zsh/**
 !nvim/**
 !iterm2/**

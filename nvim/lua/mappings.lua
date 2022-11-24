@@ -13,10 +13,10 @@ local function init()
     vim.api.nvim_set_keymap("n", "<leader>=", "<C-W>= <CR>", settings)
     --
     --Easier moving between splits
-    -- vim.api.nvim_set_keymap('n', '<C-J>', '<C-W><C-J>', settings)
-    -- vim.api.nvim_set_keymap('n', '<C-K>', '<C-W><C-K>', settings)
-    -- vim.api.nvim_set_keymap('n', '<C-H>', '<C-W><C-H>', settings)
-    -- vim.api.nvim_set_keymap('n', '<C-L>', '<C-W><C-L>', settings)
+    -- vim.api.nvim_set_keymap("n", "<C-J>", "<C-W><C-J>", settings)
+    -- vim.api.nvim_set_keymap("n", "<C-K>", "<C-W><C-K>", settings)
+    -- vim.api.nvim_set_keymap("n", "<C-H>", "<C-W><C-H>", settings)
+    -- vim.api.nvim_set_keymap("n", "<C-L>", "<C-W><C-L>", settings)
 
     --Indenting with builtin
     vim.api.nvim_set_keymap("n", "<leader>i", "ma :norm gg=G<CR> `a", settings)
@@ -57,8 +57,8 @@ local function init()
     --Compile to pdf latex files
     vim.api.nvim_set_keymap("n", "<leader>tx", ":lua require('customtex').command()<CR>", settings)
     -- Split windows
-    vim.api.nvim_set_keymap("n", "<leader>sv", "<C-w>v", settings)
-    vim.api.nvim_set_keymap("n", "<leader>sh", "<C-w>s", settings)
+    vim.api.nvim_set_keymap("n", "<leader>s\\", "<C-w>v", settings)
+    vim.api.nvim_set_keymap("n", "<leader>s-", "<C-w>s", settings)
     vim.api.nvim_set_keymap("n", "<leader>se", "<C-w>=", settings)
     vim.api.nvim_set_keymap("n", "<leader>sc", ":close <CR>", settings)
     -- Maximize window and then restore to its original size

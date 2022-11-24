@@ -12,12 +12,13 @@ alias kittyconf='cd ~/.config/kitty/ && "$EDITOR" kitty.conf'
 alias ll='ls -lah'
 alias l='ls -lah'
 alias pn='pnpm'
+alias cl='clear'
 # git
 alias ga='git add'
 alias gc='git commit -m'
-alias gp='git push origin'
+alias gp='git push'
 alias gs='git status'
-alias qpll='git pull origin'
+alias qpll='git pull'
 
 # brew
 alias update='brew update'
