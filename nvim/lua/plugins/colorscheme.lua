@@ -1,6 +1,11 @@
 -- Colorscheme configs
 local function init()
-    require("tokyonight").setup({
+    local ok, tokyonight = pcall(require, "tokyonight")
+    if not ok then
+        print("Failed to load tokyonight")
+        return
+    end
+    tokyonight.setup({
         -- your configuration comes here
         -- or leave it empty to use the default settings
         style = "night", -- The theme comes in three styles, `storm`, a darker variant `night` and `day`
@@ -33,17 +38,17 @@ local function init()
         ---@param colors ColorScheme
         -- on_highlights = function(highlights, colors) end,
     })
-    vim.cmd('colorscheme tokyonight')
+    vim.cmd("colorscheme tokyonight")
 
     -- bg to none so winseparator shows only a thin line
     -- fg to none so winseparator shows only a thin line
     --
-    vim.cmd [[
+    vim.cmd([[
         highlight WinSeparator guifg=#BEBEBE
         highlight WinSeparator guibg=None
-    ]]
+    ]])
 end
 
 return {
-    init = init
+    init = init,
 }

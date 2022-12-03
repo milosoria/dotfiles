@@ -1,8 +1,12 @@
 local function init()
-    local gitsigns = require('gitsigns')
+    local ok, gitsigns = pcall(require, "gitsigns")
+    if not ok then
+        print("Failed to load gitsigns")
+        return
+    end
     gitsigns.setup()
 end
 
 return {
-    init = init
+    init = init,
 }

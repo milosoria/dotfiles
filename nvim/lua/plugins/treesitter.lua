@@ -1,5 +1,11 @@
 local function init()
-    require 'nvim-treesitter.configs'.setup {
+    local ok, nvim_treesitter = pcall(require, "nvim-treesitter")
+    if not ok then
+        print("Failed to load treesitter")
+        return
+    end
+
+    require("nvim-treesitter.configs").setup({
         -- One of "all", "maintained" (parsers with maintainers), or a list of languages
         ensure_installed = {
             "lua",
@@ -10,7 +16,7 @@ local function init()
             "bash",
             "python",
             "javascript",
-            "c"
+            -- "c",
         },
 
         -- Install languages synchronously (only applied to `ensure_installed`)
@@ -28,14 +34,14 @@ local function init()
         },
         indent = {
             enable = false,
-            disable = {}
+            disable = {},
         },
         autotag = {
-            enable = true
-        }
-    }
+            enable = true,
+        },
+    })
 end
 
 return {
-    init = init
+    init = init,
 }

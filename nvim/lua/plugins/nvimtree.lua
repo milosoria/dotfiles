@@ -1,69 +1,79 @@
 local function init()
-    require('nvim-web-devicons').setup({
-        default = true;
+    local ok, nvim_web_devicons = pcall(require, "nvim-web-devicons")
+    if not ok then
+        print("Failed to load nvim-web-devicons")
+        return
+    end
+    nvim_web_devicons.setup({
+        default = true,
     })
 
-    vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>:NvimTreeRefresh<CR>', { noremap = true })
+    vim.api.nvim_set_keymap("n", "<Leader>e", ":NvimTreeToggle<CR>:NvimTreeRefresh<CR>", { noremap = true })
 
-    require('nvim-tree').setup({
-        disable_netrw                      = true,
-        hijack_netrw                       = true,
-        open_on_setup                      = false,
-        ignore_buffer_on_setup             = false,
-        ignore_ft_on_setup                 = {},
-        auto_reload_on_write               = true,
-        open_on_tab                        = false,
-        update_cwd                         = false,
+    local ok, nvimtree = pcall(require, "nvim-tree")
+    if not ok then
+        print("Failed to load nvimtree")
+        return
+    end
+    nvimtree.setup({
+        disable_netrw = true,
+        hijack_netrw = true,
+        open_on_setup = false,
+        ignore_buffer_on_setup = false,
+        ignore_ft_on_setup = {},
+        auto_reload_on_write = true,
+        open_on_tab = false,
+        update_cwd = false,
         hijack_unnamed_buffer_when_opening = true,
-        hijack_directories                 = {
+        hijack_directories = {
             enable = true,
             auto_open = true,
         },
-        diagnostics                        = {
+        diagnostics = {
             enable = true,
             icons = {
                 hint = "",
                 info = "",
                 warning = "",
                 error = "",
-            }
+            },
         },
-        update_focused_file                = {
-            enable      = true,
-            update_cwd  = false,
-            ignore_list = {}
+        update_focused_file = {
+            enable = true,
+            update_cwd = false,
+            ignore_list = {},
         },
-        system_open                        = {
-            cmd  = nil,
-            args = {}
+        system_open = {
+            cmd = nil,
+            args = {},
         },
-        filters                            = {
+        filters = {
             dotfiles = false,
-            custom = {}
+            custom = {},
         },
-        git                                = {
+        git = {
             enable = true,
             ignore = false,
             timeout = 500,
         },
-        view                               = {
+        view = {
             width = 30,
             hide_root_folder = false,
-            side = 'left',
+            side = "left",
             preserve_window_proportions = false,
             mappings = {
                 custom_only = false,
-                list = {}
+                list = {},
             },
             number = false,
             relativenumber = false,
-            signcolumn = "yes"
+            signcolumn = "yes",
         },
-        trash                              = {
+        trash = {
             cmd = "trash",
-            require_confirm = true
+            require_confirm = true,
         },
-        actions                            = {
+        actions = {
             change_dir = {
                 enable = true,
                 global = false,
@@ -75,13 +85,13 @@ local function init()
                     enable = true,
                     chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
                     exclude = {
-                        filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame", },
-                        buftype  = { "nofile", "terminal", "help", },
-                    }
-                }
-            }
+                        filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+                        buftype = { "nofile", "terminal", "help" },
+                    },
+                },
+            },
         },
-        log                                = {
+        log = {
             enable = false,
             types = {
                 all = false,
@@ -89,11 +99,11 @@ local function init()
                 git = false,
             },
         },
-        renderer                           = {
+        renderer = {
             icons = {
                 glyphs = {
-                    default = '',
-                    symlink = '',
+                    default = "",
+                    symlink = "",
                     git = {
                         unstaged = "✗",
                         staged = "✓",
@@ -112,12 +122,12 @@ local function init()
                         symlink = "",
                         symlink_open = "",
                     },
-                }
-            }
-        }
+                },
+            },
+        },
     })
 end
 
 return {
-    init = init
+    init = init,
 }

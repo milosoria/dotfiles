@@ -1,21 +1,24 @@
 local function init()
-
-    require'lualine'.setup({
-        options={
-            theme='palenight',
-            component_separators = {'', ''},
-            section_separators = {'', ''}
+    local ok, lualine = pcall(require, "lualine")
+    if not ok then
+        print("Failed to load lualine")
+        return
+    end
+    lualine.setup({
+        options = {
+            theme = "palenight",
+            component_separators = { "", "" },
+            section_separators = { "", "" },
         },
         section_b = {
-            'branch',
-            'diff',
-            'diagnostics',
-            sources={'nvim_lsp', 'coc' }
-    }
+            "branch",
+            "diff",
+            "diagnostics",
+            sources = { "nvim_lsp", "coc" },
+        },
     })
-
 end
 
 return {
-    init=init
+    init = init,
 }

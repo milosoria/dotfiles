@@ -1,5 +1,9 @@
 local function init()
-    local lspsaga = require 'lspsaga'
+    local ok, lspsaga = pcall(require, "lspsaga")
+    if not ok then
+        print("Failed to load lspsaga")
+        return
+    end
     lspsaga.init_lsp_saga({
         border_style = "rounded",
     })
@@ -19,5 +23,5 @@ local function init()
 end
 
 return {
-    init = init
+    init = init,
 }

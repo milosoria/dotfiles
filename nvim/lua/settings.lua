@@ -51,7 +51,7 @@ local function init()
     vim.o.shortmess = vim.o.shortmess .. 'c'
     vim.o.clipboard = 'unnamedplus'
     vim.o.mouse = 'a'
-    vim.o.termguicolors = true
+    vim.o.termguicolors = false
     vim.o.splitright = true
     vim.o.splitbelow = true
     vim.o.syntax = 'off'
