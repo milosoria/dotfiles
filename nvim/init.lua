@@ -43,8 +43,6 @@ Plug("nvim-treesitter/nvim-treesitter", {
         vim.cmd(":TSUpdate")
     end,
 })
--- tresitter context for top buffer line info
-Plug("nvim-treesitter/nvim-treesitter-context")
 -- indent line symbol
 Plug("lukas-reineke/indent-blankline.nvim")
 -- COLORSCHEMES

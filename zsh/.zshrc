@@ -4,7 +4,7 @@
 ZSH_THEME="awesomepanda"
 # Add wisely, as too many plugins slow down shell startup.
 zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
-plugins=(zsh-vi-mode git  dircycle nvm  zsh-autosuggestions zsh-syntax-highlighting zsh-z)
+plugins=(zsh-vi-mode git dircycle nvm  zsh-autosuggestions zsh-syntax-highlighting zsh-z web-search)
 
 
 export ZSH="$HOME/.oh-my-zsh"
@@ -19,6 +19,10 @@ export VISUAL="nvim"
 export EDITOR="nvim"
 export editor="nvim"
 export PATH=$PATH:~/.cargo/bin
+export PATH=$PATH:~/Library/Python/3.9/bin
+# Set correct term
+# This fucks up colors in nvim
+# export TERM="screen-256color"
 
 # NVM: loads nvm and sources nvm completion
 export NVM_DIR="$HOME/.nvm"
