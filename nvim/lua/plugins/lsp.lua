@@ -32,14 +32,11 @@ local function on_attach(client, bufnr)
 
     -- goto decl/def
     buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    -- buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
 
     -- references to quickfix list
     buf_set_keymap("n", "<leader>vrr", " <Cmd>lua vim.lsp.buf.references()<CR>", opts)
 
-    -- navigate quickly through diagnostics
-    buf_set_keymap("n", "<leader>vn", ":lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-    buf_set_keymap("n", "<leader>vp", ":lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
     -- Show signature help on insert mode
     buf_set_keymap("i", "<C-K>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 

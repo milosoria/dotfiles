@@ -4,22 +4,43 @@ local function init()
         print("Failed to load lspsaga")
         return
     end
-    lspsaga.init_lsp_saga({
-        border_style = "rounded",
+    lspsaga.setup({
+        ui = {
+            border = "double",
+            colors = {
+                --float window normal background color
+                normal_bg = "#1F1F26",
+                --title background color
+                title_bg = "#afd700",
+                red = "#e95678",
+                magenta = "#b33076",
+                orange = "#FF8700",
+                yellow = "#f7bb3b",
+                green = "#afd700",
+                cyan = "#36d0e0",
+                blue = "#61afef",
+                purple = "#CBA6F7",
+                white = "#d1d4cf",
+                black = "#1c1c19",
+            },
+        },
     })
-
+    local keymap = vim.keymap.set
     -- References and definitions finder
-    vim.keymap.set("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
+    keymap("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
     -- Code actions
-    vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
+    keymap("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
     -- Function info
-    vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
+    keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
     -- Rename
-    vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
+    keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
     -- Preview Definition
-    vim.keymap.set("n", "gp", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
+    keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
     -- show errors and warnings in float
-    vim.keymap.set("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
+    keymap("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
+    -- Diagnostic jump can use `<c-o>` to jump back
+    keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+    keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 end
 
 return {
