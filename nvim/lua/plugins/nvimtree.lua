@@ -1,9 +1,16 @@
+local function open_nvim_tree()
+    -- open the tree always
+    require("nvim-tree.api").tree.open()
+end
+
 local function init()
     local ok, nvim_web_devicons = pcall(require, "nvim-web-devicons")
     if not ok then
         print("Failed to load nvim-web-devicons")
         return
     end
+    -- Open nvim tree on vim enter
+    vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
     nvim_web_devicons.setup({
         default = true,
     })
@@ -15,12 +22,11 @@ local function init()
         print("Failed to load nvimtree")
         return
     end
+
     nvimtree.setup({
         disable_netrw = true,
         hijack_netrw = true,
-        open_on_setup = false,
         ignore_buffer_on_setup = false,
-        ignore_ft_on_setup = {},
         auto_reload_on_write = true,
         open_on_tab = false,
         update_cwd = false,

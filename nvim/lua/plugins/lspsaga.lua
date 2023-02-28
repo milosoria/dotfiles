@@ -35,7 +35,7 @@ local function init()
     -- Rename
     keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
     -- Preview Definition
-    keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
+    keymap("n", "gp", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
     -- show errors and warnings in float
     keymap("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
     -- Diagnostic jump can use `<c-o>` to jump back

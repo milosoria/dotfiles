@@ -32,7 +32,7 @@ local function on_attach(client, bufnr)
 
     -- goto decl/def
     buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    -- buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
 
     -- references to quickfix list
     buf_set_keymap("n", "<leader>vrr", " <Cmd>lua vim.lsp.buf.references()<CR>", opts)
