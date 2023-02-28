@@ -1,20 +1,22 @@
 local function init()
-
+    -- disable netrw at the very start of your init.lua 
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
     -- indent plug
-    vim.g.indentLine_char_list = { '|', '¦', '┆', '┊' }
+    vim.g.indentLine_char_list = { "|", "¦", "┆", "┊" }
 
     -- Latex flavor, in order to make the FileType be a latex and not plaintex
-    vim.g.tex_flavor = 'latex'
+    vim.g.tex_flavor = "latex"
 
     -- set leader key
-    vim.g.mapleader = ' '
+    vim.g.mapleader = " "
     -- The value of this option influences when the last window will have a
     -- status line:
     vim.o.laststatus = 3
     -- ignore mouse
-    vim.o.mouse = ''
-    vim.o.eadirection = 'ver'
-    vim.o.wildmode = 'longest,full'
+    vim.o.mouse = ""
+    vim.o.eadirection = "ver"
+    vim.o.wildmode = "longest,full"
     vim.o.wildmenu = true
     vim.o.relativenumber = false
 
@@ -32,7 +34,7 @@ local function init()
     vim.o.textwidth = 100
     -- no line wrapping
     vim.o.wrap = false
-    vim.g.showbreak = '↪'
+    vim.g.showbreak = "↪"
     vim.o.smartindent = true
     vim.o.hlsearch = false
     vim.o.nu = true
@@ -42,23 +44,23 @@ local function init()
     vim.o.smartcase = true
     vim.o.swapfile = false
     vim.o.incsearch = true
-    vim.o.guicursor = 'a:blinkon80,i:ver100-icursor'
+    vim.o.guicursor = "a:blinkon80,i:ver100-icursor"
     vim.o.scrolloff = 8
     vim.o.sidescroll = 2
-    vim.o.signcolumn = 'auto'
-    vim.o.completeopt = 'menuone,noselect'
+    vim.o.signcolumn = "auto"
+    vim.o.completeopt = "menuone,noselect"
     vim.o.numberwidth = 3
-    vim.o.shortmess = vim.o.shortmess .. 'c'
-    vim.o.clipboard = 'unnamedplus'
-    vim.o.mouse = 'a'
+    vim.o.shortmess = vim.o.shortmess .. "c"
+    vim.o.clipboard = "unnamedplus"
+    vim.o.mouse = "a"
     vim.o.termguicolors = false
     vim.o.splitright = true
     vim.o.splitbelow = true
-    vim.o.syntax = 'off'
+    vim.o.syntax = "off"
     -- show double quotes in json or stars on markdown
     vim.g.conceallevel = 0
 end
 
 return {
-    init = init
+    init = init,
 }
