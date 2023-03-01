@@ -5,15 +5,15 @@ local function open_nvim_tree(data)
     if directory then
         -- change to the directory
         vim.cmd.cd(data.file)
+        -- open the tree
+        require("nvim-tree.api").tree.open()
+        return
     end
-
-    -- buffer is a real file on the disk
-    local real_file = vim.fn.filereadable(data.file) == 1
 
     -- buffer is a [No Name]
     local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
 
-    if real_file and not no_name then
+    if not no_name then
         return
     end
     -- open the tree
@@ -21,8 +21,8 @@ local function open_nvim_tree(data)
 end
 
 local function init()
-    local ok, nvim_web_devicons = pcall(require, "nvim-web-devicons")
-    if not ok then
+    local ok1, nvim_web_devicons = pcall(require, "nvim-web-devicons")
+    if not ok1 then
         print("Failed to load nvim-web-devicons")
         return
     end
@@ -33,8 +33,8 @@ local function init()
 
     vim.api.nvim_set_keymap("n", "<Leader>e", ":NvimTreeToggle<CR>:NvimTreeRefresh<CR>", { noremap = true })
 
-    local ok, nvimtree = pcall(require, "nvim-tree")
-    if not ok then
+    local ok2, nvimtree = pcall(require, "nvim-tree")
+    if not ok2 then
         print("Failed to load nvimtree")
         return
     end
