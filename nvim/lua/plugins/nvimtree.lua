@@ -12,6 +12,7 @@ local function open_nvim_tree(data)
 
     -- buffer is a [No Name]
     local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+    print(data.file)
 
     if real_file and not no_name then
         return
@@ -88,7 +89,7 @@ local function init()
             },
             float = {
                 enable = true,
-                quit_on_focus_loss = true,
+                quit_on_focus_loss = false,
                 open_win_config = {
                     relative = "editor",
                     border = "rounded",
