@@ -6,13 +6,16 @@ local function open_nvim_tree(data)
         -- change to the directory
         vim.cmd.cd(data.file)
     end
+
+    -- buffer is a real file on the disk
+    local real_file = vim.fn.filereadable(data.file) == 1
+
     -- buffer is a [No Name]
     local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
 
-    if not no_name then
+    if real_file and not no_name then
         return
     end
-
     -- open the tree
     require("nvim-tree.api").tree.open()
 end
@@ -23,6 +26,7 @@ local function init()
         print("Failed to load nvim-web-devicons")
         return
     end
+    -- Open nvim tree on vim enter
     nvim_web_devicons.setup({
         default = true,
     })
@@ -39,12 +43,10 @@ local function init()
         disable_netrw = true,
         hijack_netrw = true,
         auto_reload_on_write = true,
-        open_on_tab = false,
         update_cwd = false,
         hijack_unnamed_buffer_when_opening = true,
         hijack_directories = {
             enable = true,
-            auto_open = true,
         },
         diagnostics = {
             enable = true,
@@ -82,6 +84,18 @@ local function init()
                 custom_only = false,
                 list = {
                     { key = "u", action = "dir_up" },
+                },
+            },
+            float = {
+                enable = true,
+                quit_on_focus_loss = true,
+                open_win_config = {
+                    relative = "editor",
+                    border = "rounded",
+                    width = 30,
+                    height = 28,
+                    row = 1,
+                    col = 1,
                 },
             },
             number = false,
@@ -146,7 +160,6 @@ local function init()
         },
     })
 
-    -- Open nvim tree on vim enter
     vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 end
 
