@@ -41,6 +41,8 @@ local function init()
     null_ls.setup({
         sources = {
             formatting.stylua,
+            formatting.rustfmt,
+            formatting.ruff,
             formatting.prettier,
             diagnostics.eslint_d,
         },
