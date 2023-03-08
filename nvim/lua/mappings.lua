@@ -19,7 +19,7 @@ local function init()
     -- vim.api.nvim_set_keymap("n", "<C-L>", "<C-W><C-L>", settings)
 
     -- Force quit
-    vim.api.nvim_set_keymap("n","<leader>q", ":q!<CR>", settings)
+    vim.api.nvim_set_keymap("n", "<leader>q", ":q!<CR>", settings)
     --Indenting with builtin
     vim.api.nvim_set_keymap("n", "<leader>i", "ma :norm gg=G<CR> `a", settings)
     -- Remap C-W C-O to <leader>w
@@ -29,16 +29,16 @@ local function init()
     vim.api.nvim_set_keymap("n", "<", "<<", settings)
     -- terminal escape keys
     vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", settings)
-    -- -- tabs usage
-    -- vim.api.nvim_set_keymap("n", "<leader>tn", ":tabe<CR>", settings)
-    -- -- tab close current
-    -- vim.api.nvim_set_keymap("n", "<leader>tc", ":tabc<CR>", settings)
-    -- -- tab delete all but the current
-    -- vim.api.nvim_set_keymap("n", "<leader>td", ":tabonly<CR>", settings)
-    -- -- next tab
-    -- vim.api.nvim_set_keymap("n", "<leader>l", ":tabnext<CR>", settings)
-    -- -- prev tab
-    -- vim.api.nvim_set_keymap("n", "<leader>h", ":tabprev<CR>", settings)
+    -- tabs usage
+    vim.api.nvim_set_keymap("n", "<leader>tn", ":tabe<CR>", settings)
+    -- tab close current
+    vim.api.nvim_set_keymap("n", "<leader>tc", ":tabc<CR>", settings)
+    -- tab delete all but the current
+    vim.api.nvim_set_keymap("n", "<leader>tq", ":tabonly<CR>", settings)
+    -- next tab
+    vim.api.nvim_set_keymap("n", "<leader>l", ":tabnext<CR>", settings)
+    -- prev tab
+    vim.api.nvim_set_keymap("n", "<leader>h", ":tabprev<CR>", settings)
     -- QuickFixList
     -- vim.api.nvim_set_keymap('n', '<leader>co', ':copen<CR>', settings)
     vim.api.nvim_set_keymap("n", "<leader>cn", ":cn<CR>", settings)

@@ -37,6 +37,9 @@ Plug("williamboman/mason.nvim")
 Plug("williamboman/mason-lspconfig.nvim")
 Plug("neovim/nvim-lspconfig")
 
+-- Neogit
+Plug("TimUntersberger/neogit")
+
 -- tresitter
 Plug("nvim-treesitter/nvim-treesitter", {
         ["do"] = function()
@@ -69,7 +72,7 @@ Plug("windwp/nvim-ts-autotag")
 Plug("glepnir/lspsaga.nvim")
 -- Tab bar
 -- Plug("nanozuki/tabby.nvim")
-Plug 'romgrk/barbar.nvim'
+Plug("romgrk/barbar.nvim")
 -- Colorizer
 Plug("norcalli/nvim-colorizer.lua")
 -- Copilot

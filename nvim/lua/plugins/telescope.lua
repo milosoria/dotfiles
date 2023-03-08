@@ -74,8 +74,6 @@ local function init()
     vim.api.nvim_set_keymap("n", "<Leader>vim", ":Telescope find_files cwd=~/.config/nvim<CR>", { noremap = true })
     -- zsh config directory
     vim.api.nvim_set_keymap("n", "<Leader>zsh", ":Telescope find_files cwd=~/.config/zsh<CR>", { noremap = true })
-    -- buffers
-    vim.api.nvim_set_keymap("n", "<Leader>b", ":Telescope buffers<CR>", { noremap = true })
     -- this needs to be called after the setup call
     telescope.load_extension("fzf")
 end

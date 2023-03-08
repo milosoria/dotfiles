@@ -26,13 +26,12 @@ local function init()
         return
     end
 
-    map("n", "<leader>ta", "<Cmd>tabnew<CR>", opts)
     -- Move to previous/next
-    map("n", "<leader>tp", "<Cmd>BufferPrevious<CR>", opts)
-    map("n", "<leader>tn", "<Cmd>BufferNext<CR>", opts)
+    map("n", "<leader>bp", "<Cmd>BufferPrevious<CR>", opts)
+    map("n", "<leader>bn", "<Cmd>BufferNext<CR>", opts)
     -- Re-order to previous/next
-    map("n", "<leader>t<", "<Cmd>BufferMovePrevious<CR>", opts)
-    map("n", "<leader>t>", "<Cmd>BufferMoveNext<CR>", opts)
+    map("n", "<leader>b<", "<Cmd>BufferMovePrevious<CR>", opts)
+    map("n", "<leader>b>", "<Cmd>BufferMoveNext<CR>", opts)
     -- Goto buffer in position...
     map("n", "<leader>1", "<Cmd>BufferGoto 1<CR>", opts)
     map("n", "<leader>2", "<Cmd>BufferGoto 2<CR>", opts)
@@ -45,8 +44,8 @@ local function init()
     map("n", "<leader>9", "<Cmd>BufferGoto 9<CR>", opts)
     map("n", "<leader>0", "<Cmd>BufferLast<CR>", opts)
     -- Close buffer
-    map("n", "<leader>tc", "<Cmd>BufferClose<CR>", opts)
-    map("n", "<leader>tq", "<Cmd>wall<CR> <Cmd>BufferCloseAllButCurrent<CR>", opts)
+    map("n", "<leader>bc", "<Cmd>BufferClose<CR>", opts)
+    map("n", "<leader>bq", "<Cmd>wall<CR> <Cmd>BufferCloseAllButCurrent<CR>", opts)
     -- Set barbar's options
     bufferline.setup({
         -- Enable/disable animations
