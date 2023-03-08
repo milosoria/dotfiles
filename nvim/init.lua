@@ -18,7 +18,7 @@ Plug("rafamadriz/friendly-snippets")
 Plug("onsails/lspkind-nvim")
 -- Main reason for slow startup
 Plug("tzachar/cmp-tabnine", {
-        ["do"] = function()
+    ["do"] = function()
         vim.cmd("./install.sh")
     end,
 })
@@ -27,7 +27,7 @@ Plug("nvim-lua/popup.nvim")
 Plug("nvim-lua/plenary.nvim")
 Plug("nvim-telescope/telescope.nvim")
 Plug("nvim-telescope/telescope-fzf-native.nvim", {
-        ["do"] = function()
+    ["do"] = function()
         vim.cmd("make")
     end,
 })
@@ -39,10 +39,11 @@ Plug("neovim/nvim-lspconfig")
 
 -- Neogit
 Plug("TimUntersberger/neogit")
+Plug("sindrets/diffview.nvim")
 
 -- tresitter
 Plug("nvim-treesitter/nvim-treesitter", {
-        ["do"] = function()
+    ["do"] = function()
         vim.cmd(":TSUpdate")
     end,
 })
