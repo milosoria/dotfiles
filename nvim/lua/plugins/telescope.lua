@@ -11,7 +11,8 @@ local function init()
     telescope.setup({
         defaults = {
             file_ignore_patterns = {
-                ".git",
+                "%.git",
+                ".git/",
                 "node_modules",
                 "__pycache__",
                 "%.png",

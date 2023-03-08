@@ -7,7 +7,7 @@ local function init()
     neogit.setup({
         disable_signs = false,
         disable_context_highlighting = false,
-        disable_commit_confirmation = false,
+        disable_commit_confirmation = true,
         -- customize displayed signs
         signs = {
             -- { CLOSED, OPENED }
@@ -19,6 +19,8 @@ local function init()
             diffview = true,
         },
     })
+    vim.api.nvim_set_keymap("n", "<leader>gg", ":Neogit<CR>", { noremap = true, silent = true })
+    vim.api.nvim_set_keymap("n", "<leader>gm", ":DiffviewOpen<CR>", { noremap = true, silent = true })
 end
 
 return {
