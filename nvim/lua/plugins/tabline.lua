@@ -1,97 +1,142 @@
 local function init()
-    local ok1, tabby = pcall(require, "tabby")
-    local ok2, nvim_web_devicons = pcall(require, "nvim-web-devicons")
+    local nvim_tree_events = require('nvim-tree.events')
+    local bufferline_api = require('bufferline.api')
 
-    if not ok1 or not ok2 then
-        print("Failed to load tabby or nvim-web-devicons")
+    local function get_tree_size()
+        return require 'nvim-tree.view'.View.width
+    end
+
+    nvim_tree_events.subscribe('TreeOpen', function()
+        bufferline_api.set_offset(get_tree_size())
+    end)
+
+    nvim_tree_events.subscribe('Resize', function()
+        bufferline_api.set_offset(get_tree_size())
+    end)
+
+    nvim_tree_events.subscribe('TreeClose', function()
+        bufferline_api.set_offset(0)
+    end)
+    local map = vim.api.nvim_set_keymap
+    local opts = { noremap = true, silent = true }
+    local ok, bufferline = pcall(require, "bufferline")
+
+    if not ok then
+        print("Failed to load barbar or nvim-web-devicons")
         return
     end
-    local colors = {
-        vertsplit = "#181A1F",
-        special_grey = "#3B4048",
-        menu_grey = "#3E4452",
-        cursor_grey = "#2C323C",
-        gutter_fg_grey = "#4B5263",
-        blue = "#82b1ff",
-        dark_red = "#BE5046",
-        white = "#bfc7d5",
-        green = "#C3E88D",
-        purple = "#c792ea",
-        yellow = "#ffcb6b",
-        light_red = "#ff869a",
-        red = "#ff5370",
-        dark_yellow = "#F78C6C",
-        cyan = "#89DDFF",
-        comment_grey = "#697098",
-        black = "#292D3E",
+
+    map('n', '<leader>ta', '<Cmd>tabnew<CR>', opts)
+    -- Move to previous/next
+    map('n', '<leader>tp', '<Cmd>BufferPrevious<CR>', opts)
+    map('n', '<leader>tn', '<Cmd>BufferNext<CR>', opts)
+    -- Re-order to previous/next
+    map('n', '<leader>t<', '<Cmd>BufferMovePrevious<CR>', opts)
+    map('n', '<leader>t>', '<Cmd>BufferMoveNext<CR>', opts)
+    -- Goto buffer in position...
+    map('n', '<leader>1', '<Cmd>BufferGoto 1<CR>', opts)
+    map('n', '<leader>2', '<Cmd>BufferGoto 2<CR>', opts)
+    map('n', '<leader>3', '<Cmd>BufferGoto 3<CR>', opts)
+    map('n', '<leader>4', '<Cmd>BufferGoto 4<CR>', opts)
+    map('n', '<leader>5', '<Cmd>BufferGoto 5<CR>', opts)
+    map('n', '<leader>6', '<Cmd>BufferGoto 6<CR>', opts)
+    map('n', '<leader>7', '<Cmd>BufferGoto 7<CR>', opts)
+    map('n', '<leader>8', '<Cmd>BufferGoto 8<CR>', opts)
+    map('n', '<leader>9', '<Cmd>BufferGoto 9<CR>', opts)
+    map('n', '<leader>0', '<Cmd>BufferLast<CR>', opts)
+    -- Close buffer
+    map('n', '<leader>tc', '<Cmd>BufferClose<CR>', opts)
+    map('n', '<leader>tq', '<Cmd>BufferCloseAllButCurrent<CR>', opts)
+    -- Set barbar's options
+    bufferline.setup {
+        -- Enable/disable animations
+        animation = true,
+
+        -- Enable/disable auto-hiding the tab bar when there is a single buffer
+        auto_hide = false,
+
+        -- Enable/disable current/total tabpages indicator (top right corner)
+        tabpages = true,
+
+        -- Enable/disable close button
+        closable = true,
+
+        -- Enables/disable clickable tabs
+        --  - left-click: go to buffer
+        --  - middle-click: delete buffer
+        clickable = true,
+
+        -- Enables / disables diagnostic symbols
+        diagnostics = {
+                [vim.diagnostic.severity.ERROR] = { enabled = true, icon = 'ﬀ' },
+                [vim.diagnostic.severity.WARN] = { enabled = false },
+                [vim.diagnostic.severity.INFO] = { enabled = false },
+                [vim.diagnostic.severity.HINT] = { enabled = true },
+        },
+
+        -- Excludes buffers from the tabline
+        exclude_ft = {},
+        exclude_name = {},
+
+        -- Hide inactive buffers and file extensions. Other options are `alternate`, `current`, and `visible`.
+        hide = { extensions = false, inactive = false },
+
+        -- Disable highlighting alternate buffers
+        highlight_alternate = false,
+
+        -- Disable highlighting file icons in inactive buffers
+        highlight_inactive_file_icons = false,
+
+        -- Enable highlighting visible buffers
+        highlight_visible = true,
+
+        -- Enable/disable icons
+        -- if set to 'numbers', will show buffer index in the tabline
+        -- if set to 'both', will show buffer index and icons in the tabline
+        icons = true,
+
+        -- If set, the icon color will follow its corresponding buffer
+        -- highlight group. By default, the Buffer*Icon group is linked to the
+        -- Buffer* group (see Highlighting below). Otherwise, it will take its
+        -- default value as defined by devicons.
+        icon_custom_colors = false,
+
+        -- Configure icons on the bufferline.
+        icon_separator_active = '▎',
+        icon_separator_inactive = '▎',
+        icon_close_tab = '',
+        icon_close_tab_modified = '●',
+        icon_pinned = '車',
+
+        -- If true, new buffers will be inserted at the start/end of the list.
+        -- Default is to insert after current buffer.
+        insert_at_end = false,
+        insert_at_start = false,
+
+        -- Sets the maximum padding width with which to surround each tab
+        maximum_padding = 1,
+
+        -- Sets the minimum padding width with which to surround each tab
+        minimum_padding = 1,
+
+        -- Sets the maximum buffer name length.
+        maximum_length = 30,
+
+        -- If set, the letters for each buffer in buffer-pick mode will be
+        -- assigned based on their name. Otherwise or in case all letters are
+        -- already assigned, the behavior is to assign letters in order of
+        -- usability (see order below)
+        semantic_letters = true,
+
+        -- New buffer letters are assigned in this order. This order is
+        -- optimal for the qwerty keyboard layout but might need adjustement
+        -- for other layouts.
+        letters = 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP',
+
+        -- Sets the name of unnamed buffers. By default format is "[Buffer X]"
+        -- where X is the buffer number. But only a static string is accepted here.
+        no_name_title = nil,
     }
-
-    local lualine_config = {
-        normal = {
-            a = { fg = colors.black, bg = colors.purple, gui = "bold" },
-            b = { fg = colors.purple, bg = colors.menu_grey },
-            c = { fg = colors.comment_grey, bg = colors.black },
-        },
-        insert = {
-            a = { fg = colors.black, bg = colors.blue, gui = "bold" },
-            b = { fg = colors.blue, bg = colors.menu_grey },
-        },
-        visual = {
-            a = { fg = colors.black, bg = colors.cyan, gui = "bold" },
-            b = { fg = colors.cyan, bg = colors.menu_grey },
-        },
-        replace = {
-            a = { fg = colors.black, bg = colors.green, gui = "bold" },
-            b = { fg = colors.green, bg = colors.menu_grey },
-        },
-        inactive = {
-            a = { fg = colors.black, bg = colors.menu_grey, gui = "bold" },
-            b = { fg = colors.black, bg = colors.menu_grey },
-            c = { fg = colors.black, bg = colors.menu_grey },
-        },
-    }
-
-    local function tab_label(tabid)
-        local focused_win = vim.api.nvim_tabpage_get_win(tabid)
-        local filename = require("tabby.filename").tail(focused_win)
-        local name = require("tabby.util").get_tab_name(tabid)
-        local icon = nvim_web_devicons.get_icon(name, vim.fn.fnamemodify(filename, ":e"))
-        local number = vim.api.nvim_tabpage_get_number(tabid)
-        return string.format(" %s %d: %s ", icon, number, name)
-    end
-
-    tabby.setup({
-        tabline = {
-            hl = "lualine_c_insert",
-            layout = "tab_only",
-            head = {
-                { "  ", hl = { fg = lualine_config.insert.b.fg, bg = lualine_config.insert.b.bg } },
-                { "", hl = { fg = lualine_config.insert.b.bg, bg = lualine_config.normal.c.bg } },
-            },
-            active_tab = {
-                label = function(tabid)
-                    return {
-                        tab_label(tabid),
-                        hl = { fg = lualine_config.insert.a.fg, bg = lualine_config.insert.a.bg, style = "bold" },
-                    }
-                end,
-
-                left_sep = { "", hl = { fg = lualine_config.insert.a.bg, bg = lualine_config.normal.c.bg } },
-                right_sep = { "", hl = { fg = lualine_config.insert.a.bg, bg = lualine_config.normal.c.bg } },
-            },
-            inactive_tab = {
-                label = function(tabid)
-                    return {
-                        tab_label(tabid),
-                        hl = { fg = lualine_config.insert.b.fg, bg = lualine_config.normal.c.bg },
-                    }
-                end,
-                -- ''
-                left_sep = { "", hl = { fg = lualine_config.insert.b.bg, bg = lualine_config.normal.c.bg } },
-                right_sep = { "", hl = { fg = lualine_config.insert.b.bg, bg = lualine_config.normal.c.bg } },
-            },
-        },
-    })
 end
 
 return {

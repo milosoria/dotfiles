@@ -1,3 +1,4 @@
+-- general
 require 'settings'.init()
 require 'mappings'.init()
 -- plugins
@@ -15,7 +16,6 @@ require 'plugins.lsp'.init()
 require 'plugins.lspsaga'.init()
 require 'plugins.autopairs'.init()
 require 'plugins.autotags'.init()
-require 'plugins.gitsigns'.init()
 require 'plugins.colorizer'.init()
 require 'plugins.copilot'.init()
 require 'plugins.null-ls'.init()

@@ -18,7 +18,7 @@ Plug("rafamadriz/friendly-snippets")
 Plug("onsails/lspkind-nvim")
 -- Main reason for slow startup
 Plug("tzachar/cmp-tabnine", {
-    ["do"] = function()
+        ["do"] = function()
         vim.cmd("./install.sh")
     end,
 })
@@ -27,7 +27,7 @@ Plug("nvim-lua/popup.nvim")
 Plug("nvim-lua/plenary.nvim")
 Plug("nvim-telescope/telescope.nvim")
 Plug("nvim-telescope/telescope-fzf-native.nvim", {
-    ["do"] = function()
+        ["do"] = function()
         vim.cmd("make")
     end,
 })
@@ -39,7 +39,7 @@ Plug("neovim/nvim-lspconfig")
 
 -- tresitter
 Plug("nvim-treesitter/nvim-treesitter", {
-    ["do"] = function()
+        ["do"] = function()
         vim.cmd(":TSUpdate")
     end,
 })
@@ -67,10 +67,9 @@ Plug("windwp/nvim-autopairs")
 Plug("windwp/nvim-ts-autotag")
 -- LSPSaga Uis
 Plug("glepnir/lspsaga.nvim")
--- Tabby
-Plug("nanozuki/tabby.nvim")
--- Git Signs
-Plug("lewis6991/gitsigns.nvim")
+-- Tab bar
+-- Plug("nanozuki/tabby.nvim")
+Plug 'romgrk/barbar.nvim'
 -- Colorizer
 Plug("norcalli/nvim-colorizer.lua")
 -- Copilot
