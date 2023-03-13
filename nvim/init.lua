@@ -83,6 +83,7 @@ Plug("szw/vim-maximizer")
 -- Null-ls linters and formatters
 Plug("jose-elias-alvarez/null-ls.nvim")
 Plug("jayp0521/mason-null-ls.nvim")
+Plug("lukas-reineke/lsp-format.nvim")
 Plug("christoomey/vim-tmux-navigator")
 vim.call("plug#end")
 
