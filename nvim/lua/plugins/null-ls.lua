@@ -12,19 +12,25 @@ local function init()
 
     null_ls.setup({
         sources = {
+            formatting.ruff,
+            formatting.black,
+            formatting.pyflyby,
             formatting.stylua,
             formatting.prettier,
             formatting.eslint_d,
-            code_actions.eslint_d,
-            diagnostics.eslint_d,
             formatting.rustfmt,
-            formatting.ruff,
+
+            code_actions.eslint_d,
+
+            diagnostics.eslint_d,
+            diagnostics.pylint,
         },
         on_attach = function(client, _)
             if client.name == "null-ls" then
                 lsp_format.on_attach(client)
             end
         end,
+        diagnostics_format = "[#{s}] #{m}",
     })
 end
 

@@ -24,7 +24,6 @@ local function on_attach(client, bufnr)
 
     -- diagnostics
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        -- Disable underline, it's very annoying
         underline = false,
         signs = true,
         update_in_insert = true,

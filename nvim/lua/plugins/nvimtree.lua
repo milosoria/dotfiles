@@ -80,12 +80,6 @@ local function init()
             hide_root_folder = false,
             side = "left",
             preserve_window_proportions = false,
-            mappings = {
-                custom_only = false,
-                list = {
-                    { key = "u", action = "dir_up" },
-                },
-            },
             float = {
                 enable = false,
                 quit_on_focus_loss = false,

@@ -31,7 +31,7 @@ local function init()
         formatting = {
             format = lspkind.cmp_format({
                 maxwidth = 50,
-                mode = "symbol", -- show only symbol annotations
+                mode = "symbol_text", -- show only symbol annotations
                 with_text = true,
                 menu = {
                     nvim_lsp = "[LSP]",

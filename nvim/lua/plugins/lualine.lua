@@ -6,7 +6,8 @@ local function init()
     end
     lualine.setup({
         options = {
-            theme = "palenight",
+            -- theme = "palenight",
+            theme = "gruvbox",
             component_separators = { "", "" },
             section_separators = { "", "" },
         },
@@ -14,7 +15,7 @@ local function init()
             "branch",
             "diff",
             "diagnostics",
-            sources = { "nvim_lsp", "coc" },
+            sources = { "nvim_lsp" },
         },
     })
 end

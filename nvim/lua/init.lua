@@ -1,6 +1,6 @@
 -- general
-require("settings").init()
-require("mappings").init()
+require("settings")
+require("mappings")
 -- plugins
 require("plugins.luasnip").init()
 require("plugins.barbar").init()

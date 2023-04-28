@@ -70,7 +70,12 @@ local function init()
     -- list code actions
     vim.api.nvim_set_keymap("n", "<Leader>vca", ":Telescope lsp_code_actions theme=dropdown <CR>", { noremap = true })
     -- find_files in the current directory
-    vim.api.nvim_set_keymap("n", "<Leader>p", ":Telescope find_files  <CR>", { noremap = true })
+    vim.api.nvim_set_keymap(
+        "n",
+        "<Leader>p",
+        ":lua require('telescope.builtin').find_files({no_ignore = false,  hidden = true}) <CR>",
+        { noremap = true }
+    )
     -- neovim config directory
     vim.api.nvim_set_keymap("n", "<Leader>vim", ":Telescope find_files cwd=~/.config/nvim<CR>", { noremap = true })
     -- zsh config directory
