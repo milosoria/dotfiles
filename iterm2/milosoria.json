@@ -13,7 +13,7 @@
     "Red Component" : 0.94509803921568625
   },
   "Use Italic Font" : true,
-  "HotKey Characters" : ";",
+  "HotKey Characters" : "",
   "Foreground Color" : {
     "Green Component" : 0.90032327175140381,
     "Blue Component" : 0.90032327175140381,
@@ -21,7 +21,7 @@
   },
   "HotKey Window Floats" : false,
   "Right Option Key Sends" : 0,
-  "Show Status Bar" : true,
+  "Show Status Bar" : false,
   "Character Encoding" : 4,
   "Selection Color" : {
     "Green Component" : 0.27843138575553894,
@@ -47,7 +47,7 @@
     "slogin",
     "telnet"
   ],
-  "Scrollback Lines" : 1000,
+  "Scrollback Lines" : 0,
   "HotKey Window Reopens On Activation" : false,
   "Draw Powerline Glyphs" : false,
   "Status Bar Layout" : {
@@ -57,7 +57,6 @@
         "configuration" : {
           "knobs" : {
             "base: priority" : 5,
-            "base: compression resistance" : 1,
             "shared text color" : {
               "Red Component" : 0.90000000000000002,
               "Color Space" : "sRGB",
@@ -65,6 +64,7 @@
               "Alpha Component" : 1,
               "Green Component" : 0.63
             },
+            "base: compression resistance" : 1,
             "format" : "M\/dd h:mm"
           },
           "layout advanced configuration dictionary value" : {
@@ -102,7 +102,7 @@
         "configuration" : {
           "knobs" : {
             "path" : "path",
-            "minwidth" : 0,
+            "base: priority" : 5,
             "shared text color" : {
               "Red Component" : 0.67859999999999998,
               "Color Space" : "sRGB",
@@ -110,8 +110,8 @@
               "Alpha Component" : 1,
               "Green Component" : 0.90000000000000002
             },
-            "base: priority" : 5,
             "base: compression resistance" : 1,
+            "minwidth" : 0,
             "maxwidth" : 1.7976931348623157e+308
           },
           "layout advanced configuration dictionary value" : {
@@ -126,7 +126,7 @@
         "class" : "iTermStatusBarGitComponent",
         "configuration" : {
           "knobs" : {
-            "minwidth" : 0,
+            "base: compression resistance" : 1,
             "iTermStatusBarGitComponentPollingIntervalKey" : 2,
             "shared text color" : {
               "Red Component" : 0.63,
@@ -135,8 +135,8 @@
               "Alpha Component" : 1,
               "Green Component" : 0.90000000000000002
             },
+            "minwidth" : 0,
             "base: priority" : 5,
-            "base: compression resistance" : 1,
             "maxwidth" : 1.7976931348623157e+308
           },
           "layout advanced configuration dictionary value" : {
@@ -249,9 +249,9 @@
     "Blue Component" : 0.90237069129943848,
     "Red Component" : 0.90237069129943848
   },
-  "Unlimited Scrollback" : false,
-  "Custom Command" : "No",
-  "HotKey Key Code" : 41,
+  "Unlimited Scrollback" : true,
+  "Custom Command" : "Yes",
+  "HotKey Key Code" : 0,
   "Keyboard Map" : {
     "0xf700-0x260000" : {
       "Text" : "[1;6A",
@@ -443,7 +443,7 @@
   },
   "Window Type" : 15,
   "Use Bright Bold" : true,
-  "Has Hotkey" : true,
+  "Has Hotkey" : false,
   "HotKey Modifier Activation" : 0,
   "Cursor Text Color" : {
     "Green Component" : 1,
@@ -493,8 +493,8 @@
     "Red Component" : 0
   },
   "Blur" : true,
-  "Normal Font" : "HackNerdFontCompleteM-Regular 20",
-  "Vertical Spacing" : 1.2,
+  "Normal Font" : "HackNerdFontCompleteM-Regular 18",
+  "Vertical Spacing" : 1.1000000000000001,
   "Ansi 7 Color" : {
     "Green Component" : 0.73333334922790527,
     "Blue Component" : 0.73333334922790527,
@@ -514,14 +514,14 @@
     "Blue Component" : 1,
     "Red Component" : 1
   },
-  "HotKey Modifier Flags" : 1048576,
+  "HotKey Modifier Flags" : 0,
   "Minimum Contrast" : 0,
   "Ansi 6 Color" : {
     "Green Component" : 0.9137254901960784,
     "Blue Component" : 0.99215686274509807,
     "Red Component" : 0.54509803921568623
   },
-  "Transparency" : 0.081108710106382972,
+  "Transparency" : 0.10354886968085107,
   "Initial Text" : "",
   "Background Color" : {
     "Red Component" : 0.056335626170039177,
@@ -531,9 +531,9 @@
     "Green Component" : 0.059080521963521815
   },
   "HotKey Activated By Modifier" : false,
-  "Screen" : -1,
-  "Initial Use Transparency" : true,
-  "HotKey Characters Ignoring Modifiers" : ";",
+  "Screen" : -2,
+  "Initial Use Transparency" : false,
+  "HotKey Characters Ignoring Modifiers" : "",
   "Non Ascii Font" : "Monaco 12",
   "Ansi 13 Color" : {
     "Green Component" : 0.47450980392156861,
