@@ -55,6 +55,7 @@ Plug("folke/tokyonight.nvim")
 -- gruvbox
 Plug("rktjmp/lush.nvim")
 Plug("ellisonleao/gruvbox.nvim")
+Plug("catppuccin/nvim", { ["as"]= "catppuccin" })
 -- -- toggle terminal
 Plug("caenrique/nvim-toggle-terminal")
 -- lua line
