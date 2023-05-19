@@ -34,10 +34,6 @@ vim.api.nvim_set_keymap("n", "<leader>tn", ":tabe<CR>", settings)
 vim.api.nvim_set_keymap("n", "<leader>tc", ":tabc<CR>", settings)
 -- tab delete all but the current
 vim.api.nvim_set_keymap("n", "<leader>tq", ":tabonly<CR>", settings)
--- next tab
-vim.api.nvim_set_keymap("n", "<leader>l", ":tabnext<CR>", settings)
--- prev tab
-vim.api.nvim_set_keymap("n", "<leader>h", ":tabprev<CR>", settings)
 -- QuickFixList
 -- vim.api.nvim_set_keymap('n', '<leader>co', ':copen<CR>', settings)
 vim.api.nvim_set_keymap("n", "<leader>cn", ":cn<CR>", settings)

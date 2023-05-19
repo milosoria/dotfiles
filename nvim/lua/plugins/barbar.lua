@@ -27,8 +27,8 @@ local function init()
     end
 
     -- Move to previous/next
-    map("n", "<leader>bp", "<Cmd>BufferPrevious<CR>", opts)
-    map("n", "<leader>bn", "<Cmd>BufferNext<CR>", opts)
+    map("n", "<leader>h", "<Cmd>BufferPrevious<CR>", opts)
+    map("n", "<leader>l", "<Cmd>BufferNext<CR>", opts)
     -- Re-order to previous/next
     map("n", "<leader>b<", "<Cmd>BufferMovePrevious<CR>", opts)
     map("n", "<leader>b>", "<Cmd>BufferMoveNext<CR>", opts)
