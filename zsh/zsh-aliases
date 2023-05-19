@@ -13,6 +13,7 @@ alias ll='ls -lah'
 alias l='ls -lah'
 alias pn='pnpm'
 alias cl='clear'
+alias t='tmux'
 # git
 alias ga='git add'
 alias gc='git commit'
@@ -24,3 +25,5 @@ alias qpll='git pull'
 # brew
 alias update='brew update'
 alias upgrade='brew upgrade'
+
+alias connect='ssh -i "~/projects/Trofica/Trofica-Backend/api-trofica.pem" ubuntu@ec2-3-13-57-219.us-east-2.compute.amazonaws.com'
