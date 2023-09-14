@@ -14,20 +14,25 @@ local function init()
         sources = {
             formatting.ruff,
             formatting.black,
-            formatting.pyflyby,
+            -- formatting.pyflyby,
             formatting.stylua,
             formatting.prettier,
             formatting.eslint_d,
             formatting.rustfmt,
-
-            code_actions.eslint_d,
-
             diagnostics.eslint_d,
-            diagnostics.pylint,
+            -- diagnostics.pylint,
         },
-        on_attach = function(client, _)
+        on_attach = function(client, bufnr)
             if client.name == "null-ls" then
-                lsp_format.on_attach(client)
+                vim.api.nvim_buf_set_keymap(
+                    bufnr,
+                    "n",
+                    "<Leader>n",
+                    "<cmd>lua vim.lsp.buf.format({async=true})<CR>",
+                    { noremap = true }
+                )
+
+                -- lsp_format.on_attach(client)
             end
         end,
         diagnostics_format = "[#{s}] #{m}",

@@ -12,8 +12,6 @@ vim.g.mapleader = " "
 -- The value of this option influences when the last window will have a
 -- status line:
 vim.o.laststatus = 3
--- ignore mouse
-vim.o.mouse = ""
 vim.o.eadirection = "ver"
 vim.o.wildmode = "longest,full"
 vim.o.wildmenu = true

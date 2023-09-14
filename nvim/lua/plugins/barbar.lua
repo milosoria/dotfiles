@@ -1,20 +1,24 @@
 local function init()
-    local nvim_tree_events = require("nvim-tree.events")
-    local bufferline_api = require("bufferline.api")
+    local ok1, nvim_tree = pcall(require, "nvim-tree")
+    local ok2, bufferline_api = pcall(require, "bufferline.api")
 
+    if not ok1 or not ok2 then
+        print("Failed to load nvim_tree or bufferline")
+        return
+    end
     local function get_tree_size()
-        return require("nvim-tree.view").View.width
+        return nvim_tree.view.View.width
     end
 
-    nvim_tree_events.subscribe("TreeOpen", function()
+    nvim_tree.events.subscribe("TreeOpen", function()
         bufferline_api.set_offset(get_tree_size())
     end)
 
-    nvim_tree_events.subscribe("Resize", function()
+    nvim_tree.events.subscribe("Resize", function()
         bufferline_api.set_offset(get_tree_size())
     end)
 
-    nvim_tree_events.subscribe("TreeClose", function()
+    nvim_tree.events.subscribe("TreeClose", function()
         bufferline_api.set_offset(0)
     end)
     local map = vim.api.nvim_set_keymap
@@ -45,6 +49,7 @@ local function init()
     map("n", "<leader>0", "<Cmd>BufferLast<CR>", opts)
     -- Close buffer
     map("n", "<leader>bc", "<Cmd>BufferClose<CR>", opts)
+    -- Close all buffers but current
     map("n", "<leader>bq", "<Cmd>wall<CR> <Cmd>BufferCloseAllButCurrent<CR>", opts)
     -- Set barbar's options
     bufferline.setup({
@@ -75,9 +80,9 @@ local function init()
         -- if set to 'numbers', will show buffer index in the tabline
         -- if set to 'both', will show buffer index and icons in the tabline
         icons = { -- Configure the base icons on the bufferline.
-            buffer_index = false,
+            buffer_index = true,
             buffer_number = false,
-            button = "",
+            button = "x",
             -- Enables / disables diagnostic symbols
             diagnostics = {
                 [vim.diagnostic.severity.ERROR] = { enabled = true, icon = "ﬀ" },

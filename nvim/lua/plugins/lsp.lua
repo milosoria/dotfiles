@@ -4,24 +4,6 @@ local function on_attach(client, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
-
-    if not string.match(vim.api.nvim_buf_get_name(bufnr), "NvimTree_1") then
-        if client.server_capabilities.documentFormattingProvider then
-            -- format
-            -- vim.api.nvim_command [[augroup Format]]
-            -- vim.api.nvim_command [[autocmd! * <buffer>]]
-            -- vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({async=true})]]
-            -- vim.api.nvim_command [[augroup END]]
-            vim.api.nvim_buf_set_keymap(
-                bufnr,
-                "n",
-                "<Leader>n",
-                "<cmd>lua vim.lsp.buf.format({async=true})<CR>",
-                { noremap = true }
-            )
-        end
-    end
-
     -- diagnostics
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         underline = false,
@@ -85,6 +67,8 @@ local function init()
     local ok2, mason = pcall(require, "mason")
     local ok3, lspconfig = pcall(require, "lspconfig")
     local ok4, mason_null_ls = pcall(require, "mason-null-ls")
+    local config = make_config()
+
     if not ok1 or not ok2 or not ok3 or not ok4 then
         print("Failed to load mason-lspconfig, mason, lspconfig, or mason-null-ls")
         return
@@ -103,10 +87,10 @@ local function init()
         },
     })
 
-    local config = make_config()
     for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
         lspconfig[server].setup(config)
     end
+    lspconfig['vhdl_ls'].setup(config)
 end
 
 return {

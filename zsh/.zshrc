@@ -10,17 +10,19 @@ source $ZSH/oh-my-zsh.sh
 zstyle ':omz:update' mode auto # update automatically without asking
 
 # User configuration
-export ZDOTDIR=$HOME/.config/zsh
 export GIT_EDITOR="nvim"
 export VISUAL="nvim"
 export EDITOR="nvim"
 export editor="nvim"
-export PATH=$PATH:~/.cargo/bin
-export PATH=$PATH:~/Library/Python/3.9/bin
+export ZDOTDIR=$HOME/.config/zsh
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/Library/Python/3.9/bin
 ## Android Studio shit
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+## Add RUST VDHL
+export PATH=$PATH:$HOME/.local/share/rust_hdl/target/release
 ## pnpm
 export PNPM_HOME="/Users/milosoria/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
@@ -31,12 +33,12 @@ export HOMEBREW_GITHUB_API_TOKEN=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
 export DOCKER_BUILDKIT=0
 export COMPOSE_DOCKER_CLI_BUILD=0
 ## NVM: loads nvm and sources nvm completion
-export NVM_DIR="$HOME/.nvm"
+export NVM_DIR=$HOME/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Source customs
-source ~/.config/custom_commands/custom_commands.sh
-source ~/.config/zsh/zsh-aliases
+source $HOME/.config/custom_commands/custom_commands.sh
+source $HOME/.config/zsh/zsh-aliases
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh

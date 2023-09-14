@@ -26,4 +26,8 @@ alias qpll='git pull'
 alias update='brew update'
 alias upgrade='brew upgrade'
 
+# connect to trofica ec2
 alias connect='ssh -i "~/projects/Trofica/Trofica-Backend/api-trofica.pem" ubuntu@ec2-3-13-57-219.us-east-2.compute.amazonaws.com'
+
+# lazygit
+alias lg='lazygit'

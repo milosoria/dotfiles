@@ -27,13 +27,14 @@ local function init()
     })
     local keymap = vim.keymap.set
     -- References and definitions finder
-    keymap("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
+    keymap("n", "gr", "<cmd>Lspsaga finder<CR>", { silent = true })
     -- Code actions
     keymap("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
     -- Function info
     keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
     -- Rename
     keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
+    -- keymap("n", "<leader>rp", "<cmd>Lspsaga project_replace<CR>", { silent = true })
     -- Preview Definition
     keymap("n", "gp", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
     -- show errors and warnings in float
