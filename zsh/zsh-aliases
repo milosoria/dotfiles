@@ -19,6 +19,8 @@ alias ga='git add'
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gp='git push'
+alias gst='git stash'
+alias gsp='git stash pop'
 alias gs='git status'
 alias qpll='git pull'
 
