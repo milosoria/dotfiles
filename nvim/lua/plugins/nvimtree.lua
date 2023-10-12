@@ -77,7 +77,6 @@ local function init()
         },
         view = {
             width = 30,
-            hide_root_folder = false,
             side = "left",
             preserve_window_proportions = false,
             float = {
