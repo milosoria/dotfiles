@@ -15,7 +15,7 @@ vim.o.laststatus = 3
 vim.o.eadirection = "ver"
 vim.o.wildmode = "longest,full"
 vim.o.wildmenu = true
-vim.o.relativenumber = true
+vim.o.relativenumber = false
 
 -- number of visual spaces per tab
 vim.o.tabstop = 8
@@ -41,10 +41,10 @@ vim.o.ignorecase = false
 vim.o.smartcase = true
 vim.o.swapfile = false
 vim.o.incsearch = true
-vim.o.guicursor = "a:blinkon80,i:ver100-icursor"
+vim.o.guicursor = "i:ver100-icursor"
 vim.o.scrolloff = 8
 vim.o.sidescroll = 2
-vim.o.signcolumn = "auto"
+vim.o.signcolumn = "yes"
 vim.o.completeopt = "menuone,noselect"
 vim.o.numberwidth = 3
 vim.o.shortmess = vim.o.shortmess .. "c"
