@@ -56,10 +56,13 @@ local function init()
 
     -- bg to none so winseparator shows only a thin line
     -- fg to none so winseparator shows only a thin line
-    --
     vim.cmd([[
         highlight WinSeparator guifg=#5f66b3
         highlight WinSeparator guibg=None
+        highlight DiagnosticVirtualTextError guifg=#db4b4b guibg=None
+        highlight DiagnosticVirtualTextWarn guifg=#e0af68  guibg=None
+        highlight DiagnosticVirtualTextInfo guifg=#0db9d7  guibg=None
+        highlight DiagnosticVirtualTextHint guifg=#1abc9c  guibg=None
     ]])
 end
 

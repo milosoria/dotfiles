@@ -37,10 +37,6 @@ Plug("williamboman/mason.nvim")
 Plug("williamboman/mason-lspconfig.nvim")
 Plug("neovim/nvim-lspconfig")
 
--- Neogit
-Plug("TimUntersberger/neogit")
-Plug("sindrets/diffview.nvim")
-
 -- tresitter
 Plug("nvim-treesitter/nvim-treesitter", {
     ["do"] = function()
@@ -55,7 +51,7 @@ Plug("folke/tokyonight.nvim")
 -- gruvbox
 Plug("rktjmp/lush.nvim")
 Plug("ellisonleao/gruvbox.nvim")
-Plug("catppuccin/nvim", { ["as"]= "catppuccin" })
+Plug("catppuccin/nvim", { ["as"] = "catppuccin" })
 -- -- toggle terminal
 Plug("caenrique/nvim-toggle-terminal")
 -- lua line
