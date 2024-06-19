@@ -31,7 +31,6 @@ local function init()
         default = true,
     })
 
-    vim.api.nvim_set_keymap("n", "<Leader>e", ":NvimTreeToggle<CR>:NvimTreeRefresh<CR>", { noremap = true })
 
     local ok2, nvimtree = pcall(require, "nvim-tree")
     if not ok2 then
@@ -153,6 +152,7 @@ local function init()
         },
     })
 
+    vim.api.nvim_set_keymap("n", "<Leader>e", ":NvimTreeToggle<CR>:NvimTreeRefresh<CR>", { noremap = true })
     vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 end
 

@@ -56,6 +56,12 @@ qpsh() {
     git push origin $2
 }
 
+fix_postgres() {
+ brew services stop postgresql@14 
+ rm -f /opt/homebrew/var/postgresql@14/postmaster.pid
+ brew services start postgresql@14
+}
+
 # # to change CMAKE_BUILD_TYPE rm -rf builds and then update
 # function updatenvim(){
 #     printf "Updating Neovim 🧞"

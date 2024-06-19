@@ -52,6 +52,7 @@ Plug("folke/tokyonight.nvim")
 Plug("rktjmp/lush.nvim")
 Plug("ellisonleao/gruvbox.nvim")
 Plug("catppuccin/nvim", { ["as"] = "catppuccin" })
+-- COLORSCHEMES
 -- -- toggle terminal
 Plug("caenrique/nvim-toggle-terminal")
 -- lua line
@@ -74,7 +75,7 @@ Plug("romgrk/barbar.nvim")
 -- Colorizer
 Plug("norcalli/nvim-colorizer.lua")
 -- Copilot
-Plug("github/copilot.vim")
+Plug("zbirenbaum/copilot.lua")
 -- Vim maximizer
 Plug("szw/vim-maximizer")
 -- Null-ls linters and formatters
@@ -82,6 +83,11 @@ Plug("jose-elias-alvarez/null-ls.nvim")
 Plug("jayp0521/mason-null-ls.nvim")
 Plug("lukas-reineke/lsp-format.nvim")
 Plug("christoomey/vim-tmux-navigator")
+Plug("f-person/git-blame.nvim")
+-- Noice
+Plug("MunifTanjim/nui.nvim")
+-- Plug("folke/noice.nvim")
+
 vim.call("plug#end")
 
 -- run specific config for markdown

@@ -8,6 +8,9 @@ local function init()
     end
     local previewers = require("telescope.previewers")
     local sorters = require("telescope.sorters")
+    local opts = { noremap = true }
+    local additional_rg_args = { "--hidden", "--glob", "!**/.git/*", "--glob", "!**/node_modules/*" }
+    local map = vim.api.nvim_set_keymap
     telescope.setup({
         defaults = {
             file_ignore_patterns = {
@@ -49,37 +52,37 @@ local function init()
                     theme = "dropdown",
                     previewer = false,
                 },
+                live_grep = {
+                    theme = "dropdown",
+                    additional_args = additional_rg_args,
+                },
             },
             fzf = {
                 fuzzy = true, -- false will only do exact matching
                 override_generic_sorter = true, -- override the generic sorter
                 override_file_sorter = true, -- override the file sorter
-                case_mode = "smart_case", -- or "ignore_case" or "respect_case" or "smart_case"
+                case_mode = "smart_case",
             },
         },
     })
-
+    --
     -- grep string in the current directory
-    vim.api.nvim_set_keymap("n", "<Leader>fg", ":Telescope live_grep<CR>", { noremap = true })
-    vim.api.nvim_set_keymap(
-        "n",
-        "<Leader>fb",
-        ":Telescope current_buffer_fuzzy_find theme=dropdown previewer=false <CR>",
-        { noremap = true }
-    )
+    map("n", "<leader>fg", ':Telescope live_grep theme=dropdown <CR>', opts)
+    -- map("n", "<Leader>fg", builtin.live_grep(), opts)
+    map("n", "<Leader>fb", ":Telescope current_buffer_fuzzy_find theme=dropdown previewer=false <CR>", opts)
     -- list code actions
-    vim.api.nvim_set_keymap("n", "<Leader>vca", ":Telescope lsp_code_actions theme=dropdown <CR>", { noremap = true })
+    map("n", "<Leader>vca", ":Telescope lsp_code_actions theme=dropdown <CR>", opts)
     -- find_files in the current directory
-    vim.api.nvim_set_keymap(
+    map(
         "n",
         "<Leader>p",
-        ":lua require('telescope.builtin').find_files({no_ignore = false,  hidden = true}) <CR>",
-        { noremap = true }
+        ":lua require('telescope.builtin').find_files({no_ignore = false, hidden = true, previewer = true, layout_strategy = 'vertical', layout_config = { width = 0.5, height = 0.8, preview_height = 0.20 }, theme = 'dropdown'}) <CR>",
+        opts
     )
     -- neovim config directory
-    vim.api.nvim_set_keymap("n", "<Leader>vim", ":Telescope find_files cwd=~/.config/nvim<CR>", { noremap = true })
+    map("n", "<Leader>vim", ":Telescope find_files cwd=~/.config/nvim<CR>", opts)
     -- zsh config directory
-    vim.api.nvim_set_keymap("n", "<Leader>zsh", ":Telescope find_files cwd=~/.config/zsh<CR>", { noremap = true })
+    map("n", "<Leader>zsh", ":Telescope find_files cwd=~/.config/zsh<CR>", opts)
     -- this needs to be called after the setup call
     telescope.load_extension("fzf")
 end

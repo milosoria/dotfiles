@@ -6,7 +6,7 @@ local function init()
     end
     lualine.setup({
         options = {
-            theme = "auto",
+            theme = "tokyonight",
             component_separators = { "", "" },
             section_separators = { "", "" },
         },

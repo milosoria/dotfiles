@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh installation.
-ZSH_THEME=021011
+eval "$(starship init zsh)"
+# ZSH_THEME=021011
 DISABLE_AUTO_TITLE=true
 # Add wisely, as too many plugins slow down shell startup.
 zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
@@ -23,6 +24,8 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 ## Add RUST VDHL
 export PATH=$PATH:$HOME/.local/share/rust_hdl/target/release
+## Add JAVA
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
 ## pnpm
 export PNPM_HOME="/Users/milosoria/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
@@ -42,3 +45,6 @@ source $HOME/.config/custom_commands/custom_commands.sh
 source $HOME/.config/zsh/zsh-aliases
 
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+
+# Created by `pipx` on 2024-05-27 14:00:57
+export PATH="$PATH:/Users/milosoria/.local/bin"

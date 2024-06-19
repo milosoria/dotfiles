@@ -12,7 +12,7 @@ local function init()
         max_lines = 2500,
         max_num_results = 2,
         sort = true,
-        run_on_every_keystroke = true,
+        run_on_every_keystroke = false,
         snippet_placeholder = "..",
         show_prediction_strength = true,
     })
@@ -24,8 +24,10 @@ local function init()
 
     cmp.setup({
         snippet = {
+            -- We recommend using *actual* snippet engine.
+            -- It's a simple implementation so it might not work in some of the cases.
             expand = function(args)
-                luasnip.lsp_expand(args.body) -- For `luasnip` users.
+                luasnip.lsp_expand(args.body)
             end,
         },
         formatting = {
@@ -50,8 +52,8 @@ local function init()
             ["<Tab>"] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.select_next_item()
-                elseif has_words_before() and luasnip.expand_or_jumpable() then
-                    luasnip.expand_or_jump()
+                    elseif has_words_before() and luasnip.expand_or_jumpable() then
+                        luasnip.expand_or_jump()
                 else
                     fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
                 end
@@ -59,8 +61,8 @@ local function init()
             ["<S-Tab>"] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.select_prev_item()
-                elseif luasnip.jumpable(-1) == 1 then
-                    luasnip.expand_or_jump()
+                    elseif luasnip.jumpable(-1) == 1 then
+                        luasnip.expand_or_jump()
                 else
                     fallback()
                 end
@@ -76,8 +78,8 @@ local function init()
             ["<CR>"] = cmp.mapping(function(fallback)
                 if cmp.visible() and cmp.get_selected_entry() ~= nil then
                     cmp.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })
-                elseif luasnip.expand_or_jumpable() then
-                    luasnip.expand_or_jump()
+                    elseif luasnip.expand_or_jumpable() then
+                        luasnip.expand_or_jump()
                 else
                     cmp.close()
                     fallback()
