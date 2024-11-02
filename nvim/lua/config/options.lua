@@ -1,38 +1,40 @@
--- disable netrw at the very start of your init.lua
+-- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+-- Options are automatically loaded before lazy.nvim startup
+-- Add any additional options here
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
--- indent plug
+
+-- Set indent character list for indent plugin
 vim.g.indentLine_char_list = { "|", "¦", "┆", "┊" }
 
--- Latex flavor, in order to make the FileType be a latex and not plaintex
+-- LaTeX flavor setting
 vim.g.tex_flavor = "latex"
 
--- set leader key
+-- Leader key setup
 vim.g.mapleader = " "
--- The value of this option influences when the last window will have a
--- status line:
+
+-- Status line behavior for last window
 vim.o.laststatus = 3
 vim.o.eadirection = "ver"
 vim.o.wildmode = "longest,full"
 vim.o.wildmenu = true
 vim.o.relativenumber = false
 
--- number of visual spaces per tab
+-- Indentation settings
 vim.o.tabstop = 8
--- number of spaces to use for each step if (auto)indent
 vim.o.shiftwidth = 4
--- number of spaces inserted when tab is pressed in insert mode
 vim.o.softtabstop = 0
--- insert spaces when pressing tab
 vim.o.expandtab = true
 vim.o.smarttab = true
--- autoindent
-vim.o.autoindent = true
+vim.o.autoindent = false
+vim.o.smartindent = true
+
+-- Text formatting
 vim.o.textwidth = 100
--- no line wrapping
 vim.o.wrap = false
 vim.g.showbreak = "↪"
-vim.o.smartindent = true
+
+-- Display and search options
 vim.o.hlsearch = false
 vim.o.nu = true
 vim.o.hidden = true
@@ -54,5 +56,14 @@ vim.o.termguicolors = false
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.syntax = "off"
--- show double quotes in json or stars on markdown
+
+-- Conceal settings for JSON and Markdown
 vim.g.conceallevel = 0
+
+-- Adjust shada file path
+local current_shada = vim.opt.shada:get()
+table.insert(current_shada, "r/mnt/exdisk")
+vim.opt.shada = current_shada
+vim.g.open_in_insert_mode = 1
+vim.g.preserve_alternate_buffer = 1
+vim.g.autoformat = true
