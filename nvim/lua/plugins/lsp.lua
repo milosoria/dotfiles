@@ -4,6 +4,14 @@ return {
     local keys = require("lazyvim.plugins.lsp.keymaps").get()
     -- change a keymap
     keys[#keys + 1] = {
+      "<C-y>",
+      false,
+    }
+    keys[#keys + 1] = {
+      "gr",
+      false,
+    }
+    keys[#keys + 1] = {
       "<leader>rn",
       function()
         local inc_rename = require("inc_rename")

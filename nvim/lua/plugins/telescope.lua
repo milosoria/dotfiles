@@ -38,15 +38,46 @@ return {
       desc = "Find Files with Hidden",
     },
     { "<leader><space>", false },
+    { "gr", false },
   },
   opts = function()
     local previewers = require("telescope.previewers")
     local sorters = require("telescope.sorters")
     local actions = require("telescope.actions")
+    local actions = require("telescope.actions")
 
+    local open_with_trouble = function(...)
+      return require("trouble.sources.telescope").open(...)
+    end
+    local find_files_no_ignore = function()
+      local action_state = require("telescope.actions.state")
+      local line = action_state.get_current_line()
+      LazyVim.pick("find_files", { no_ignore = true, default_text = line })()
+    end
+    local find_files_with_hidden = function()
+      local action_state = require("telescope.actions.state")
+      local line = action_state.get_current_line()
+      LazyVim.pick("find_files", { hidden = true, default_text = line })()
+    end
+
+    local function find_command()
+      if 1 == vim.fn.executable("rg") then
+        return { "rg", "--files", "--color", "never", "-g", "!.git" }
+      elseif 1 == vim.fn.executable("fd") then
+        return { "fd", "--type", "f", "--color", "never", "-E", ".git" }
+      elseif 1 == vim.fn.executable("fdfind") then
+        return { "fdfind", "--type", "f", "--color", "never", "-E", ".git" }
+      elseif 1 == vim.fn.executable("find") and vim.fn.has("win32") == 0 then
+        return { "find", ".", "-type", "f" }
+      elseif 1 == vim.fn.executable("where") then
+        return { "where", "/r", ".", "*" }
+      end
+    end
     return {
       pickers = {
         find_files = {
+          find_command = find_command,
+          hidden = true,
           layout_config = {
             width = 0.5, -- width of the floating window
             height = 0.8, -- height of the floating window
@@ -64,6 +95,21 @@ return {
         },
       },
       defaults = {
+        prompt_prefix = " ",
+        selection_caret = " ",
+        -- open files in the first window that is an actual file.
+        -- use the current window if no other window is available.
+        get_selection_window = function()
+          local wins = vim.api.nvim_list_wins()
+          table.insert(wins, 1, vim.api.nvim_get_current_win())
+          for _, win in ipairs(wins) do
+            local buf = vim.api.nvim_win_get_buf(win)
+            if vim.bo[buf].buftype == "" then
+              return win
+            end
+          end
+          return 0
+        end,
         file_ignore_patterns = {
           "%.git",
           ".git/",
@@ -81,8 +127,6 @@ return {
         file_previewer = previewers.vim_buffer_cat.new,
         grep_previewer = previewers.vim_buffer_vimgrep.new,
         qflist_previewer = previewers.vim_buffer_qflist.new,
-        selection_caret = "> ",
-        prompt_prefix = "🔍 ",
         initial_mode = "insert",
         -- layout_strategy = "horizontal",
 
@@ -96,8 +140,8 @@ return {
             ["<C-t>"] = actions.send_to_qflist + actions.open_qflist,
             ["<C-Down>"] = actions.cycle_history_next,
             ["<C-Up>"] = actions.cycle_history_prev,
-            ["<C-f>"] = actions.preview_scrolling_down,
-            ["<C-b>"] = actions.preview_scrolling_up,
+            ["<C-d>"] = actions.preview_scrolling_down,
+            ["<C-u>"] = actions.preview_scrolling_up,
           },
           n = {
             ["q"] = actions.close,
