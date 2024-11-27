@@ -1,8 +1,7 @@
 # Path to your oh-my-zsh installation.
 eval "$(starship init zsh)"
 # ZSH_THEME=021011
-DISABLE_AUTO_TITLE=true
-# Add wisely, as too many plugins slow down shell startup.
+DISABLE_AUTO_TITLE=true # Add wisely, as too many plugins slow down shell startup.
 zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 plugins=(zsh-vi-mode git dircycle nvm  zsh-autosuggestions zsh-syntax-highlighting zsh-z)
 
@@ -48,3 +47,8 @@ source $HOME/.config/zsh/zsh-aliases
 
 # Created by `pipx` on 2024-05-27 14:00:57
 export PATH="$PATH:/Users/milosoria/.local/bin"
+source $HOME/.config/zsh/.zshsecrets
+
+if [ -z "$TMUX" ] && [ "$TERM" = "xterm-kitty" ]; then
+  tmux attach || exec tmux new-session && exit;
+fi

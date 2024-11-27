@@ -30,6 +30,7 @@ alias upgrade='brew upgrade'
 
 # connect to trofica ec2
 alias connect='ssh -i "~/projects/Trofica/Trofica-Backend/api-trofica.pem" ubuntu@ec2-3-13-57-219.us-east-2.compute.amazonaws.com'
+alias connect_user_validator='sshpass -p "l2xQbS1R1VpNY7d4f0" ssh -v  root@45.236.128.150 -p 22222'
 
 # lazygit
 alias lg='lazygit'
