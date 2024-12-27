@@ -1,10 +1,11 @@
-# Path to your oh-my-zsh installation.
+source <(fzf --zsh)
+
 eval "$(starship init zsh)"
 # ZSH_THEME=021011
 DISABLE_AUTO_TITLE=true # Add wisely, as too many plugins slow down shell startup.
-zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 plugins=(zsh-vi-mode git dircycle nvm  zsh-autosuggestions zsh-syntax-highlighting zsh-z)
 
+# Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 zstyle ':omz:update' mode auto # update automatically without asking
@@ -35,20 +36,22 @@ export HOMEBREW_GITHUB_API_TOKEN=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
 export DOCKER_BUILDKIT=0
 export COMPOSE_DOCKER_CLI_BUILD=0
 ## NVM: loads nvm and sources nvm completion
-export NVM_DIR=$HOME/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Source customs
 source $HOME/.config/custom_commands/custom_commands.sh
 source $HOME/.config/zsh/zsh-aliases
 
-[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
-
 # Created by `pipx` on 2024-05-27 14:00:57
 export PATH="$PATH:/Users/milosoria/.local/bin"
+export no_proxy=*
 source $HOME/.config/zsh/.zshsecrets
 
 if [ -z "$TMUX" ] && [ "$TERM" = "xterm-kitty" ]; then
   tmux attach || exec tmux new-session && exit;
 fi
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
