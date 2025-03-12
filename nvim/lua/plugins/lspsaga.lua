@@ -12,5 +12,6 @@ return {
     { "<leader>ca", "<cmd>Lspsaga code_action<CR>", desc = "Code Action", silent = true },
     { "K", "<cmd>Lspsaga hover_doc<CR>", desc = "Hover Documentation", silent = true },
     { "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "Show Diagnostics", silent = true },
+    { "gd", "<cmd>Lspsaga goto_definition<CR>", desc = "GoTo Definition", silent = true },
   },
 }
