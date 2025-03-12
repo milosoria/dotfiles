@@ -56,11 +56,17 @@ return {
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         ["<C-e>"] = cmp.mapping.close(),
       })
-      table.insert(opts.sources, 1, {
-        name = "copilot",
-        group_index = 1,
-        priority = 100,
-      })
+      -- Remove snippet source if present
+      opts.sources = vim.tbl_filter(function(source)
+        return source.name ~= "snippets"
+      end, opts.sources)
+
+      -- Dont use copilot source for suggestions
+      -- table.insert(opts.sources, 1, {
+      --   name = "copilot",
+      --   group_index = 1,
+      --   priority = 100,
+      -- })
 
       cmp.setup.cmdline("/", {
         mapping = cmp.mapping.preset.cmdline(),

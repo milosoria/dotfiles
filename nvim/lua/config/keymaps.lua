@@ -59,10 +59,26 @@ map("n", "<Leader>tt", ":ToggleTerminal<CR>", settings)
 map("n", "<Leader>t\\", ":vsplit | :ToggleTerminal<CR>", settings)
 map("n", "<Leader>t-", ":split<CR>|:resize -10<CR>|:ToggleTerminal<CR>", settings)
 
+-- Change background light/dark
+map("n", "<leader>bg", function()
+  local active_bg = vim.o.background
+  if active_bg == "dark" then
+    vim.cmd("set background=light")
+  else
+    vim.cmd("set background=dark")
+  end
+end, { desc = "Toggle background" })
+
 -- formatting
 map({ "n", "v" }, "<leader>n", function()
   LazyVim.format({ force = true })
 end, { desc = "Format" })
+
+-- copilot
+map('i', '<C-y>', 'copilot#Accept("\\<CR>")', {
+    expr = true,
+    replace_keycodes = false
+})
 
 -- delete default keymaps
 vim.keymap.del("n", "<leader>ft")

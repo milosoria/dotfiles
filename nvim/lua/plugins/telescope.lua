@@ -39,6 +39,7 @@ return {
     },
     { "<leader><space>", false },
     { "gr", false },
+    { "gd", false },
   },
   opts = function()
     local previewers = require("telescope.previewers")
