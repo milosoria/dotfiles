@@ -31,12 +31,8 @@ return {
     config = function()
       vim.cmd([[set termguicolors]])
       vim.g.gruvbox_material_float_style = "dim"
+      vim.g.gruvbox_material_background = 'medium'
       vim.g.gruvbox_material_better_performance = 1
-      if vim.o.background == "light" then
-        vim.g.gruvbox_material_background = "soft"
-        vim.g.gruvbox_material_foreground = "material"
-        vim.g.gruvbox_material_float_style = "dim"
-      end
     end,
   },
   {

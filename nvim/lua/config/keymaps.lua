@@ -4,7 +4,6 @@
 -- Filename: keymaps.lua
 local map = vim.keymap.set
 local settings = { noremap = true }
-
 -- Alt moving lines
 map("n", "<A-j>", ":m .+1<CR>==", settings)
 map("n", "<A-k>", ":m .-2<CR>==", settings)
@@ -61,24 +60,24 @@ map("n", "<Leader>t-", ":split<CR>|:resize -10<CR>|:ToggleTerminal<CR>", setting
 
 -- Change background light/dark
 map("n", "<leader>bg", function()
-  local active_bg = vim.o.background
-  if active_bg == "dark" then
-    vim.cmd("set background=light")
+  if vim.o.background == "dark" then
+    vim.g.gruvbox_material_background = "soft"
+    vim.g.gruvbox_material_foreground = "material"
+    vim.cmd([[ set background=light]])
   else
-    vim.cmd("set background=dark")
+    vim.cmd([[ set background=dark]])
   end
-end, { desc = "Toggle background" })
+  -- Reapply the colorscheme
+  vim.cmd("colorscheme gruvbox-material")
+end, settings)
+
+-- Keymap to toggle background
 
 -- formatting
 map({ "n", "v" }, "<leader>n", function()
   LazyVim.format({ force = true })
 end, { desc = "Format" })
 
--- copilot
-map('i', '<C-y>', 'copilot#Accept("\\<CR>")', {
-    expr = true,
-    replace_keycodes = false
-})
 
 -- delete default keymaps
 vim.keymap.del("n", "<leader>ft")

@@ -19,10 +19,9 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
       opts.experimental = {
-        ghost_text = true,
+        ghost_text = false,
       }
-      opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<C-y>"] = function() end,
+      opts.mapping = {
         ["<CR>"] = cmp.mapping(function(fallback)
           if cmp.visible() and cmp.get_selected_entry() ~= nil then
             cmp.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })
@@ -62,7 +61,7 @@ return {
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         ["<C-e>"] = cmp.mapping.close(),
-      })
+      }
       -- Remove snippet source if present
       opts.sources = vim.tbl_filter(
         function(source)
@@ -76,12 +75,6 @@ return {
           { name = "buffer" },
         })
       )
-
-      -- table.insert(opts.sources, 1, {
-      --   name = "copilot",
-      --   group_index = 1,
-      --   priority = 100,
-      -- })
 
       cmp.setup.cmdline("/", {
         mapping = cmp.mapping.preset.cmdline(),
