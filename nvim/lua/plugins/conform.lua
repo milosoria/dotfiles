@@ -13,7 +13,9 @@ return {
       sh = { "shfmt" },
       python = { "isort", "black", "ruff" },
       html = { "prettierd", "prettier" },
+      json = { "prettierd", "prettier" },
       javascript = { "prettierd", "prettier" },
+      go = { "gofumpt", "goimports" },
     },
     -- The options you set here will be merged with the builtin formatters.
     -- You can also define any custom formatters here.
