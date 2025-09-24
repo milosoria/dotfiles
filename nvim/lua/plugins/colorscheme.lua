@@ -31,7 +31,7 @@ return {
     config = function()
       vim.cmd([[set termguicolors]])
       vim.g.gruvbox_material_float_style = "dim"
-      vim.g.gruvbox_material_background = 'medium'
+      vim.g.gruvbox_material_background = "medium"
       vim.g.gruvbox_material_better_performance = 1
     end,
   },
@@ -49,7 +49,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox-material",
+      colorscheme = "tokyonight-night",
     },
   },
 }
