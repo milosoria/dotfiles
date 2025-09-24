@@ -4,14 +4,21 @@ return {
   lazy = false,
   version = false, -- set this if you want to always pull the latest change
   opts = {
-    provider = "openai",
-    auto_suggestions_provider = "claude", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
-    openai = {
-      endpoint = "https://api.openai.com/v1",
-      model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-      timeout = 30000, -- timeout in milliseconds
-      temperature = 0, -- adjust if needed
-      max_tokens = 4096,
+    provider = "claude",
+    auto_suggestions_provider = "copilot", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
+    mode = "agentic", -- The default mode for interaction. "agentic" uses tools to automatically generate code, "legacy" uses the old planning method to generate code.
+    -- WARNING: Since auto-suggestions are a high-frequency operation and therefore expensive,
+    -- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
+    -- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
+    providers = {
+      claude = {
+        endpoint = "https://api.anthropic.com",
+        model = "claude-3-5-sonnet-20241022",
+        extra_request_body = {
+          temperature = 0.75,
+          max_tokens = 4096,
+        },
+      },
     },
     mappings = {
       diff = {
