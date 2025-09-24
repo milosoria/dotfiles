@@ -1,5 +1,3 @@
-source <(fzf --zsh)
-
 eval "$(starship init zsh)"
 # ZSH_THEME=021011
 DISABLE_AUTO_TITLE=true # Add wisely, as too many plugins slow down shell startup.
@@ -25,7 +23,15 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 ## Add RUST VDHL
 export PATH=$PATH:$HOME/.local/share/rust_hdl/target/release
 ## Add JAVA
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+## Add android home
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+## Add Go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$PATH:$(go env GOPATH)/bin 
 ## pnpm
 export PNPM_HOME="/Users/milosoria/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
@@ -49,9 +55,12 @@ export PATH="$PATH:/Users/milosoria/.local/bin"
 export no_proxy=*
 source $HOME/.config/zsh/.zshsecrets
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 if [ -z "$TMUX" ] && [ "$TERM" = "xterm-kitty" ]; then
   tmux attach || exec tmux new-session && exit;
 fi
 
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
