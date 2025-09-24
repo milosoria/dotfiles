@@ -36,9 +36,6 @@ map("n", "<leader>cn", ":cn<CR>", settings)
 map("n", "<leader>cp", ":cp<CR>", settings)
 map("n", "<leader>cq", ":ccl<CR>", settings)
 
--- Close buffer without quitting
-map("n", "<leader>cc", ":close<CR>", settings)
-
 -- Paste over word but maintain your paste register
 map("v", "<leader>p", '"_dP', settings)
 
@@ -78,6 +75,10 @@ map({ "n", "v" }, "<leader>n", function()
   LazyVim.format({ force = true })
 end, { desc = "Format" })
 
+-- inc rename
+map("n", "<leader>rn", function()
+  return ":IncRename " .. vim.fn.expand("<cword>")
+end, { expr = true })
 
 -- delete default keymaps
 vim.keymap.del("n", "<leader>ft")
