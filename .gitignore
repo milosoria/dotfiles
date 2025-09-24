@@ -1,4 +1,5 @@
 *
+!cursor
 !zsh
 !tmux
 !nvim
@@ -15,6 +16,7 @@
 !kitty/**
 !zathura/**
 !custom_commands/**
+!cursor/**
 zsh/.zcompdump*
 zsh/.zsh_history
 zsh/.zsh_sessions*
