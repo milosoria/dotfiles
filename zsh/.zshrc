@@ -33,11 +33,8 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH=$PATH:$(go env GOPATH)/bin 
 ## pnpm
-export PNPM_HOME="/Users/milosoria/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
-
-## Hombrew api key
-export HOMEBREW_GITHUB_API_TOKEN=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
 ## Dont use docker desktop tools
 export DOCKER_BUILDKIT=0
 export COMPOSE_DOCKER_CLI_BUILD=0
@@ -51,7 +48,7 @@ source $HOME/.config/custom_commands/custom_commands.sh
 source $HOME/.config/zsh/zsh-aliases
 
 # Created by `pipx` on 2024-05-27 14:00:57
-export PATH="$PATH:/Users/milosoria/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 export no_proxy=*
 source $HOME/.config/zsh/.zshsecrets
 

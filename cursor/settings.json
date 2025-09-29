@@ -1,1 +1,286 @@
-/Users/milosoria/Library/Application Support/Cursor/User/settings.json
+{
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<leader>", "r", "n"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showDefinitionPreviewHover"]
+    },
+    {
+      "before": ["<leader>", "b", "q"],
+      "commands": ["workbench.action.closeOtherEditors"]
+    },
+    // Make editors equal sized
+    {
+      "before": ["<leader>", "="],
+      "commands": ["workbench.action.evenEditorWidths"]
+    },
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["<leader>", "n"],
+      "commands": ["editor.action.formatDocument"]
+    },
+    {
+      "before": ["<leader>", "p"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    // Global text search (similar to Ctrl+Shift+F)
+    {
+      "before": ["<leader>", "f", "g"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    // Alt moving lines
+    {
+      "before": ["<A-j>"],
+      "commands": [":m .+1<CR>=="]
+    },
+    {
+      "before": ["<A-k>"],
+      "commands": [":m .-2<CR>=="]
+    },
+    // Resizing
+    {
+      "before": ["<leader>", "+"],
+      "commands": [":vertical resize +10<CR>"]
+    },
+    {
+      "before": ["<leader>", "-"],
+      "commands": [":vertical resize -10<CR>"]
+    },
+    {
+      "before": ["<leader>", "="],
+      "commands": ["<C-W>= <CR>"]
+    },
+    // Force quit
+    {
+      "before": ["<leader>", "q"],
+      "commands": [":q!<CR>"]
+    },
+    // Indenting with builtin
+    {
+      "before": ["<leader>", "i"],
+      "commands": ["ma :norm gg=G<CR> `a"]
+    },
+    // Remap C-W C-O to <leader>w
+    {
+      "before": ["<leader>", "w"],
+      "commands": ["<C-W><C-O>"]
+    },
+    // Remap to indent with one keystroke
+    {
+      "before": [">"],
+      "commands": [">>"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["<<"]
+    },
+    // QuickFixList navigation
+    {
+      "before": ["<leader>", "c", "n"],
+      "commands": [":cn<CR>"]
+    },
+    {
+      "before": ["<leader>", "c", "p"],
+      "commands": [":cp<CR>"]
+    },
+    {
+      "before": ["<leader>", "c", "q"],
+      "commands": [":ccl<CR>"]
+    },
+    // Close buffer without quitting
+    {
+      "before": ["<leader>", "c", "c"],
+      "commands": [":close<CR>"]
+    },
+    // Delete but maintain your paste register
+    {
+      "before": ["<leader>", "d"],
+      "commands": ["\"_d"]
+    },
+    // Split windows
+    {
+      "before": ["<leader>", "s", "\\"],
+      "commands": ["workbench.action.splitEditor"]
+    },
+    {
+      "before": ["<leader>", "s", "-"],
+      "commands": ["workbench.action.splitEditorDown"]
+    },
+    {
+      "before": ["<leader>", "s", "e"],
+      "commands": ["workbench.action.evenEditorWidths"]
+    },
+    {
+      "before": ["<leader>", "s", "c"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    // Vim-like scrolling
+    {
+      "before": ["<C-d>"],
+      "commands": [
+        "editorScroll",
+        {
+          "to": "down",
+          "by": "halfPage"
+        }
+      ]
+    },
+    {
+      "before": ["<C-u>"],
+      "commands": [
+        "editorScroll",
+        {
+          "to": "up",
+          "by": "halfPage"
+        }
+      ]
+    },
+    // Tab navigation with Ctrl + hjkl
+    {
+      "before": ["<C-l>"],
+      "commands": ["workbench.action.navigateRight"]
+    },
+    {
+      "before": ["<C-h>"],
+      "commands": ["workbench.action.navigateLeft"]
+    },
+    {
+      "before": ["<C-k>"],
+      "commands": ["workbench.action.focusAboveGroup"]
+    },
+    {
+      "before": ["<C-j>"],
+      "commands": ["workbench.action.focusBelowGroup"]
+    },
+    // Close all splits and maximize current editor
+    {
+      "before": ["<leader>", "w"],
+      "commands": [
+        "workbench.action.closeOtherEditors",
+        "workbench.action.toggleMaximizeEditorGroup"
+      ]
+    },
+    //  // Move to next tab
+    {
+      "before": ["<leader>", "l"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["<leader>", "h"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    // Go to definition
+    {
+      "before": ["g", "d"],
+      "commands": ["editor.action.revealDefinition"]
+    },
+    // Show references
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.referenceSearch.trigger"]
+    },
+    // Focus terminal
+    {
+      "before": ["<leader>", "t", "t"],
+      "commands": ["workbench.action.terminal.focus"]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    // Alt moving lines
+    {
+      "before": ["<A-j>"],
+      "commands": [":m '>+1<CR>gv=gv"]
+    },
+    {
+      "before": ["<A-k>"],
+      "commands": [":m '<-2<CR>gv=gv"]
+    },
+    // Paste over word but maintain your paste register
+    {
+      "before": ["<leader>", "p"],
+      "commands": ["\"_dP"]
+    },
+    {
+      "before": ["<leader>", "d"],
+      "commands": ["\"_d"]
+    },
+    {
+      "before": ["<Esc>"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.leader": "<space>",
+  "editor.formatOnSave": false,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["<C-k>"],
+      "commands": ["editor.action.triggerParameterHints"]
+    },
+    {
+      "before": ["<Esc>"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.cursorStylePerMode.insert": "line",
+  "vim.cursorStylePerMode.normal": "block",
+  "vim.cursorStylePerMode.visual": "block",
+  "vim.cursorStylePerMode.replace": "line",
+  "workbench.startupEditor": "none",
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "colorize.languages": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "css"
+  ],
+  "vim.useSystemClipboard": true,
+  "workbench.quickOpen.preserveInput": true,
+  "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.duration": 200,
+  "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
+  "editor.suggest.showImports": true,
+  "editor.suggest.showStatusBar": true,
+  "editor.suggestSelection": "first",
+  "editor.suggest.preview": true,
+  "editor.acceptSuggestionOnCommitCharacter": true,
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.inlineSuggest.enabled": true,
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true,
+  "extensions.ignoreRecommendations": true,
+  "vim.ignorecase": false,
+  "vim.smartcase": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.wordWrap": "off",
+  "githubPullRequests.pullBranch": "never",
+  "workbench.navigationControl.enabled": false,
+  "workbench.layoutControl.enabled": false,
+  "workbench.editor.editorActionsLocation": "hidden",
+  "editor.fontSize": 16
+}

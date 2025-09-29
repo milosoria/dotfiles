@@ -77,6 +77,26 @@ for dir in "${CONFIG_DIRS[@]}"; do
     fi
 done
 
+# Special handling for Cursor configuration files
+CURSOR_USER_DIR="$HOME/Library/Application Support/Cursor/User"
+if [[ -d "$CURSOR_USER_DIR" ]]; then
+    log_info "Setting up Cursor configuration..."
+
+    # Create symlinks for Cursor config files
+    if [[ -f "$DOTFILES_DIR/cursor/settings.json" ]]; then
+        create_symlink "$DOTFILES_DIR/cursor/settings.json" "$CURSOR_USER_DIR/settings.json"
+    fi
+
+    if [[ -f "$DOTFILES_DIR/cursor/keybindings.json" ]]; then
+        create_symlink "$DOTFILES_DIR/cursor/keybindings.json" "$CURSOR_USER_DIR/keybindings.json"
+    fi
+
+    log_success "Cursor configuration completed"
+else
+    log_warning "Cursor not found. Configuration files are available in cursor/ directory."
+    log_info "Install Cursor and run this script again to set up configuration."
+fi
+
 # Special handling for zsh - link .zshrc to home directory
 if [[ -f "$DOTFILES_DIR/zsh/.zshrc" ]]; then
     create_symlink "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"

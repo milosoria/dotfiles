@@ -22,3 +22,6 @@ zsh/.zcompdump*
 zsh/.zsh_history
 zsh/.zsh_sessions*
 **/.DS_Store
+test-docker/
+test-scripts/
+iterm2/sockets/
