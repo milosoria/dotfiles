@@ -10,6 +10,7 @@
 !zathura
 !custom_commands
 !sketchybar
+!claude
 !tmux/**
 !zsh/**
 !nvim/**
@@ -20,6 +21,7 @@
 !custom_commands/**
 !cursor/**
 !sketchybar/**
+!claude/**
 zsh/.zcompdump*
 zsh/.zsh_history
 zsh/.zsh_sessions*
