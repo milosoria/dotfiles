@@ -1,8 +1,8 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "williamboman/mason-lspconfig.nvim",
-    "williamboman/mason.nvim",
+    "mason-org/mason-lspconfig.nvim",
+    "mason-org/mason.nvim",
   },
   opts = function()
     local keys = require("lazyvim.plugins.lsp.keymaps").get()

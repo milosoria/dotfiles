@@ -83,3 +83,8 @@ end, { expr = true })
 -- delete default keymaps
 vim.keymap.del("n", "<leader>ft")
 vim.keymap.del("n", "<leader>fT")
+
+-- Override <leader>fg to use telescope live_grep instead of git files
+vim.keymap.set("n", "<leader>fg", function()
+  require("telescope.builtin").live_grep()
+end, { desc = "Grep (Live)", noremap = true })

@@ -69,3 +69,4 @@ vim.g.open_in_insert_mode = 1
 vim.g.preserve_alternate_buffer = 1
 vim.g.autoformat = false
 vim.o.ttyfast = true
+vim.g.snacks_animate = false

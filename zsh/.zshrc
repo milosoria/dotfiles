@@ -8,6 +8,9 @@ export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 zstyle ':omz:update' mode auto # update automatically without asking
 
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # User configuration
 export GIT_EDITOR="nvim"
 export VISUAL="nvim"
@@ -52,8 +55,6 @@ export PATH="$PATH:$HOME/.local/bin"
 export no_proxy=*
 source $HOME/.config/zsh/.zshsecrets
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 if [ -z "$TMUX" ] && [ "$TERM" = "xterm-kitty" ]; then
   tmux attach || exec tmux new-session && exit;
 fi
@@ -61,3 +62,19 @@ fi
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/csoria/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/csoria/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/csoria/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/csoria/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# pnpm
+export PNPM_HOME="/Users/csoria/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+#
+source <(fzf --zsh)

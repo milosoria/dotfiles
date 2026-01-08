@@ -57,9 +57,31 @@ qpsh() {
 }
 
 fix_postgres() {
- brew services stop postgresql@14 
+ brew services stop postgresql@14
  rm -f /opt/homebrew/var/postgresql@14/postmaster.pid
  brew services start postgresql@14
+}
+
+wt() {
+    branch_name=$1
+    if [ -z "$branch_name" ]; then
+        echo "Usage: wt <branch-name>"
+        return 1
+    fi
+
+    worktree_path="../$branch_name"
+
+    # Check if branch exists remotely or locally
+    if git show-ref --verify --quiet refs/heads/$branch_name || git show-ref --verify --quiet refs/remotes/origin/$branch_name; then
+        # Branch exists, add worktree with existing branch
+        git worktree add $worktree_path $branch_name
+    else
+        # Create new branch and worktree
+        git worktree add $worktree_path -b $branch_name
+    fi
+
+    cd $worktree_path
+    claude
 }
 
 # # to change CMAKE_BUILD_TYPE rm -rf builds and then update

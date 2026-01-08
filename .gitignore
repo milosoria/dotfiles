@@ -9,6 +9,7 @@
 !kitty
 !zathura
 !custom_commands
+!sketchybar
 !tmux/**
 !zsh/**
 !nvim/**
@@ -18,6 +19,7 @@
 !zathura/**
 !custom_commands/**
 !cursor/**
+!sketchybar/**
 zsh/.zcompdump*
 zsh/.zsh_history
 zsh/.zsh_sessions*

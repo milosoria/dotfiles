@@ -1,9 +1,7 @@
 return {
   "nvim-telescope/telescope.nvim",
   cmd = "Telescope",
-  enabled = function()
-    return LazyVim.pick.want() == "telescope"
-  end,
+  enabled = true,
   version = false,
   dependencies = {
     {
@@ -30,16 +28,23 @@ return {
     },
   },
   keys = {
-    -- Custom key mappings as per your requirements
-    { "<leader>fg", "<cmd>Telescope live_grep global_pattern='!*.svg' <cr>", desc = "Grep Files" },
+    -- Disable default LazyVim mappings
+    { "<leader><space>", false },
+    { "gr", false },
+    { "gd", false },
+    -- Custom key mappings - override snacks git files with telescope live_grep
+    {
+      "<leader>fg",
+      function()
+        require("telescope.builtin").live_grep()
+      end,
+      desc = "Grep (Live)"
+    },
     {
       "<leader>p",
       "<cmd>Telescope find_files no_ignore=false hidden=true layout_strategy=vertical<CR>",
       desc = "Find Files with Hidden",
     },
-    { "<leader><space>", false },
-    { "gr", false },
-    { "gd", false },
   },
   opts = function()
     local previewers = require("telescope.previewers")
@@ -87,7 +92,7 @@ return {
           },
         },
         live_grep = {
-          additional_args = { "--hidden", "--glob", "!**/.git/*", "--glob", "!**/node_modules/*" },
+          additional_args = { "--hidden", "--glob", "!**/.git/*", "--glob", "!**/node_modules/*", "--glob", "!**/*.svg" },
           layout_config = {
             width = 0.5, -- width of the floating window
             height = 0.2, -- height of the floating window
