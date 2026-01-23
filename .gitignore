@@ -10,6 +10,7 @@
 !zathura
 !custom_commands
 !sketchybar
+!raycast
 !.claude
 !claude
 !tmux/**
@@ -23,7 +24,7 @@
 !cursor/**
 !sketchybar/**
 !.claude/**
-!claude/**
+!raycast/**
 zsh/.zcompdump*
 zsh/.zsh_history
 zsh/.zsh_sessions*
