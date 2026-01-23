@@ -25,6 +25,9 @@
 !sketchybar/**
 !.claude/**
 !raycast/**
+!karabiner
+!karabiner/**
+karabiner/automatic_backups/
 zsh/.zcompdump*
 zsh/.zsh_history
 zsh/.zsh_sessions*
