@@ -1,0 +1,9 @@
+config:
+  fallback-icon: "?"
+  multi-pane-icon: ""
+  show-name: false
+  icon-position: "left"
+
+icons:
+  claude: "󰚩"
+  node: "󰚩"

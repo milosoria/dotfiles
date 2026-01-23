@@ -62,7 +62,7 @@ fix_postgres() {
  brew services start postgresql@14
 }
 
-wt() {
+claude_wt() {
     branch_name=$1
     if [ -z "$branch_name" ]; then
         echo "Usage: wt <branch-name>"

@@ -34,3 +34,8 @@ alias connect_user_validator='sshpass -p "l2xQbS1R1VpNY7d4f0" ssh -v  root@45.23
 
 # lazygit
 alias lg='lazygit'
+
+# claude code
+alias c='claude'
+alias cdanger='claude --dangerously-skip-permissions'
+

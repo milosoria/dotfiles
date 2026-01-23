@@ -4,7 +4,7 @@ return {
     "mason-org/mason-lspconfig.nvim",
     "mason-org/mason.nvim",
   },
-  opts = function()
+  opts = function(_, opts)
     local keys = require("lazyvim.plugins.lsp.keymaps").get()
     -- change a keymap
     keys[#keys + 1] = {
@@ -15,19 +15,23 @@ return {
       "gr",
       false,
     }
-  end,
-  setup = function()
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
-    require("mason").setup()
-    require("mason-lspconfig").setup()
-    -- Setup Mason LSP handlers with blink.cmp capabilities
-    require("mason-lspconfig").setup_handlers({
-      -- The default handler will be called for each installed server
-      function(server_name)
-        require("lspconfig")[server_name].setup({
-          capabilities = capabilities,
-        })
-      end,
-    })
+
+    -- TypeScript with Vue plugin
+    opts.servers = opts.servers or {}
+    opts.servers.ts_ls = {
+      init_options = {
+        plugins = {
+          {
+            name = "@vue/typescript-plugin",
+            location = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+            languages = { "vue" },
+          },
+        },
+      },
+      filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+    }
+
+    -- Vue Language Server
+    opts.servers.vue_ls = {}
   end,
 }

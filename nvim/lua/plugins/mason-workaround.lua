@@ -31,6 +31,9 @@ return {
         "json-lsp",
         "tailwindcss-language-server",
 
+        -- Vue
+        "vue-language-server",
+
         -- Lua
         "lua-language-server",
         "stylua",
