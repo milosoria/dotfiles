@@ -10,6 +10,7 @@
 !zathura
 !custom_commands
 !sketchybar
+!.claude
 !claude
 !tmux/**
 !zsh/**
@@ -21,11 +22,14 @@
 !custom_commands/**
 !cursor/**
 !sketchybar/**
+!.claude/**
 !claude/**
 zsh/.zcompdump*
 zsh/.zsh_history
 zsh/.zsh_sessions*
 **/.DS_Store
+**/.claude/
+claude/sessions/
 test-docker/
 test-scripts/
 iterm2/sockets/
