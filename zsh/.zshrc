@@ -78,3 +78,12 @@ esac
 # pnpm end
 
 source <(fzf --zsh)
+
+# bun completions
+[ -s "/Users/csoria/.bun/_bun" ] && source "/Users/csoria/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+alias claude-mem='/Users/csoria/.bun/bin/bun "/Users/csoria/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'

@@ -63,25 +63,79 @@ fix_postgres() {
 }
 
 claude_wt() {
-    branch_name=$1
+    local branch_name=""
+    local danger_mode=false
+
+    # Parse arguments
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            --danger)
+                danger_mode=true
+                shift
+                ;;
+            *)
+                branch_name="$1"
+                shift
+                ;;
+        esac
+    done
+
     if [ -z "$branch_name" ]; then
-        echo "Usage: wt <branch-name>"
+        echo "Usage: claude_wt <branch-name> [--danger]"
         return 1
     fi
 
-    worktree_path="../$branch_name"
+    # Check if a worktree for this branch already exists anywhere
+    existing_worktree=$(git worktree list --porcelain | grep -A2 "^worktree " | grep -B1 "branch refs/heads/$branch_name" | head -1 | sed 's/worktree //')
 
-    # Check if branch exists remotely or locally
-    if git show-ref --verify --quiet refs/heads/$branch_name || git show-ref --verify --quiet refs/remotes/origin/$branch_name; then
-        # Branch exists, add worktree with existing branch
-        git worktree add $worktree_path $branch_name
-    else
-        # Create new branch and worktree
-        git worktree add $worktree_path -b $branch_name
+    if [ -n "$existing_worktree" ]; then
+        echo "Worktree for branch '$branch_name' already exists at $existing_worktree"
+        cd "$existing_worktree"
+        if [ "$danger_mode" = true ]; then
+            cdanger
+        else
+            claude
+        fi
+        return 0
     fi
 
-    cd $worktree_path
-    claude
+    # Create worktree path as sibling directory with repo name prefix
+    repo_root=$(git rev-parse --show-toplevel)
+    repo_name=$(basename "$repo_root")
+    flat_branch="${branch_name//\//-}"
+    worktree_path="$(dirname "$repo_root")/${repo_name}-${flat_branch}"
+
+    # Check if directory already exists (orphaned worktree or other folder)
+    if [ -d "$worktree_path" ]; then
+        echo "Directory already exists at $worktree_path but is not a worktree for this branch"
+        return 1
+    fi
+
+    # Fetch latest from remote
+    git fetch origin
+
+    # Check if branch exists remotely
+    if git show-ref --verify --quiet refs/remotes/origin/$branch_name; then
+        # Branch exists remotely - create worktree tracking remote branch
+        git worktree add "$worktree_path" "$branch_name"
+        cd "$worktree_path"
+        git pull origin "$branch_name"
+    # Check if branch exists locally
+    elif git show-ref --verify --quiet refs/heads/$branch_name; then
+        # Branch exists locally only
+        git worktree add "$worktree_path" "$branch_name"
+        cd "$worktree_path"
+    else
+        # Create new branch and worktree
+        git worktree add "$worktree_path" -b "$branch_name"
+        cd "$worktree_path"
+    fi
+
+    if [ "$danger_mode" = true ]; then
+        cdanger
+    else
+        claude
+    fi
 }
 
 # # to change CMAKE_BUILD_TYPE rm -rf builds and then update
