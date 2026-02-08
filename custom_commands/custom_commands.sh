@@ -132,7 +132,7 @@ claude_wt() {
     fi
 
     if [ "$danger_mode" = true ]; then
-        cdanger
+        claude --dangerously-skip-permissions
     else
         claude
     fi
