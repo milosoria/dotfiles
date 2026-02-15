@@ -24,6 +24,7 @@
 !cursor/**
 !sketchybar/**
 !.claude/**
+!claude/**
 !raycast/**
 !karabiner
 !karabiner/**
@@ -33,7 +34,29 @@ zsh/.zsh_history
 zsh/.zsh_sessions*
 **/.DS_Store
 **/.claude/
+# claude transient/machine-specific files
 claude/sessions/
+claude/tasks/
+claude/projects/
+claude/todos/
+claude/history.jsonl
+claude/cache/
+claude/paste-cache/
+claude/stats-cache.json
+claude/file-history/
+claude/plans/
+claude/plugins/cache/
+claude/plugins/marketplaces/
+claude/plugins/install-counts-cache.json
+claude/skills/
+claude/ide/
+claude/debug/
+claude/downloads/
+claude/statsig/
+claude/telemetry/
+claude/shell-snapshots/
+claude/session-env/
+claude/*.backup*
 test-docker/
 test-scripts/
 iterm2/sockets/

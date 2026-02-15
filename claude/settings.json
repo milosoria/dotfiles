@@ -1,0 +1,135 @@
+{
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "Bash(grep:*)",
+      "WebbSearch",
+      "WebFetch",
+      "mcp__plugin_playwright_playwright*",
+      "Bash(curl:*)",
+      "Skill(mgrep)",
+      "Bash(mgrep:*)",
+      "Bash(xargs:*)",
+      "Bash(find:*)"
+    ],
+    "ask": [
+      "Bash(rm:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"^(docker|make|pnpm dev|npm run dev|yarn dev|bun run dev)\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"if(!process.env.TMUX){console.error('[Hook] BLOCKED: docker/make must run in tmux for log access');console.error('[Hook] Use: tmux new-session -d -s dev \\\"<command>\\\"');console.error('[Hook] Then: tmux attach -t dev');process.exit(1)}else{let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>console.log(d))}\""
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"A subagent has finished its task\" with title \"🤖 Claude Agent Complete\"'",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_name // \"unknown\"' | xargs -I {} osascript -e 'display notification \"Tool: {}\" with title \"🔒 Claude Permission Required\"'",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude needs your input to continue\" with title \"💬 Claude Input Required\"'",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.py$\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const{execSync}=require('child_process');const fs=require('fs');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const p=i.tool_input?.file_path;if(p&&fs.existsSync(p)){try{execSync('ruff format \"'+p+'\"',{stdio:['pipe','pipe','pipe']})}catch(e){}}console.log(d)})\""
+          }
+        ]
+      },
+      {
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.py$\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const{execSync}=require('child_process');const fs=require('fs');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const p=i.tool_input?.file_path;if(p&&fs.existsSync(p)){try{const r=execSync('ruff check \"'+p+'\" 2>&1',{encoding:'utf8',stdio:['pipe','pipe','pipe']});if(r.trim()){console.error('[Hook] Ruff issues in '+p+':');console.error(r.split('\\n').slice(0,10).join('\\n'))}}catch(e){const out=(e.stdout||e.stderr||'').trim();if(out){console.error('[Hook] Ruff issues in '+p+':');console.error(out.split('\\n').slice(0,10).join('\\n'))}}}console.log(d)})\""
+          }
+        ]
+      },
+      {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"(npm run build|pnpm build|yarn build)\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{console.error('[Hook] Build completed - async analysis running in background');console.log(d)})\"",
+            "timeout": 30,
+            "async": true
+          }
+        ]
+      },
+      {
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx|js|jsx)$\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const{execSync}=require('child_process');const fs=require('fs');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const p=i.tool_input?.file_path;if(p&&fs.existsSync(p)){try{execSync('npx prettier --write \"'+p+'\"',{stdio:['pipe','pipe','pipe']})}catch(e){}}console.log(d)})\""
+          }
+        ]
+      },
+      {
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx)$\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const{execSync}=require('child_process');const fs=require('fs');const path=require('path');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const p=i.tool_input?.file_path;if(p&&fs.existsSync(p)){let dir=path.dirname(p);while(dir!==path.dirname(dir)&&!fs.existsSync(path.join(dir,'tsconfig.json'))){dir=path.dirname(dir)}if(fs.existsSync(path.join(dir,'tsconfig.json'))){try{const r=execSync('npx tsc --noEmit --pretty false 2>&1',{cwd:dir,encoding:'utf8',stdio:['pipe','pipe','pipe']});const lines=r.split('\\n').filter(l=>l.includes(p)).slice(0,10);if(lines.length)console.error(lines.join('\\n'))}catch(e){const lines=(e.stdout||'').split('\\n').filter(l=>l.includes(p)).slice(0,10);if(lines.length)console.error(lines.join('\\n'))}}}console.log(d)})\""
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "input=$(cat); model=$(echo \"$input\" | jq -r '.model.display_name'); dir=$(basename \"$(echo \"$input\" | jq -r '.workspace.current_dir')\"); remaining=$(echo \"$input\" | jq -r '.context_window.remaining_percentage // empty'); branch=$(cd \"$(echo \"$input\" | jq -r '.workspace.current_dir')\" 2>/dev/null && git -c core.fileMode=false rev-parse --abbrev-ref HEAD 2>/dev/null || echo ''); printf \"\\033[96m%s\\033[0m \\033[90m|\\033[0m \\033[95m%s\\033[0m\" \"$model\" \"$dir\"; [ -n \"$branch\" ] && printf \" \\033[90m|\\033[0m \\033[93m%s\\033[0m\" \"$branch\"; if [ -n \"$remaining\" ]; then r=$(printf \"%.0f\" \"$remaining\"); if [ \"$r\" -gt 50 ]; then c=\"\\033[92m\"; elif [ \"$r\" -gt 25 ]; then c=\"\\033[93m\"; else c=\"\\033[91m\"; fi; printf \" \\033[90m|\\033[0m ${c}ctx: %s%%\\033[0m\" \"$r\"; fi; echo"
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "mgrep@Mixedbread-Grep": true,
+    "everything-claude-code@everything-claude-code": false,
+    "claude-mem@thedotmack": true
+  },
+  "skipDangerousModePermissionPrompt": true
+}
