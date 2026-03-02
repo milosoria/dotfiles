@@ -1,37 +1,80 @@
 return {
-  "neovim/nvim-lspconfig",
-  dependencies = {
-    "mason-org/mason-lspconfig.nvim",
+  -- Mason: ensure tools are installed
+  {
     "mason-org/mason.nvim",
-  },
-  opts = function(_, opts)
-    local keys = require("lazyvim.plugins.lsp.keymaps").get()
-    -- change a keymap
-    keys[#keys + 1] = {
-      "<C-y>",
-      false,
-    }
-    keys[#keys + 1] = {
-      "gr",
-      false,
-    }
+    opts = {
+      ensure_installed = {
+        -- Go
+        "goimports",
+        "gofumpt",
+        "gopls",
 
-    -- TypeScript with Vue plugin
-    opts.servers = opts.servers or {}
-    opts.servers.ts_ls = {
-      init_options = {
-        plugins = {
-          {
-            name = "@vue/typescript-plugin",
-            location = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
-            languages = { "vue" },
+        -- Shell/Bash
+        "bash-language-server",
+        "shfmt",
+
+        -- Python
+        "black",
+        "isort",
+        "pyright",
+        "ruff",
+
+        -- JavaScript/TypeScript
+        "eslint-lsp",
+        "eslint_d",
+        "prettierd",
+        "typescript-language-server",
+
+        -- Web
+        "json-lsp",
+        "tailwindcss-language-server",
+
+        -- Vue
+        "vue-language-server",
+
+        -- Lua
+        "lua-language-server",
+        "stylua",
+
+        -- Markdown
+        "markdown-toc",
+        "markdownlint-cli2",
+        "marksman",
+      },
+    },
+  },
+
+  -- LSP servers configuration
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        -- Disable gr and K globally (overridden by lspsaga)
+        ["*"] = {
+          keys = {
+            { "gr", false },
+            { "K", false },
           },
         },
-      },
-      filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-    }
 
-    -- Vue Language Server
-    opts.servers.vue_ls = {}
-  end,
+        -- TypeScript with Vue plugin
+        ts_ls = {
+          init_options = {
+            plugins = {
+              {
+                name = "@vue/typescript-plugin",
+                location = vim.fn.stdpath("data")
+                  .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+                languages = { "vue" },
+              },
+            },
+          },
+          filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+        },
+
+        -- Vue Language Server
+        vue_ls = {},
+      },
+    },
+  },
 }

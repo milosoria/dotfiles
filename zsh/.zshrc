@@ -87,3 +87,4 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 alias claude-mem='/Users/csoria/.bun/bin/bun "/Users/csoria/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
+alias gcal="~/.gcal-cli/bin/python3 ~/.gcal-cli/gcal.py"
