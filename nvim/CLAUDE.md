@@ -5,8 +5,8 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #3368 | 1:21 PM | 🔵 | nvim-cmp Cmdline Configuration Identified as Potential Crash Source | ~321 |
-| #3364 | 1:20 PM | 🔵 | Three Plugins Explicitly Disabled in Configuration | ~259 |
+| #3361 | 1:18 PM | 🔴 | Plugin Lockfile Reverted to Remove Auto-Updates | ~216 |
+| #3354 | 1:17 PM | 🔵 | Neovim Plugin Lockfile State Identified | ~256 |
 
 ### Mar 4, 2026
 

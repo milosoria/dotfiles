@@ -8,6 +8,8 @@ return {
           keys = {
             ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
             ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
+            ["<Tab>"] = { "list_down", mode = { "i", "n" } },
+            ["<S-Tab>"] = { "list_up", mode = { "i", "n" } },
           },
         },
       },
