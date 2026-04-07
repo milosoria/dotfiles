@@ -39,3 +39,18 @@ alias lg='lazygit'
 alias c='claude'
 alias cdanger='claude --dangerously-skip-permissions'
 
+# tmux telescope - fuzzy find windows across all sessions
+tw() {
+  [[ -z "$TMUX" ]] && { echo "Not in tmux"; return 1; }
+  local target
+  target=$(tmux list-windows -a -F '#{session_name}:#{window_index} │ #{window_name} │ #{pane_current_path}' | \
+    fzf --tmux 80%,50% \
+        --prompt='  ' --border=rounded \
+        --header='Switch to tmux window' \
+        --preview='tmux capture-pane -ep -t {1}' \
+        --preview-window=down:60%:wrap \
+        --bind='tab:up,shift-tab:down' | \
+    awk '{print $1}')
+  [[ -n "$target" ]] && tmux switch-client -t "$target"
+}
+
