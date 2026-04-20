@@ -77,7 +77,13 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+export FZF_TMUX_OPTS="-p 80%,60%"
+export FZF_CTRL_T_OPTS="--border=rounded --prompt='  ' --bind='tab:down,shift-tab:up'"
+export FZF_CTRL_R_OPTS="--border=rounded --prompt='  ' --bind='tab:down,shift-tab:up'"
+export FZF_ALT_C_OPTS="--border=rounded --prompt='  ' --bind='tab:down,shift-tab:up'"
 source <(fzf --zsh)
+# zsh-vi-mode overrides keybindings after init; re-source fzf bindings here
+zvm_after_init_commands+=('source <(fzf --zsh)')
 
 # bun completions
 [ -s "/Users/csoria/.bun/_bun" ] && source "/Users/csoria/.bun/_bun"
@@ -85,6 +91,8 @@ source <(fzf --zsh)
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
 
 alias claude-mem='/Users/csoria/.bun/bin/bun "/Users/csoria/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
 alias gcal="~/.gcal-cli/bin/python3 ~/.gcal-cli/gcal.py"
