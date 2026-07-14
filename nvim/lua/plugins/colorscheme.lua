@@ -23,6 +23,8 @@ return {
       vim.g.gruvbox_material_background = "hard"
       vim.g.gruvbox_material_foreground = "material"
       vim.g.gruvbox_material_better_performance = 1
+      -- darker editor bg to match kitty's gruvbox background
+      vim.g.gruvbox_material_colors_override = { bg0 = { "#141617", "233" } }
     end,
   },
   {
