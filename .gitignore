@@ -3,6 +3,8 @@
 !cursor
 !zsh
 !tmux
+!theme
+!theme/**
 !nvim
 !iterm2
 !ergodox
@@ -60,3 +62,7 @@ claude/*.backup*
 test-docker/
 test-scripts/
 iterm2/sockets/
+# theme switcher mutable state (recreated by theme.sh)
+theme/current
+kitty/current-theme.conf
+tmux/current-theme.conf

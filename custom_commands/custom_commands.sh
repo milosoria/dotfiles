@@ -56,6 +56,10 @@ qpsh() {
     git push origin $2
 }
 
+theme() {
+    "$HOME/.config/theme/theme.sh" "$@"
+}
+
 fix_postgres() {
  brew services stop postgresql@14
  rm -f /opt/homebrew/var/postgresql@14/postmaster.pid
