@@ -98,7 +98,7 @@ done
 log_info "Installing development tools..."
 
 DEV_TOOLS=(
-    "node"
+    "nvm"
     "pnpm"
     "python@3.11"
     "pyenv"
@@ -153,7 +153,19 @@ if command -v pyenv &> /dev/null; then
     log_success "Python setup complete"
 fi
 
-# Setup Node.js
+# Setup Node.js (nvm es la fuente de la verdad, no hay node de Homebrew)
+if [ -s "/opt/homebrew/opt/nvm/nvm.sh" ]; then
+    log_info "Setting up Node.js with nvm..."
+    export NVM_DIR="$HOME/.nvm"
+    mkdir -p "$NVM_DIR"
+    . "/opt/homebrew/opt/nvm/nvm.sh"
+    if [ ! -f "$NVM_DIR/alias/default" ]; then
+        nvm install --lts
+        nvm alias default "$(nvm current)"
+    fi
+    log_success "Node.js $(nvm current) ready"
+fi
+
 if command -v pnpm &> /dev/null; then
     log_info "Setting up pnpm..."
     pnpm setup

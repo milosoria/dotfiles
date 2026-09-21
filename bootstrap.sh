@@ -163,6 +163,22 @@ if [[ ! -f "$HOME/.zprofile" ]]; then
     log_success "Created .zprofile"
 fi
 
+# Node desde nvm en ~/.local/bin: lo necesitan los procesos que no leen .zshrc
+# (hooks de Claude Code, MCP servers, apps lanzadas desde el Finder, launchd).
+NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+if [[ -d "$NVM_DIR/versions/node" ]]; then
+    nvm_default="$(cat "$NVM_DIR/alias/default" 2>/dev/null)"
+    nvm_bin="$(ls -d "$NVM_DIR/versions/node/v${nvm_default#v}"*/bin 2>/dev/null | sort -V | tail -1)"
+    [[ -z "$nvm_bin" ]] && nvm_bin="$(ls -d "$NVM_DIR/versions/node"/*/bin 2>/dev/null | sort -V | tail -1)"
+    if [[ -n "$nvm_bin" ]]; then
+        mkdir -p "$HOME/.local/bin"
+        for bin in node npm npx; do
+            [[ -x "$nvm_bin/$bin" ]] && ln -sfn "$nvm_bin/$bin" "$HOME/.local/bin/$bin"
+        done
+        log_success "Node enlazado en ~/.local/bin desde $(basename "$(dirname "$nvm_bin")")"
+    fi
+fi
+
 # Setup Git configuration (if git config exists)
 if [[ -f "$DOTFILES_DIR/git/config" ]]; then
     log_info "Git configuration found. You may need to update user.name and user.email"

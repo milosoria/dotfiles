@@ -41,8 +41,16 @@ export PATH="$PNPM_HOME:$PATH"
 ## Dont use docker desktop tools
 export DOCKER_BUILDKIT=0
 export COMPOSE_DOCKER_CLI_BUILD=0
-## NVM: lazy. node por defecto viene de Homebrew; nvm se carga al primer uso.
+## NVM: lazy. El node de la versión "default" entra al PATH sin cargar nvm, para que
+## también lo vean los procesos no interactivos (hooks de Claude Code, MCP, cron).
+## nvm se carga al primer uso, solo para cambiar de versión.
 export NVM_DIR="$HOME/.nvm"
+if [[ -r "$NVM_DIR/alias/default" ]]; then
+  _nvm_bin=("$NVM_DIR/versions/node/v${${$(<"$NVM_DIR/alias/default")}#v}"*/bin(N/On))
+  (( ${#_nvm_bin} )) || _nvm_bin=("$NVM_DIR/versions/node"/*/bin(N/On))
+  [[ -n "${_nvm_bin[1]}" ]] && export PATH="${_nvm_bin[1]}:$PATH"
+  unset _nvm_bin
+fi
 nvm() {
   unfunction nvm
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
