@@ -37,12 +37,21 @@ create_symlink() {
     local source="$1"
     local target="$2"
 
-    if [[ -L "$target" ]]; then
-        log_warning "Symlink already exists: $target"
+    # This repo can already live where the target belongs (it is cloned straight
+    # into ~/.config), in which case linking would point a path at itself.
+    if [[ "$source" == "$target" ]]; then
+        log_success "Already in place: $target"
         return
     fi
 
-    if [[ -e "$target" ]]; then
+    if [[ -L "$target" ]]; then
+        if [[ "$(readlink "$target")" == "$source" ]]; then
+            log_warning "Symlink already exists: $target"
+            return
+        fi
+        log_warning "Replacing symlink: $target -> $(readlink "$target")"
+        rm "$target"
+    elif [[ -e "$target" ]]; then
         log_warning "File exists, creating backup: $target -> $target.backup"
         mv "$target" "$target.backup"
     fi
@@ -164,7 +173,13 @@ fi
 # Make custom commands executable
 if [[ -d "$DOTFILES_DIR/custom_commands" ]]; then
     log_info "Making custom commands executable..."
-    find "$DOTFILES_DIR/custom_commands" -type f -exec chmod +x {} \;
+    # Only actual scripts: a shebang is what makes a file runnable on its own,
+    # so READMEs and requirements.txt keep their plain mode.
+    while IFS= read -r file; do
+        if IFS= read -r first_line < "$file" && [[ "$first_line" == '#!'* ]]; then
+            chmod +x "$file"
+        fi
+    done < <(find "$DOTFILES_DIR/custom_commands" -type f)
     log_success "Custom commands made executable"
 fi
 
