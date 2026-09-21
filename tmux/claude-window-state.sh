@@ -1,21 +1,36 @@
 #!/bin/bash
-# Marca la ventana de tmux cuando una sesión de Claude Code necesita tu atención.
+# Marca la ventana de tmux con el estado de la sesión de Claude Code que corre en ella.
 #
-# Lo invocan los hooks de ~/.claude/settings.json con el estado de esa sesión:
-#   wait   PermissionRequest / Notification: pide autorización o input
-#   idle   Stop: terminó y te toca a vos
-#   busy   UserPromptSubmit / PostToolUse: está trabajando, sin marca
-#   clear  a mano, para bajar una marca huérfana (p.ej. si la sesión murió sin SessionEnd)
+# Lo invocan los hooks de ~/.claude/settings.json:
+#   busy    UserPromptSubmit / PostToolUse: está trabajando        -> punto verde
+#   idle    Stop / SessionStart: te toca a vos                     -> punto amarillo
+#   wait    PermissionRequest: pide autorización                   -> punto rojo
+#   notify  Notification: decide según notification_type del payload, porque el mismo
+#           evento cubre tanto "necesito permiso" como "hace rato que no escribís"
+#   clear   a mano, para bajar una marca huérfana (sesión muerta sin SessionEnd)
 #
-# La marca es estado, no aviso: se queda mientras la sesión siga esperándote, aunque pases
-# por la ventana. La baja el propio Claude cuando vuelve a trabajar.
+# La marca es estado, no aviso: se queda mientras la sesión siga así, aunque pases por la
+# ventana. Solo la mueve el propio Claude al cambiar de estado, y SessionEnd la borra.
 #
-# El estado vive en la opción de pane @claude-state; de ahí se agrega al
-# @claude-alert de la ventana (wait gana sobre idle), que es lo que pinta
-# window-status-format en tmux.conf.
+# El estado vive en la opción de pane @claude-state; de ahí se agrega al @claude-alert de
+# la ventana (wait gana a idle, idle gana a busy), que es lo que pinta window-status-format.
 
 [ -z "$TMUX" ] && exit 0
 state=$1
+
+if [ "$state" = notify ]; then
+  # payload: {hook_event_name, message, title?, notification_type}
+  payload=$(cat)
+  t=$(printf '%s' "$payload" | jq -r '.notification_type // empty' 2>/dev/null)
+  if [ -z "$t" ]; then
+    case $payload in *permission*) t=permission_prompt ;; *) t=idle_prompt ;; esac
+  fi
+  case $t in
+    permission_prompt|worker_permission_prompt|agent_needs_input) state=wait ;;
+    idle_prompt|agent_completed)                                  state=idle ;;
+    *) exit 0 ;;   # auth, computer use, push: no dicen nada del estado
+  esac
+fi
 
 if [ "$state" = clear ]; then
   win=$(tmux display -p '#{window_id}' 2>/dev/null) || exit 0
@@ -32,15 +47,20 @@ pane=${TMUX_PANE:-$(tmux display -p '#{pane_id}' 2>/dev/null)}
 win=$(tmux display -p -t "$pane" '#{window_id}' 2>/dev/null) || exit 0
 
 case $state in
-  wait|idle) tmux set-option -p -t "$pane" @claude-state "$state" 2>/dev/null ;;
-  *)         tmux set-option -pu -t "$pane" @claude-state 2>/dev/null ;;
+  wait|idle|busy) tmux set-option -p -t "$pane" @claude-state "$state" 2>/dev/null ;;
+  *)              tmux set-option -pu -t "$pane" @claude-state 2>/dev/null ;;
 esac
 
 # la ventana muestra el estado más urgente de sus panes
-if tmux list-panes -t "$win" -f '#{==:#{@claude-state},wait}' -F x 2>/dev/null | grep -q x; then
-  tmux set-option -w -t "$win" @claude-alert wait 2>/dev/null
-elif tmux list-panes -t "$win" -f '#{==:#{@claude-state},idle}' -F x 2>/dev/null | grep -q x; then
-  tmux set-option -w -t "$win" @claude-alert idle 2>/dev/null
+alert=
+for s in wait idle busy; do
+  if tmux list-panes -t "$win" -f "#{==:#{@claude-state},$s}" -F x 2>/dev/null | grep -q x; then
+    alert=$s
+    break
+  fi
+done
+if [ -n "$alert" ]; then
+  tmux set-option -w -t "$win" @claude-alert "$alert" 2>/dev/null
 else
   tmux set-option -wu -t "$win" @claude-alert 2>/dev/null
 fi

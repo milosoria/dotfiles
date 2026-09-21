@@ -106,6 +106,15 @@
             "timeout": 5
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/.config/tmux/claude-window-state.sh\" idle",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "SessionEnd": [
@@ -159,7 +168,7 @@
           },
           {
             "type": "command",
-            "command": "\"$HOME/.config/tmux/claude-window-state.sh\" wait",
+            "command": "\"$HOME/.config/tmux/claude-window-state.sh\" notify",
             "timeout": 5
           }
         ]

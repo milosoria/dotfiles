@@ -16,21 +16,31 @@ Estado por pane: `@claude-name` (nombre que puso el script) y `@claude-title` (�
 visto). Sirven de filtro en tmux, así que la pasada normal es una sola llamada sin renombrar.
 El hook `SessionEnd` de `~/.claude/settings.json` los limpia y devuelve `automatic-rename on`.
 
-## Marca de atención
+## Marca de estado
 
-`claude-window-state.sh` pinta un punto antes del nombre cuando una sesión de Claude Code te
-necesita: rojo si espera que autorices algo (`PermissionRequest`, `Notification`), amarillo si
-terminó y espera tu input (`Stop`).
+`claude-window-state.sh` pinta un punto antes del nombre con el estado de la sesión de Claude
+Code que corre en la ventana:
 
-La marca es estado, no aviso: sobrevive a que pases por la ventana. Solo la baja el propio
-Claude al volver a trabajar (`UserPromptSubmit`, `PostToolUse`) o al cerrar la sesión
-(`SessionEnd`). Si queda una marca huérfana, `claude-window-state.sh clear` la limpia.
+| Punto | Estado | Hook |
+|-------|--------|------|
+| verde | trabajando | `UserPromptSubmit`, `PostToolUse` |
+| amarillo | terminó, te toca a vos | `Stop`, `SessionStart` |
+| rojo | pide autorización | `PermissionRequest`, `Notification` de tipo permiso |
+
+`Notification` cubre tanto "necesito permiso" como "hace rato que no escribís", así que el
+script mira `notification_type` del payload (`permission_prompt` y `worker_permission_prompt`
+van a rojo, `idle_prompt` y `agent_completed` a amarillo) en vez de tratarlos igual.
+
+La marca es estado, no aviso: sobrevive a que pases por la ventana. Solo la mueve el propio
+Claude al cambiar de estado, y `SessionEnd` la borra. Si queda huérfana (sesión muerta sin
+`SessionEnd`), `claude-window-state.sh clear` limpia la ventana actual.
+
+Estado: opción de pane `@claude-state`, agregada en `@claude-alert` de la ventana (`wait` gana
+a `idle`, `idle` a `busy`). El punto lo dibuja `@claude-mark`, que `window-status-format`
+expande con `#{E:}`.
 
 El script cierra con `refresh-client -S`. Sin eso la marca tarda hasta un `status-interval`
 (15s) en aparecer, que es lo mismo que no funcionar.
-
-Estado: opción de pane `@claude-state`, agregada en `@claude-alert` de la ventana (`wait` gana
-sobre `idle`). El punto lo dibuja `@claude-mark`, que `window-status-format` expande con `#{E:}`.
 
 <claude-mem-context>
 
