@@ -9,8 +9,9 @@
 #           evento cubre tanto "necesito permiso" como "hace rato que no escribís"
 #   sync    respaldo sin hooks: deduce busy/idle de #{window_activity}, para las sesiones
 #           que todavía no cargaron estos hooks (los toman al arrancar)
-#   watch   corre sync cada WATCH_EVERY segundos. Lo arranca tmux.conf. No usa
-#           status-interval porque ese lo comparte con gitmux, que es caro.
+#   watch   cada WATCH_EVERY segundos corre sync y claude-window-name.sh. Lo arranca
+#           tmux.conf. No usa status-interval porque ese lo comparte con gitmux, que
+#           cuesta 150-350ms por refresh y por eso está en 15s.
 #   clear   a mano, para bajar una marca huérfana (sesión muerta sin SessionEnd)
 #
 # La marca es estado, no aviso: se queda mientras la sesión siga así, aunque pases por la
@@ -82,6 +83,7 @@ if [ "$state" = watch ]; then
   tmux set -g @claude-watcher $$ 2>/dev/null || exit 0
   while [ "$(tmux show -gqv @claude-watcher 2>/dev/null)" = "$$" ]; do
     sync_windows
+    "$(dirname "$0")/claude-window-name.sh"   # el nombre también se revisa acá, no en el status bar
     sleep $WATCH_EVERY
   done
   exit 0

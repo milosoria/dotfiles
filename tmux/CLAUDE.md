@@ -9,8 +9,9 @@ No usar hooks de Claude para esto: `/rename` es un comando `local-jsx` y no disp
 `UserPromptSubmit` ni `Stop`, así que ningún hook se entera del rename. El título del pane sí se
 actualiza al instante.
 
-Disparadores, en `tmux.conf`: `#()` invisible en `status-right` (cada `status-interval`) y los
-hooks `after-select-window`, `client-attached`, `window-pane-changed`.
+Disparadores: el watcher de `claude-window-state.sh` cada 2s, más los hooks
+`after-select-window`, `client-attached` y `window-pane-changed` para que se vea al instante
+cuando interactuás con tmux. Nada de esto pasa por `status-right`, que quedó solo para gitmux.
 
 Estado por pane: `@claude-name` (nombre que puso el script) y `@claude-title` (último título
 visto). Sirven de filtro en tmux, así que la pasada normal es una sola llamada sin renombrar.
@@ -39,8 +40,9 @@ de `#{window_activity}`: una sesión trabajando repinta su spinner cada segundo,
 imprime nada (medido: 1s contra 118s). Nunca pisa a un pane que sí reporta por hook, porque los
 hooks son exactos y al instante mientras que esto es una inferencia.
 
-Lo corre `claude-window-state.sh watch`, un loop cada 2s que arranca `tmux.conf`, con ~10ms por
-vuelta. No va por `status-interval` porque ese lo comparte con gitmux (150-350ms por refresh),
+Lo corre `claude-window-state.sh watch`, un loop cada 2s que arranca `tmux.conf` y que también
+llama a `claude-window-name.sh`: ~18ms por vuelta las dos cosas, menos de lo que cuesta un
+refresh de gitmux. No va por `status-interval` porque ese lo comparte con gitmux (150-350ms por refresh),
 que es la razón de que esté en 15s. Hay un solo watcher por servidor: el dueño anota su PID en
 la opción global `@claude-watcher`, así que recargar el config no lo duplica, y el hook
 `client-attached` lo revive si murió.
