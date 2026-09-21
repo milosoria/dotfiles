@@ -7,8 +7,6 @@
 #   busy   UserPromptSubmit / PostToolUse: está trabajando, sin marca
 #   clear  hook de tmux al seleccionar la ventana: ya la miraste
 #
-# Si la ventana es la que estás viendo, no se marca: ya la estás mirando.
-#
 # El estado vive en la opción de pane @claude-state; de ahí se agrega al
 # @claude-alert de la ventana (wait gana sobre idle), que es lo que pinta
 # window-status-format en tmux.conf.
@@ -22,6 +20,7 @@ if [ "$state" = clear ]; then
     tmux set-option -pu -t "$p" @claude-state 2>/dev/null
   done
   tmux set-option -wu -t "$win" @claude-alert 2>/dev/null
+  tmux refresh-client -S 2>/dev/null
   exit 0
 fi
 
@@ -34,13 +33,7 @@ case $state in
   *)         tmux set-option -pu -t "$pane" @claude-state 2>/dev/null ;;
 esac
 
-# si estás mirando la ventana, no hace falta marcarla
-if [ "$(tmux display -p -t "$win" '#{&&:#{window_active},#{session_attached}}' 2>/dev/null)" = 1 ]; then
-  tmux set-option -wu -t "$win" @claude-alert 2>/dev/null
-  exit 0
-fi
-
-# si no, la ventana muestra el estado más urgente de sus panes
+# la ventana muestra el estado más urgente de sus panes
 if tmux list-panes -t "$win" -f '#{==:#{@claude-state},wait}' -F x 2>/dev/null | grep -q x; then
   tmux set-option -w -t "$win" @claude-alert wait 2>/dev/null
 elif tmux list-panes -t "$win" -f '#{==:#{@claude-state},idle}' -F x 2>/dev/null | grep -q x; then
@@ -48,4 +41,5 @@ elif tmux list-panes -t "$win" -f '#{==:#{@claude-state},idle}' -F x 2>/dev/null
 else
   tmux set-option -wu -t "$win" @claude-alert 2>/dev/null
 fi
+tmux refresh-client -S 2>/dev/null   # el status bar solo se repinta cada status-interval
 exit 0

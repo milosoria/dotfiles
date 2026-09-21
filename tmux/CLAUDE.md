@@ -22,7 +22,11 @@ El hook `SessionEnd` de `~/.claude/settings.json` los limpia y devuelve `automat
 necesita: rojo si espera que autorices algo (`PermissionRequest`, `Notification`), amarillo si
 terminó y espera tu input (`Stop`). Se limpia cuando Claude vuelve a trabajar
 (`UserPromptSubmit`, `PostToolUse`), cuando seleccionás la ventana, o al cerrar la sesión
-(`SessionEnd`). La ventana que estás viendo nunca se marca.
+(`SessionEnd`). Se marca también la ventana en la que estás: es la que más mirás y querés verla
+encenderse cuando Claude termina.
+
+El script cierra con `refresh-client -S`. Sin eso la marca tarda hasta un `status-interval`
+(15s) en aparecer, que es lo mismo que no funcionar.
 
 Estado: opción de pane `@claude-state`, agregada en `@claude-alert` de la ventana (`wait` gana
 sobre `idle`). El punto lo dibuja `@claude-mark`, que `window-status-format` expande con `#{E:}`.
