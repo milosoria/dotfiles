@@ -5,7 +5,10 @@
 #   wait   PermissionRequest / Notification: pide autorización o input
 #   idle   Stop: terminó y te toca a vos
 #   busy   UserPromptSubmit / PostToolUse: está trabajando, sin marca
-#   clear  hook de tmux al seleccionar la ventana: ya la miraste
+#   clear  a mano, para bajar una marca huérfana (p.ej. si la sesión murió sin SessionEnd)
+#
+# La marca es estado, no aviso: se queda mientras la sesión siga esperándote, aunque pases
+# por la ventana. La baja el propio Claude cuando vuelve a trabajar.
 #
 # El estado vive en la opción de pane @claude-state; de ahí se agrega al
 # @claude-alert de la ventana (wait gana sobre idle), que es lo que pinta
