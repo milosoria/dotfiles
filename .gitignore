@@ -50,7 +50,13 @@ claude/plans/
 claude/plugins/cache/
 claude/plugins/marketplaces/
 claude/plugins/install-counts-cache.json
-claude/skills/
+claude/skills/synced/
+# estas son symlinks al store externo ~/.agents, no viajan con el repo
+claude/skills/find-skills
+claude/skills/improve-codebase-architecture
+claude/skills/tdd
+claude/skills/to-issues
+claude/skills/to-prd
 claude/ide/
 claude/debug/
 claude/downloads/

@@ -97,6 +97,48 @@ else
     log_info "Install Cursor and run this script again to set up configuration."
 fi
 
+# Claude Code: the real files live in this repo, ~/.claude points at them.
+# Everything else in ~/.claude is runtime state (sessions, plugins, caches) and stays local.
+if [[ -d "$DOTFILES_DIR/claude" ]]; then
+    log_info "Setting up Claude Code configuration..."
+    mkdir -p "$HOME/.claude"
+
+    CLAUDE_ITEMS=(
+        "CLAUDE.md"
+        "settings.json"
+        "commands"
+        "agents"
+        "skills"
+        "scripts"
+        "themes"
+        "hooks"
+    )
+
+    for item in "${CLAUDE_ITEMS[@]}"; do
+        if [[ -e "$DOTFILES_DIR/claude/$item" ]]; then
+            create_symlink "$DOTFILES_DIR/claude/$item" "$HOME/.claude/$item"
+        fi
+    done
+
+    # user-scope MCP servers live in ~/.claude.json, which is not versioned
+    MCP_FILE="$DOTFILES_DIR/claude/mcp-servers.json"
+    if [[ -f "$MCP_FILE" ]] && command -v claude &> /dev/null && command -v jq &> /dev/null; then
+        while read -r name; do
+            if claude mcp get "$name" &> /dev/null; then
+                log_success "MCP server already configured: $name"
+            else
+                claude mcp add-json -s user "$name" "$(jq -c --arg n "$name" '.[$n]' "$MCP_FILE")" \
+                    && log_success "MCP server added: $name"
+            fi
+        done < <(jq -r 'keys[]' "$MCP_FILE")
+    else
+        log_warning "Skipping MCP servers (needs claude and jq)"
+    fi
+
+    log_success "Claude Code configuration completed"
+    log_info "Plugins reinstall themselves on first run from enabledPlugins in settings.json"
+fi
+
 # Special handling for zsh - link .zshrc to home directory
 if [[ -f "$DOTFILES_DIR/zsh/.zshrc" ]]; then
     create_symlink "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"

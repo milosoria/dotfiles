@@ -36,6 +36,7 @@ A comprehensive macOS development environment configuration repository designed 
 
 ### Development Tools
 - **cursor/**: Cursor IDE configuration
+- **claude/**: Claude Code configuration, symlinked into `~/.claude` (see `claude/README.md`)
 - **raycast/**: Raycast app launcher settings
 - **gh/**: GitHub CLI configuration
 - **zathura/**: PDF viewer configuration
