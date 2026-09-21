@@ -113,7 +113,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if [ -n \"$TMUX\" ]; then tmux set-window-option -t \"$TMUX_PANE\" automatic-rename on; tmux set-option -pu -t \"$TMUX_PANE\" @claude-name; tmux set-option -pu -t \"$TMUX_PANE\" @claude-title; fi",
+            "command": "if [ -n \"$TMUX\" ]; then tmux set-window-option -t \"$TMUX_PANE\" automatic-rename on; tmux set-option -pu -t \"$TMUX_PANE\" @claude-name; tmux set-option -pu -t \"$TMUX_PANE\" @claude-title; tmux set-option -pu -t \"$TMUX_PANE\" @claude-state; fi",
             "timeout": 5
           }
         ]
@@ -139,6 +139,11 @@
             "command": "jq -r '.tool_name // \"unknown\"' | xargs -I {} kitten notify --only-print-escape-code '🔒 Permission Required' 'Tool: {}'",
             "timeout": 5,
             "async": true
+          },
+          {
+            "type": "command",
+            "command": "\"$HOME/.config/tmux/claude-window-state.sh\" wait",
+            "timeout": 5
           }
         ]
       }
@@ -151,6 +156,11 @@
             "command": "kitten notify --only-print-escape-code '💬 Input Required' 'Claude needs your input to continue'",
             "timeout": 5,
             "async": true
+          },
+          {
+            "type": "command",
+            "command": "\"$HOME/.config/tmux/claude-window-state.sh\" wait",
+            "timeout": 5
           }
         ]
       }
@@ -211,6 +221,37 @@
             "command": "node \"$HOME/.claude/hooks/gitnexus/gitnexus-hook.cjs\"",
             "timeout": 10,
             "statusMessage": "Checking GitNexus index freshness..."
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/.config/tmux/claude-window-state.sh\" busy",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/.config/tmux/claude-window-state.sh\" idle",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/.config/tmux/claude-window-state.sh\" busy",
+            "timeout": 5
           }
         ]
       }

@@ -16,6 +16,17 @@ Estado por pane: `@claude-name` (nombre que puso el script) y `@claude-title` (�
 visto). Sirven de filtro en tmux, así que la pasada normal es una sola llamada sin renombrar.
 El hook `SessionEnd` de `~/.claude/settings.json` los limpia y devuelve `automatic-rename on`.
 
+## Marca de atención
+
+`claude-window-state.sh` pinta un punto antes del nombre cuando una sesión de Claude Code te
+necesita: rojo si espera que autorices algo (`PermissionRequest`, `Notification`), amarillo si
+terminó y espera tu input (`Stop`). Se limpia cuando Claude vuelve a trabajar
+(`UserPromptSubmit`, `PostToolUse`), cuando seleccionás la ventana, o al cerrar la sesión
+(`SessionEnd`). La ventana que estás viendo nunca se marca.
+
+Estado: opción de pane `@claude-state`, agregada en `@claude-alert` de la ventana (`wait` gana
+sobre `idle`). El punto lo dibuja `@claude-mark`, que `window-status-format` expande con `#{E:}`.
+
 <claude-mem-context>
 
 </claude-mem-context>
