@@ -35,9 +35,6 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH=$PATH:$(go env GOPATH)/bin 
-## pnpm
-export PNPM_HOME="$HOME/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
 ## Dont use docker desktop tools
 export DOCKER_BUILDKIT=0
 export COMPOSE_DOCKER_CLI_BUILD=0
@@ -76,13 +73,13 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - zsh)"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/csoria/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/csoria/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc" ]; then . "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/csoria/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/csoria/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc" ]; then . "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"; fi
 
 # pnpm
-export PNPM_HOME="/Users/csoria/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -98,7 +95,7 @@ source <(fzf --zsh)
 zvm_after_init_commands+=('source <(fzf --zsh)')
 
 # bun completions
-[ -s "/Users/csoria/.bun/_bun" ] && source "/Users/csoria/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -106,5 +103,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
 
-alias claude-mem='/Users/csoria/.bun/bin/bun "/Users/csoria/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
+alias claude-mem="$HOME/.bun/bin/bun \"$HOME/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs\""
 alias gcal="~/.gcal-cli/bin/python3 ~/.gcal-cli/gcal.py"
