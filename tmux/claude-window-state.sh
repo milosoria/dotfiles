@@ -7,6 +7,9 @@
 #   wait    PermissionRequest: pide autorización                   -> punto rojo
 #   notify  Notification: decide según notification_type del payload, porque el mismo
 #           evento cubre tanto "necesito permiso" como "hace rato que no escribís"
+#   sync    respaldo sin hooks: deduce busy/idle de #{window_activity}, para las sesiones
+#           que todavía no cargaron estos hooks (los toman al arrancar). Lo llaman
+#           tmux.conf desde status-right y los hooks de interacción.
 #   clear   a mano, para bajar una marca huérfana (sesión muerta sin SessionEnd)
 #
 # La marca es estado, no aviso: se queda mientras la sesión siga así, aunque pases por la
@@ -30,6 +33,37 @@ if [ "$state" = notify ]; then
     idle_prompt|agent_completed)                                  state=idle ;;
     *) exit 0 ;;   # auth, computer use, push: no dicen nada del estado
   esac
+fi
+
+claude_pane='#{&&:#{m:✳ *,#{pane_title}},#{||:#{m:claude,#{pane_current_command}},#{m:[0-9]*.[0-9]*.[0-9]*,#{pane_current_command}}}}'
+
+if [ "$state" = sync ]; then
+  now=$(date +%s)
+  changed=
+  cur= cur_act= cur_alert= cur_hooked=
+
+  decide() {
+    [ -z "$cur" ] && return
+    [ -n "$cur_hooked" ] && return          # si reporta por hook, mandan los hooks
+    if [ $((now - cur_act)) -le 5 ]; then st=busy; else st=idle; fi
+    [ "$cur_alert" = "$st" ] && return
+    tmux set-option -w -t "$cur" @claude-alert "$st" 2>/dev/null && changed=1
+  }
+
+  # una sola llamada a tmux; los panes de una ventana salen juntos
+  while read -r win act alert st; do
+    if [ "$win" != "$cur" ]; then
+      decide
+      cur=$win cur_act=$act cur_alert=$alert cur_hooked=
+    fi
+    [ -n "$st" ] && cur_hooked=1
+  done <<EOF
+$(tmux list-panes -a -f "$claude_pane" -F '#{window_id} #{window_activity} #{@claude-alert} #{@claude-state}' 2>/dev/null)
+EOF
+  decide
+
+  [ -n "$changed" ] && tmux refresh-client -S 2>/dev/null
+  exit 0
 fi
 
 if [ "$state" = clear ]; then

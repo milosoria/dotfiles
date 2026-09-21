@@ -21,20 +21,26 @@ El hook `SessionEnd` de `~/.claude/settings.json` los limpia y devuelve `automat
 `claude-window-state.sh` pinta un punto antes del nombre con el estado de la sesión de Claude
 Code que corre en la ventana:
 
-| Punto | Estado | Hook |
-|-------|--------|------|
+| Punto | Estado | Lo pone |
+|-------|--------|---------|
 | verde | trabajando | `UserPromptSubmit`, `PostToolUse` |
 | amarillo | terminó, te toca a vos | `Stop`, `SessionStart` |
 | rojo | pide autorización | `PermissionRequest`, `Notification` de tipo permiso |
 
-Amarillo es además el default de una ventana de claude que todavía no tiene estado: una sesión
-que trabaja lo reporta en cada tool, así que el silencio casi siempre significa que te espera.
-La señal de "esto es una ventana de claude" es `@claude-name`, que pone `claude-window-name.sh`
-y borra `SessionEnd`.
-
 `Notification` cubre tanto "necesito permiso" como "hace rato que no escribís", así que el
 script mira `notification_type` del payload (`permission_prompt` y `worker_permission_prompt`
 van a rojo, `idle_prompt` y `agent_completed` a amarillo) en vez de tratarlos igual.
+
+### Respaldo para las sesiones que no cargaron los hooks
+
+Una sesión solo toma los hooks al arrancar, así que las que ya estaban abiertas no reportan
+nada y quedarían mintiendo. Para esas está `claude-window-state.sh sync`, que deduce el estado
+de `#{window_activity}`: una sesión trabajando repinta su spinner cada segundo, una idle no
+imprime nada (medido: 1s contra 118s). Corre desde `status-right` y desde los hooks de
+interacción de tmux, y nunca pisa a un pane que sí reporta por hook, porque los hooks son
+exactos y al instante mientras que esto es una inferencia cada `status-interval`.
+
+### Detalles
 
 La marca es estado, no aviso: sobrevive a que pases por la ventana. Solo la mueve el propio
 Claude al cambiar de estado, y `SessionEnd` la borra. Si queda huérfana (sesión muerta sin
@@ -42,9 +48,11 @@ Claude al cambiar de estado, y `SessionEnd` la borra. Si queda huérfana (sesió
 
 Estado: opción de pane `@claude-state`, agregada en `@claude-alert` de la ventana (`wait` gana
 a `idle`, `idle` a `busy`). El punto lo dibuja `@claude-mark`, que `window-status-format`
-expande con `#{E:}`.
+expande con `#{E:}`. Amarillo es además el default de una ventana de claude sin estado; la
+señal de "esto es claude" es `@claude-name`, que pone `claude-window-name.sh` y borra
+`SessionEnd`.
 
-El script cierra con `refresh-client -S`. Sin eso la marca tarda hasta un `status-interval`
+Los scripts cierran con `refresh-client -S`. Sin eso la marca tarda hasta un `status-interval`
 (15s) en aparecer, que es lo mismo que no funcionar.
 
 <claude-mem-context>
