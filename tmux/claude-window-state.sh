@@ -8,8 +8,9 @@
 #   notify  Notification: decide según notification_type del payload, porque el mismo
 #           evento cubre tanto "necesito permiso" como "hace rato que no escribís"
 #   sync    respaldo sin hooks: deduce busy/idle de #{window_activity}, para las sesiones
-#           que todavía no cargaron estos hooks (los toman al arrancar). Lo llaman
-#           tmux.conf desde status-right y los hooks de interacción.
+#           que todavía no cargaron estos hooks (los toman al arrancar)
+#   watch   corre sync cada WATCH_EVERY segundos. Lo arranca tmux.conf. No usa
+#           status-interval porque ese lo comparte con gitmux, que es caro.
 #   clear   a mano, para bajar una marca huérfana (sesión muerta sin SessionEnd)
 #
 # La marca es estado, no aviso: se queda mientras la sesión siga así, aunque pases por la
@@ -36,8 +37,11 @@ if [ "$state" = notify ]; then
 fi
 
 claude_pane='#{&&:#{m:✳ *,#{pane_title}},#{||:#{m:claude,#{pane_current_command}},#{m:[0-9]*.[0-9]*.[0-9]*,#{pane_current_command}}}}'
+WATCH_EVERY=2   # cada cuánto revisa el watcher
+IDLE_AFTER=3    # sin imprimir por más de esto, la sesión está idle
 
-if [ "$state" = sync ]; then
+sync_windows() {
+  local now cur cur_act cur_alert cur_hooked changed win act alert st
   now=$(date +%s)
   changed=
   cur= cur_act= cur_alert= cur_hooked=
@@ -45,7 +49,7 @@ if [ "$state" = sync ]; then
   decide() {
     [ -z "$cur" ] && return
     [ -n "$cur_hooked" ] && return          # si reporta por hook, mandan los hooks
-    if [ $((now - cur_act)) -le 5 ]; then st=busy; else st=idle; fi
+    if [ $((now - cur_act)) -le $IDLE_AFTER ]; then st=busy; else st=idle; fi
     [ "$cur_alert" = "$st" ] && return
     tmux set-option -w -t "$cur" @claude-alert "$st" 2>/dev/null && changed=1
   }
@@ -63,6 +67,23 @@ EOF
   decide
 
   [ -n "$changed" ] && tmux refresh-client -S 2>/dev/null
+  return 0
+}
+
+if [ "$state" = sync ]; then
+  sync_windows
+  exit 0
+fi
+
+if [ "$state" = watch ]; then
+  # un solo watcher por servidor de tmux: el dueño se anota en una opción global
+  old=$(tmux show -gqv @claude-watcher 2>/dev/null)
+  [ -n "$old" ] && kill -0 "$old" 2>/dev/null && exit 0
+  tmux set -g @claude-watcher $$ 2>/dev/null || exit 0
+  while [ "$(tmux show -gqv @claude-watcher 2>/dev/null)" = "$$" ]; do
+    sync_windows
+    sleep $WATCH_EVERY
+  done
   exit 0
 fi
 

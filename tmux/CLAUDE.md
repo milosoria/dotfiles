@@ -36,9 +36,14 @@ van a rojo, `idle_prompt` y `agent_completed` a amarillo) en vez de tratarlos ig
 Una sesión solo toma los hooks al arrancar, así que las que ya estaban abiertas no reportan
 nada y quedarían mintiendo. Para esas está `claude-window-state.sh sync`, que deduce el estado
 de `#{window_activity}`: una sesión trabajando repinta su spinner cada segundo, una idle no
-imprime nada (medido: 1s contra 118s). Corre desde `status-right` y desde los hooks de
-interacción de tmux, y nunca pisa a un pane que sí reporta por hook, porque los hooks son
-exactos y al instante mientras que esto es una inferencia cada `status-interval`.
+imprime nada (medido: 1s contra 118s). Nunca pisa a un pane que sí reporta por hook, porque los
+hooks son exactos y al instante mientras que esto es una inferencia.
+
+Lo corre `claude-window-state.sh watch`, un loop cada 2s que arranca `tmux.conf`, con ~10ms por
+vuelta. No va por `status-interval` porque ese lo comparte con gitmux (150-350ms por refresh),
+que es la razón de que esté en 15s. Hay un solo watcher por servidor: el dueño anota su PID en
+la opción global `@claude-watcher`, así que recargar el config no lo duplica, y el hook
+`client-attached` lo revive si murió.
 
 ### Detalles
 
