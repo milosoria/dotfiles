@@ -27,6 +27,11 @@ Code que corre en la ventana:
 | amarillo | terminó, te toca a vos | `Stop`, `SessionStart` |
 | rojo | pide autorización | `PermissionRequest`, `Notification` de tipo permiso |
 
+Amarillo es además el default de una ventana de claude que todavía no tiene estado: una sesión
+que trabaja lo reporta en cada tool, así que el silencio casi siempre significa que te espera.
+La señal de "esto es una ventana de claude" es `@claude-name`, que pone `claude-window-name.sh`
+y borra `SessionEnd`.
+
 `Notification` cubre tanto "necesito permiso" como "hace rato que no escribís", así que el
 script mira `notification_type` del payload (`permission_prompt` y `worker_permission_prompt`
 van a rojo, `idle_prompt` y `agent_completed` a amarillo) en vez de tratarlos igual.
