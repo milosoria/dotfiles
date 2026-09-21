@@ -1,7 +1,7 @@
 eval "$(starship init zsh)"
 # ZSH_THEME=021011
 DISABLE_AUTO_TITLE=true # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-vi-mode git dircycle nvm  zsh-autosuggestions zsh-syntax-highlighting zsh-z)
+plugins=(zsh-vi-mode git dircycle zsh-autosuggestions zsh-syntax-highlighting zsh-z)
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -41,10 +41,14 @@ export PATH="$PNPM_HOME:$PATH"
 ## Dont use docker desktop tools
 export DOCKER_BUILDKIT=0
 export COMPOSE_DOCKER_CLI_BUILD=0
-## NVM: loads nvm and sources nvm completion
+## NVM: lazy. node por defecto viene de Homebrew; nvm se carga al primer uso.
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+nvm() {
+  unfunction nvm
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+  nvm "$@"
+}
 
 # Source customs
 source $HOME/.config/custom_commands/custom_commands.sh
