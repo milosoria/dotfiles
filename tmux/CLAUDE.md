@@ -2,11 +2,25 @@
 
 ## Barra de 2 líneas
 
-`status 2`: arriba los repos/servers (ícono ) con gitmux, abajo las sesiones de Claude
-(ícono 󰚩). Cada línea es el `status-format` default de tmux con el loop `#{W:}` filtrado por
-`@is-claude` (`@claude-alert` o `@claude-name` puestos), así que el clic, el foco y los
-`window-status-*-format` siguen funcionando igual. Ojo: dentro de un `#{?}` no puede haber
-comas sueltas (`#[fg=x,bold]`), por eso los formatos de ventana entran por `#{T:}`.
+`status 2`: arriba los repos/servers con gitmux (parte desde el borde, `status-left` vacío),
+abajo las sesiones de Claude con el ícono 󰚩. Cada línea es el `status-format` default de tmux
+con el loop `#{W:}` filtrado por `@is-claude` (`@claude-alert` o `@claude-name` puestos), así
+que el clic, el foco y los `window-status-*-format` siguen funcionando igual. Ojo: dentro de un
+`#{?}` no puede haber comas sueltas (`#[fg=x,bold]`), por eso los formatos de ventana entran
+por `#{T:}`.
+
+Las tabs son píldoras: bordes powerline redondeados (`@pill-l`/`@pill-r`, escritos como
+`"\ue0b6"` para no depender de pegar el glifo) con fondo `@tab-bg`, y la actual rellena de
+`@accent`. Los `@tab-*` los define cada tema en `themes/`. No hay separación vertical entre
+filas: tmux trabaja por líneas enteras y una vacía al medio era demasiado.
+
+## Buscador de panes (`prefix + f`)
+
+`pane-finder.sh` en un `display-popup` sin borde (el borde lo dibuja fzf), sin preview. Mismo
+orden que la barra: repos/servers y después Claude con su punto de estado y el título completo.
+De Claude va solo la sesión principal de cada ventana (pane de menor índice, la misma regla del
+namer), no los subagentes. Alinea columnas en perl porque `printf` de awk cuenta bytes y los
+íconos y acentos las corren. Los colores salen del tema.
 
 ## Nombre de las ventanas
 
