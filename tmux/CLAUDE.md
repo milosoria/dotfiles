@@ -1,5 +1,13 @@
 # tmux
 
+## Barra de 2 líneas
+
+`status 2`: arriba los repos/servers (ícono ) con gitmux, abajo las sesiones de Claude
+(ícono 󰚩). Cada línea es el `status-format` default de tmux con el loop `#{W:}` filtrado por
+`@is-claude` (`@claude-alert` o `@claude-name` puestos), así que el clic, el foco y los
+`window-status-*-format` siguen funcionando igual. Ojo: dentro de un `#{?}` no puede haber
+comas sueltas (`#[fg=x,bold]`), por eso los formatos de ventana entran por `#{T:}`.
+
 ## Nombre de las ventanas
 
 `claude-window-name.sh` nombra cada ventana con el título de la sesión de Claude Code que corre
