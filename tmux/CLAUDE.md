@@ -64,6 +64,13 @@ Code que corre en la ventana:
 script mira `notification_type` del payload (`permission_prompt` y `worker_permission_prompt`
 van a rojo, `idle_prompt` y `agent_completed` a amarillo) en vez de tratarlos igual.
 
+### Notificaciones de kitty
+
+Los mismos eventos (`PermissionRequest`, `Stop`, `Notification`) disparan además
+`~/.claude/hooks/kitty-notify.sh`, que avisa con una notificación de kitty titulada con la tab
+(`#{E:@row-idx} #W`). Necesita `allow-passthrough all`: con `on` tmux descarta el escape si el
+pane no está a la vista, que es justo cuando el aviso sirve.
+
 ### Respaldo para las sesiones que no cargaron los hooks
 
 Una sesión solo toma los hooks al arrancar, así que las que ya estaban abiertas no reportan

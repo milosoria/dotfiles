@@ -128,26 +128,13 @@
         ]
       }
     ],
-    "SubagentStop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "kitten notify --only-print-escape-code '🤖 Agent Complete' 'A subagent has finished its task'",
-            "timeout": 5,
-            "async": true
-          }
-        ]
-      }
-    ],
     "PermissionRequest": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_name // \"unknown\"' | xargs -I {} kitten notify --only-print-escape-code '🔒 Permission Required' 'Tool: {}'",
-            "timeout": 5,
-            "async": true
+            "command": "\"$HOME/.claude/hooks/kitty-notify.sh\"",
+            "timeout": 5
           },
           {
             "type": "command",
@@ -162,9 +149,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "kitten notify --only-print-escape-code '💬 Input Required' 'Claude needs your input to continue'",
-            "timeout": 5,
-            "async": true
+            "command": "\"$HOME/.claude/hooks/kitty-notify.sh\"",
+            "timeout": 5
           },
           {
             "type": "command",
@@ -249,6 +235,11 @@
           {
             "type": "command",
             "command": "\"$HOME/.config/tmux/claude-window-state.sh\" idle",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "\"$HOME/.claude/hooks/kitty-notify.sh\"",
             "timeout": 5
           }
         ]
