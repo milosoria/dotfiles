@@ -12,7 +12,7 @@ border=$(tmux show -gv pane-border-style | sed -n 's/.*fg=\([^,]*\).*/\1/p')
 
 claude='#{||:#{m:claude,#{pane_current_command}},#{m:[0-9]*.[0-9]*.[0-9]*,#{pane_current_command}}}'
 t=$'\t'
-fmt="#{pane_id}${t}#{?${claude},c,s}${t}#{?@claude-state,#{@claude-state},#{@claude-alert}}${t}#{window_index}#{?#{!=:#{window_panes},1},.#{pane_index},}${t}#{?${claude},#{s|^✳ ||:pane_title},#{?automatic-rename,#W #{b:pane_current_path},  #W}}${t}#{s|^/Users/[^/]*|~|:pane_current_path}${t}#{&&:#{window_active},#{pane_active}}"
+fmt="#{pane_id}${t}#{?${claude},c,s}${t}#{?@claude-state,#{@claude-state},#{@claude-alert}}${t}#{E:@row-idx}#{?#{!=:#{window_panes},1},.#{pane_index},}${t}#{?${claude},#{s|^✳ ||:pane_title},#{?automatic-rename,#W #{b:pane_current_path},  #W}}${t}#{s|^/Users/[^/]*|~|:pane_current_path}${t}#{&&:#{window_active},#{pane_active}}${t}#{window_id}"
 
 # una línea por pane: "<pane_id>\t<lo que se ve>", con columnas alineadas por caracteres (no bytes)
 rows() {
@@ -35,7 +35,7 @@ rows() {
       my @f = split /\t/, $_, -1;
       if ($f[1] eq "c") {
         ($f[3]) = split /\./, $f[3];
-        next if $seen{$f[3]}++;
+        next if $seen{$f[7]}++;
         $f[4] = "\x{F06A9} $f[4]";
       }
       push @rows, \@f;

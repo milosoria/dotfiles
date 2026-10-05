@@ -14,6 +14,16 @@ Las tabs son píldoras: bordes powerline redondeados (`@pill-l`/`@pill-r`, escri
 `@accent`. Los `@tab-*` los define cada tema en `themes/`. No hay separación vertical entre
 filas: tmux trabaja por líneas enteras y una vacía al medio era demasiado.
 
+## Numeración por fila
+
+Cada fila numera sus tabs desde 1 (`@row-idx`, no `#I`). `prefix + N` va a la tab N de la fila
+en la que estás (`@row-goto` vía `run -C`) y `prefix + n/p` ciclan dentro de esa fila, dando la
+vuelta en los extremos (`@row-next`/`@row-prev`). Para cambiar de fila está el buscador. El
+número es cuántas ventanas de la misma fila tienen índice <= al suyo: un `#{W:}` anidado no ve
+la ventana de afuera, así que su fila e índice se inyectan en la plantilla con `s/ROW/` y
+`s/IDX/` antes de expandirla con `E:`. Ojo: `<=` compara strings (`10 <= 2`), por eso va
+`e|<=`. El buscador y el título de las notificaciones de kitty usan el mismo número.
+
 ## Buscador de panes (`prefix + f`)
 
 `pane-finder.sh` en un `display-popup` sin borde (el borde lo dibuja fzf), sin preview. Mismo
