@@ -105,3 +105,6 @@ export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
 
 alias claude-mem="$HOME/.bun/bin/bun \"$HOME/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs\""
 alias gcal="~/.gcal-cli/bin/python3 ~/.gcal-cli/gcal.py"
+
+# Turso
+export PATH="$PATH:$HOME/.turso"
