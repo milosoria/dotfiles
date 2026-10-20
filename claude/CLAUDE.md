@@ -1,18 +1,12 @@
 # Global Claude Code Instructions
 
 ## Tone
-- Be concise and simple when explaining what your doing and your conclusions, avoid being verbose,
+- Be concise and simple when explaining what you're doing and your conclusions, avoid being verbose,
 simplicity and precision is much appreciated. NEVER USE EM DASHES.
 
 ## PRs
 
-- They feature/fix/bug flow is feature branch to staging and then staging to main, unless the user explicitly states that he wants to push directly to staging and take it from there.
-
-### When to Use This Workflow
-- Multi-file changes or refactors
-- New feature implementations
-- Complex bug investigations
-- Any task with 3+ distinct steps
+- The feature/fix/bug flow is feature branch to staging and then staging to main, unless the user explicitly states they want to push directly to staging and take it from there.
 
 <!-- macal-toolkit:search-preferences -->
 ## Search Tool Preferences
@@ -85,8 +79,13 @@ When working with Python projects:
    - Fall back to `python3`
 <!-- /macal-toolkit:python-standards -->
 
-
 ## Workflow Orchestration
+
+### When to Use This Workflow
+- Multi-file changes or refactors
+- New feature implementations
+- Complex bug investigations
+- Any task with 3+ distinct steps
 
 ### 1. Plan Mode Default
 - Enter plan mode for ANY non-trivial task (3+ steps or architectural decisions)
@@ -145,7 +144,3 @@ When completing a session that changes project structure, conventions, dependenc
 1. Update the relevant CLAUDE.md file(s) to reflect those changes before finishing
 2. Remove entries that reference files, paths, or patterns that no longer exist
 3. Keep instructions concise — if a section is no longer relevant, delete it
-
-<claude-mem-context>
-
-</claude-mem-context>
