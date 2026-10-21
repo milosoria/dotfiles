@@ -27,9 +27,10 @@ la ventana de afuera, así que su fila e índice se inyectan en la plantilla con
 ## Buscador de panes (`prefix + f`)
 
 `pane-finder.sh` en un `display-popup` sin borde (el borde lo dibuja fzf), sin preview. Mismo
-orden que la barra: repos/servers y después Claude con su punto de estado y el título completo.
+orden que la barra: repos/servers y después Claude con su punto de estado y el nombre del tab.
 De Claude va solo la sesión principal de cada ventana (pane de menor índice, la misma regla del
-namer), no los subagentes. Alinea columnas en perl porque `printf` de awk cuenta bytes y los
+namer), no los subagentes. Si el título de la sesión no es el nombre del tab (rename a mano, o
+un título que cambió después), va en una columna gris aparte, y también se puede buscar por él. Alinea columnas en perl porque `printf` de awk cuenta bytes y los
 íconos y acentos las corren. Los colores salen del tema.
 
 ## Nombre de las ventanas

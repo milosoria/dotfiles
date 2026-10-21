@@ -2,7 +2,7 @@
 # Buscador de panes (prefix + f): lista los panes de todas las ventanas y salta al elegido.
 #
 # Se lee como la barra: primero repos/servers con su nombre de ventana, después Claude con su
-# punto de estado y el título completo de la sesión (la barra lo corta). Los colores salen del
+# punto de estado, el nombre del tab y el título de la sesión si es otro. Los colores salen del
 # tema (@accent, @accent2, pane-border-style), así que siguen al comando `theme`.
 
 accent=$(tmux show -gv @accent)
@@ -12,11 +12,11 @@ border=$(tmux show -gv pane-border-style | sed -n 's/.*fg=\([^,]*\).*/\1/p')
 
 claude='#{||:#{m:claude,#{pane_current_command}},#{m:[0-9]*.[0-9]*.[0-9]*,#{pane_current_command}}}'
 t=$'\t'
-fmt="#{pane_id}${t}#{?${claude},c,s}${t}#{?@claude-state,#{@claude-state},#{@claude-alert}}${t}#{E:@row-idx}#{?#{!=:#{window_panes},1},.#{pane_index},}${t}#{?${claude},#{s|^✳ ||:pane_title},#{?automatic-rename,#W #{b:pane_current_path},  #W}}${t}#{s|^/Users/[^/]*|~|:pane_current_path}${t}#{&&:#{window_active},#{pane_active}}${t}#{window_id}"
+fmt="#{pane_id}${t}#{?${claude},c,s}${t}#{?@claude-state,#{@claude-state},#{@claude-alert}}${t}#{E:@row-idx}#{?#{!=:#{window_panes},1},.#{pane_index},}${t}#{?${claude},#{s|^✳ ||:pane_title},#{?automatic-rename,#W #{b:pane_current_path},  #W}}${t}#{s|^/Users/[^/]*|~|:pane_current_path}${t}#{&&:#{window_active},#{pane_active}}${t}#{window_id}${t}#W"
 
 # una línea por pane: "<pane_id>\t<lo que se ve>", con columnas alineadas por caracteres (no bytes)
 rows() {
-  tmux list-panes -a -F "$fmt" | ACCENT=$accent ACCENT2=$accent2 perl -CSD -Mutf8 -e '
+  tmux list-panes -a -F "$fmt" | ACCENT=$accent ACCENT2=$accent2 perl -CSD -Mutf8 -MUnicode::Normalize -e '
     sub ansi {
       my $c = shift;
       return sprintf "\e[38;2;%d;%d;%dm", map hex, $c =~ /^#(..)(..)(..)$/ if $c =~ /^#/;
@@ -36,26 +36,36 @@ rows() {
       if ($f[1] eq "c") {
         ($f[3]) = split /\./, $f[3];
         next if $seen{$f[7]}++;
-        $f[4] = "\x{F06A9} $f[4]";
+        # se muestra el nombre del tab, como en la barra. El título de la sesión va aparte
+        # solo si dice otra cosa (rename a mano, o un título que cambió): si es el mismo en
+        # kebab-case (claude-window-name.sh), sobra
+        (my $slug = lc NFD($f[4])) =~ s/\pM//g;
+        $slug =~ s/[^a-z0-9]+/-/g;
+        $slug =~ s/^-+//;
+        ($f[4], $f[8]) = ("\x{F06A9} $f[8]", index($slug, $f[8]) == 0 ? "" : $f[4]);
+      } else {
+        $f[8] = "";
       }
       push @rows, \@f;
     }
-    my ($wi, $wn) = (0, 0);
+    my ($wi, $wn, $wt) = (0, 0, 0);
     for (@rows) {
       $wi = length $_->[3] if length $_->[3] > $wi;
       $wn = length $_->[4] if length $_->[4] > $wn;
+      $wt = length($_->[8]) + 2 if $_->[8] ne "" && length($_->[8]) + 2 > $wt;
     }
     $wn = 50 if $wn > 50;
 
     for my $kind ("s", "c") {
       for (grep { $_->[1] eq $kind } @rows) {
-        my ($id, $k, $st, $idx, $name, $path, $cur) = @$_;
+        my ($id, $k, $st, $idx, $name, $path, $cur, undef, $tab) = @$_;
         $name = substr($name, 0, $wn - 1) . "…" if length $name > $wn;
         my $pad = " " x ($wn - length $name);
         $name = "$acc2$1$off$2" if $k eq "c" && $name =~ /^(\S+)( .*)$/;
         $name = "$acc\e[1m$name$off" if $cur;
         my $mark = $k eq "c" ? ($dot{$st} // "\e[33m●") . $off : " ";
-        printf "%s\t %s %s%*s%s  %s%s  %s%s%s\n", $id, $mark, $dim, $wi, $idx, $off, $name, $pad, $dim, $path, $off;
+        $tab = sprintf "%-*s", $wt, $tab;
+        printf "%s\t %s %s%*s%s  %s%s  %s%s%s%s\n", $id, $mark, $dim, $wi, $idx, $off, $name, $pad, $dim, $tab, $path, $off;
       }
     }
   '
