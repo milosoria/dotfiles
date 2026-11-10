@@ -315,7 +315,7 @@
   "theme": "custom:gruvbox-material",
   "editorMode": "vim",
   "verbose": false,
-  "preferredNotifChannel": "kitty",
+  "preferredNotifChannel": "notifications_disabled",
   "switchModelsOnFlag": false,
   "teammateMode": "tmux",
   "agentPushNotifEnabled": true,

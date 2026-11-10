@@ -72,6 +72,10 @@ Los mismos eventos (`PermissionRequest`, `Stop`, `Notification`) disparan ademá
 (`#{E:@row-idx} #W`). Necesita `allow-passthrough all`: con `on` tmux descarta el escape si el
 pane no está a la vista, que es justo cuando el aviso sirve.
 
+El canal nativo de Claude Code va apagado (`preferredNotifChannel: notifications_disabled` en
+`claude/settings.json`): mandaba un "Claude is waiting for your input" genérico, sin la tab. Los
+hooks `Notification` corren igual con el canal apagado.
+
 ### Respaldo para las sesiones que no cargaron los hooks
 
 Una sesión solo toma los hooks al arrancar, así que las que ya estaban abiertas no reportan
