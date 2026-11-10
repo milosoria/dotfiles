@@ -106,6 +106,19 @@ señal de "esto es claude" es `@claude-name`, que pone `claude-window-name.sh` y
 Los scripts cierran con `refresh-client -S`. Sin eso la marca tarda hasta un `status-interval`
 (15s) en aparecer, que es lo mismo que no funcionar.
 
+## Visor de archivos de Claude (`show-file`)
+
+"Muéstrame el archivo" / "llévame a la línea N" hace que Claude corra
+`claude/scripts/nvim-open.sh <archivo>[:línea]` (skill `claude/skills/show-file`, permitido
+en `settings.json`). La primera vez abre un pane vertical con nvim a la derecha, con
+`split-window -h -d` para que el foco se quede en Claude. Las siguientes reutiliza ese pane y le
+manda `:edit +línea` por `--remote-send`.
+
+Hay un visor por ventana. El pane guarda en `@claude-viewer` la ruta de su socket
+(`/tmp/nvim-claude-<win>-<pid>.sock`). Cada visor tiene un socket único: con uno compartido, el
+nvim viejo al morir borraba el socket del nuevo. Si nvim no responde (cerraste con `:q` o el
+pane murió), el script mata el pane y abre otro.
+
 <claude-mem-context>
 
 </claude-mem-context>
