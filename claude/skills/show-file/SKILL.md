@@ -13,6 +13,6 @@ Open the file in the viewer pane with:
 
 - Resolve the path and line first (Grep/LSP if the user named a symbol, not a file). Pass an absolute path.
 - Pass the line when the user asks for a specific line or symbol; omit it otherwise. `archivo:línea` also works.
-- One viewer pane per tmux window, reused on every call; focus stays on Claude.
+- One viewer pane per tmux window, reused on every call; focus moves to nvim.
 - Do not paste the file contents in the chat. Reply with one short line saying what was opened (`ruta:línea`).
 - If the script says it is not inside tmux, tell the user and fall back to citing `ruta:línea`.

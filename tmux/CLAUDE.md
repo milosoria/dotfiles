@@ -110,9 +110,12 @@ Los scripts cierran con `refresh-client -S`. Sin eso la marca tarda hasta un `st
 
 "Muéstrame el archivo" / "llévame a la línea N" hace que Claude corra
 `claude/scripts/nvim-open.sh <archivo>[:línea]` (skill `claude/skills/show-file`, permitido
-en `settings.json`). La primera vez abre un pane vertical con nvim a la derecha, con
-`split-window -h -d` para que el foco se quede en Claude. Las siguientes reutiliza ese pane y le
-manda `:edit +línea` por `--remote-send`.
+en `settings.json`). La primera vez abre un pane vertical con nvim a la derecha. Las
+siguientes reutiliza ese pane y le manda `:edit +línea` por `--remote-expr` con `execute()`. En
+ambos casos el foco pasa a nvim.
+
+No usar `--remote-send`: pasa por los mappings, y `<C-\>` (el que se usa para salir a modo normal)
+es `TmuxNavigatePrevious` de vim-tmux-navigator, que devuelve el foco al pane de Claude.
 
 Hay un visor por ventana. El pane guarda en `@claude-viewer` la ruta de su socket
 (`/tmp/nvim-claude-<win>-<pid>.sock`). Cada visor tiene un socket único: con uno compartido, el
