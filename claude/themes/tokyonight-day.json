@@ -63,6 +63,7 @@
     "rainbow_indigo": "#7847bd",
     "rainbow_indigo_shimmer": "#a685d6",
     "rainbow_violet": "#9854f1",
-    "rainbow_violet_shimmer": "#bf96f6"
+    "rainbow_violet_shimmer": "#bf96f6",
+    "composerSidebarBackground": "#d0d5e3"
   }
 }

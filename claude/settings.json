@@ -313,7 +313,7 @@
   "autoMemoryEnabled": false,
   "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true,
-  "theme": "custom:gruvbox-material",
+  "theme": "custom:gruvbox-material-light",
   "editorMode": "vim",
   "verbose": false,
   "preferredNotifChannel": "notifications_disabled",

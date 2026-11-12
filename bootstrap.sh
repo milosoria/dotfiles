@@ -148,6 +148,14 @@ if [[ -d "$DOTFILES_DIR/claude" ]]; then
     log_info "Plugins reinstall themselves on first run from enabledPlugins in settings.json"
 fi
 
+# Theme: kitty/tmux include current-theme.conf, a symlink that is not versioned.
+# theme.sh creates it (and syncs nvim + Claude Code); keeps the machine's theme if one is set.
+if [[ -x "$DOTFILES_DIR/theme/theme.sh" ]]; then
+    read -r cur_theme cur_variant < "$DOTFILES_DIR/theme/current" 2>/dev/null || true
+    "$DOTFILES_DIR/theme/theme.sh" "${cur_theme:-tokyonight}" "${cur_variant:-dark}" \
+        && log_success "Theme applied" || log_warning "theme.sh failed"
+fi
+
 # Special handling for zsh - link .zshrc to home directory
 if [[ -f "$DOTFILES_DIR/zsh/.zshrc" ]]; then
     create_symlink "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"

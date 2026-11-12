@@ -25,7 +25,6 @@ return {
     "sainnhe/gruvbox-material",
     lazy = true,
     init = function()
-      vim.g.gruvbox_material_background = "hard"
       vim.g.gruvbox_material_better_performance = 1
       -- dark: darker editor bg to match kitty's background
       -- light: "original" foreground, the "material" one is too washed out on a light bg
@@ -34,6 +33,8 @@ return {
         callback = function()
           local dark = vim.o.background == "dark"
           vim.g.gruvbox_material_foreground = dark and "material" or "original"
+          -- light: "soft" bg0 (#f2e5bc) = kitty/tmux cream background
+          vim.g.gruvbox_material_background = dark and "hard" or "soft"
           vim.g.gruvbox_material_colors_override = dark and { bg0 = { "#141617", "233" } } or vim.empty_dict()
         end,
       })
