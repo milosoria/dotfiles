@@ -73,6 +73,7 @@
     "professionalBlue": "#076678",
     "chromeYellow": "#b57614",
     "clawd_body": "#af3a03",
-    "clawd_background": "#282828"
+    "clawd_background": "#282828",
+    "background": "#076678"
   }
 }
