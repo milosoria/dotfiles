@@ -1,0 +1,1 @@
+{ "name": "session-files", "version": "0.1.0", "description": "Animated file tree of the files this session modifies, in a side pane", "types": "./types/index.d.ts" }

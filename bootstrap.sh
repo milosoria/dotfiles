@@ -121,6 +121,7 @@ if [[ -d "$DOTFILES_DIR/claude" ]]; then
         "scripts"
         "themes"
         "hooks"
+        "mods"
     )
 
     for item in "${CLAUDE_ITEMS[@]}"; do
