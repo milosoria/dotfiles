@@ -369,13 +369,19 @@ export const register: Register = on => {
   // <space>e on an empty prompt toggles the pane. Vim normal-mode keys never reach mods
   // (only edits do), so the leader is a space typed into an empty box, then e within 1s.
   on('prompt.edit', async ($, e, next) => {
-    const now = await $.clock.now()
+    // cheap string checks first: this hook runs on every keystroke under a 50ms budget
     const isLeader = e.text === '' && e.inputText === ' '
+    const maybeChord = e.text === ' ' && e.cursor === 1 && e.inputText === 'e' && leaderAt > 0
+    if (!isLeader && !maybeChord) {
+      leaderAt = 0
+      return next(e)
+    }
+    const now = await $.clock.now()
     if (isLeader) {
       leaderAt = now
       return next(e)
     }
-    const isChord = e.text === ' ' && e.cursor === 1 && e.inputText === 'e' && now - leaderAt < LEADER_MS
+    const isChord = now - leaderAt < LEADER_MS
     leaderAt = 0
     if (!isChord) return next(e)
     const isOpen = (await $.ui.panes()).some(p => p.id === PANE)
