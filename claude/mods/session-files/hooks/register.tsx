@@ -265,8 +265,8 @@ export const register: Register = on => {
     if (props.tool !== 'Bash' || typeof command !== 'string') return next(e)
 
     const { Box, Text } = $.ui.resolve(e)
-    // a card capped in width, so long commands read as a block and not a full-width line
-    const width = Math.max(30, Math.min((e.viewport?.columns ?? 100) - 4, 110))
+    // the card spans the transcript up to the side pane; long commands break at operators
+    const width = Math.max(30, (e.viewport?.columns ?? 100) - 4)
     const inner = width - 4 // "│ " + content + " │"
 
     // tokens -> logical lines (source newlines), then break long lines after top-level operators
