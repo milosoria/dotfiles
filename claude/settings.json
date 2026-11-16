@@ -115,6 +115,15 @@
             "timeout": 5
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$TMUX\" ] && tmux set-option -p -t \"$TMUX_PANE\" @claude-session \"$(jq -r .session_id)\"; true",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "SessionEnd": [
@@ -122,7 +131,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if [ -n \"$TMUX\" ]; then tmux set-window-option -t \"$TMUX_PANE\" automatic-rename on; tmux set-option -pu -t \"$TMUX_PANE\" @claude-name; tmux set-option -pu -t \"$TMUX_PANE\" @claude-title; tmux set-option -pu -t \"$TMUX_PANE\" @claude-state; fi",
+            "command": "if [ -n \"$TMUX\" ]; then tmux set-window-option -t \"$TMUX_PANE\" automatic-rename on; tmux set-option -pu -t \"$TMUX_PANE\" @claude-name; tmux set-option -pu -t \"$TMUX_PANE\" @claude-title; tmux set-option -pu -t \"$TMUX_PANE\" @claude-state; tmux set-option -pu -t \"$TMUX_PANE\" @claude-session; fi",
             "timeout": 5
           }
         ]

@@ -106,6 +106,22 @@ señal de "esto es claude" es `@claude-name`, que pone `claude-window-name.sh` y
 Los scripts cierran con `refresh-client -S`. Sin eso la marca tarda hasta un `status-interval`
 (15s) en aparecer, que es lo mismo que no funcionar.
 
+## Resurrect de sesiones de Claude
+
+Al restaurar (continuum, al prender), cada pane que tenía Claude Code vuelve a abrir su misma
+conversación con `claude <flags> --resume <id>`.
+
+- El hook `SessionStart` de `claude/settings.json` anota el `session_id` en la opción de pane
+  `@claude-session` (se actualiza en `/clear` y `/resume`); `SessionEnd` la borra, así que una
+  sesión cerrada a mano no se restaura.
+- `claude-resurrect.sh` es el `@resurrect-hook-post-save-layout`: reescribe el comando guardado
+  de esos panes. Conserva los flags del comando original (sin `--resume`/`--continue`); si ps
+  guardó otra cosa (pane lanzado directo con claude, ps toma un hijo MCP) usa
+  `--dangerously-skip-permissions`.
+- `@resurrect-processes 'claude'` hace que el restore corra esos comandos. Sin `~`, así no
+  matchea los `node -e ...claude-mem...` que a veces quedan guardados.
+- Continuum guarda cada 5 min: al apagar se pierde lo abierto después del último save.
+
 ## Visor de archivos de Claude (`show-file`)
 
 "Muéstrame el archivo" / "llévame a la línea N" hace que Claude corra
