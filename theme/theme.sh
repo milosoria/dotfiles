@@ -85,7 +85,8 @@ done
 # Claude Code: settings.json is watched, so running sessions restyle live
 settings="$HOME/.claude/settings.json"
 if command -v jq >/dev/null 2>&1 && [ -f "$settings" ]; then
-  tmp="$(mktemp)" && jq --arg t "$claude_theme" '.theme = $t' "$settings" >"$tmp" && mv "$tmp" "$settings"
+  # write in place (cat >, not mv): settings.json is a symlink into this repo and mv would replace it
+  tmp="$(mktemp)" && jq --arg t "$claude_theme" '.theme = $t' "$settings" >"$tmp" && cat "$tmp" >"$settings" && rm -f "$tmp"
 else
   echo "warn: jq or $settings missing — Claude Code theme not updated" >&2
 fi
