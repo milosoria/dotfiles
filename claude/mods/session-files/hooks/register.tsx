@@ -251,10 +251,13 @@ const tokenize = (src: string): Tok[] => {
 }
 
 export const register: Register = on => {
-  // Groups that hold a Bash call unfold, so every command shows as its own row.
+  // Groups of Bash (plus reads/searches) unfold, so every command shows as its own row.
   on('ui.render', { component: 'ToolGroup', plugin: '*' }, async ($, e, next) => {
     const props = e.props as { calls: ReadonlyArray<{ tool: string }>; isExpanded: boolean }
-    if (props.isExpanded || !props.calls.some(c => c.tool === 'Bash')) return next(e)
+    // only groups of light calls: one heavy call (Chrome, MCP, agents) would unfold its whole input
+    const LIGHT = new Set(['Bash', 'Read', 'Grep', 'Glob'])
+    const isBashGroup = props.calls.some(c => c.tool === 'Bash') && props.calls.every(c => LIGHT.has(c.tool))
+    if (props.isExpanded || !isBashGroup) return next(e)
     return next({ ...e, props: { ...e.props, isExpanded: true } } as typeof e)
   })
 
