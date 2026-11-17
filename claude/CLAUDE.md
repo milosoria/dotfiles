@@ -6,6 +6,8 @@ simplicity and precision is much appreciated. NEVER USE EM DASHES.
 
 ## PRs
 
+- NEVER add `Co-Authored-By` trailers or "Generated with Claude Code" lines to commits, PR bodies or messages.
+
 - The feature/fix/bug flow is feature branch to staging and then staging to main, unless the user explicitly states they want to push directly to staging and take it from there.
 
 <!-- macal-toolkit:search-preferences -->
